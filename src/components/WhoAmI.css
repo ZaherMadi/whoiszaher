@@ -1,0 +1,274 @@
+.whoami {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-3xl) var(--spacing-lg);
+  overflow: hidden;
+}
+
+/* Video Background */
+.video-container {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.background-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.7) 0%,
+    rgba(15, 23, 42, 0.85) 50%,
+    rgba(15, 23, 42, 0.95) 100%
+  );
+}
+
+/* Animated gradient background as fallback/placeholder */
+.video-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    -45deg,
+    var(--bg-primary),
+    var(--bg-secondary),
+    rgba(99, 102, 241, 0.2),
+    rgba(139, 92, 246, 0.2)
+  );
+  background-size: 400% 400%;
+  animation: gradientFlow 15s ease infinite;
+  z-index: -1;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+[data-theme="light"] .video-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(248, 250, 252, 0.85) 50%,
+    rgba(248, 250, 252, 0.95) 100%
+  );
+}
+
+.whoami-container {
+  max-width: var(--max-width);
+  width: 100%;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.whoami.visible .whoami-container {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Header */
+.whoami-header {
+  margin-bottom: var(--spacing-3xl);
+}
+
+.whoami-question {
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 800;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--spacing-md);
+  text-shadow: 0 0 40px rgba(99, 102, 241, 0.3);
+}
+
+.whoami-hint {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-lg);
+  animation: fadeIn 1s ease 0.5s forwards;
+  opacity: 0;
+}
+
+.whoami.visible .whoami-hint {
+  opacity: 1;
+}
+
+.arrow-down {
+  color: var(--primary-color);
+  animation: bounce 2s ease infinite;
+  display: inline-block;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(15px);
+  }
+}
+
+/* Cards Grid */
+.whoami-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-3xl);
+}
+
+.whoami-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  text-align: left;
+  transition: all var(--transition-normal);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.whoami.visible .whoami-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.whoami.visible .whoami-card:nth-child(1) {
+  transition-delay: 0.2s;
+}
+
+.whoami.visible .whoami-card:nth-child(2) {
+  transition-delay: 0.4s;
+}
+
+.whoami.visible .whoami-card:nth-child(3) {
+  transition-delay: 0.6s;
+}
+
+.whoami-card:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-md);
+  color: white;
+  margin-bottom: var(--spacing-lg);
+}
+
+.whoami-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: var(--spacing-lg);
+  color: var(--text-primary);
+}
+
+.info-list {
+  list-style: none;
+}
+
+.info-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.info-list li:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.info-value {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.info-value em {
+  color: var(--primary-color);
+  font-style: normal;
+  font-size: 0.85rem;
+}
+
+/* Quote */
+.whoami-quote {
+  max-width: 700px;
+  margin: 0 auto;
+  opacity: 0;
+  transition: opacity 0.8s ease 0.8s;
+}
+
+.whoami.visible .whoami-quote {
+  opacity: 1;
+}
+
+.whoami-quote blockquote {
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  position: relative;
+  padding: 0 var(--spacing-xl);
+}
+
+.whoami-quote blockquote::before,
+.whoami-quote blockquote::after {
+  font-size: 4rem;
+  color: var(--primary-color);
+  opacity: 0.3;
+  position: absolute;
+  font-family: Georgia, serif;
+}
+
+.whoami-quote blockquote::before {
+  content: '"';
+  left: -10px;
+  top: -20px;
+}
+
+.whoami-quote blockquote::after {
+  content: '"';
+  right: -10px;
+  bottom: -40px;
+}
+
+@media (max-width: 768px) {
+  .whoami-question {
+    font-size: clamp(2.5rem, 10vw, 4rem);
+  }
+
+  .whoami-hint {
+    font-size: 1.2rem;
+  }
+
+  .whoami-card {
+    padding: var(--spacing-lg);
+  }
+
+  .whoami-quote blockquote {
+    font-size: 1.1rem;
+    padding: 0 var(--spacing-md);
+  }
+}
