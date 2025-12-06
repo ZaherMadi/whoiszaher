@@ -84,19 +84,29 @@ const Projects = () => {
             >
               <div className="project-header">
                 {project.iconIsImage ? (
-                  <a 
-                    href={project.projectUrl} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="project-icon project-icon-link"
-                    aria-label={`Visit ${project.title}`}
-                  >
-                    <img 
-                      src={project.icon} 
-                      alt={`${project.title} logo`} 
-                      className="project-icon-img"
-                    />
-                  </a>
+                  project.projectUrl ? (
+                    <a 
+                      href={project.projectUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="project-icon project-icon-link"
+                      aria-label={`Visit ${project.title}`}
+                    >
+                      <img 
+                        src={project.icon} 
+                        alt={`${project.title} logo`} 
+                        className="project-icon-img"
+                      />
+                    </a>
+                  ) : (
+                    <div className="project-icon">
+                      <img 
+                        src={project.icon} 
+                        alt={`${project.title} logo`} 
+                        className="project-icon-img"
+                      />
+                    </div>
+                  )
                 ) : (
                   <div className="project-icon">{project.icon}</div>
                 )}
