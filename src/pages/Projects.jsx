@@ -33,7 +33,9 @@ const Projects = () => {
       period: 'sept. 2025 – aujourd\'hui',
       description: 'Can I Help You est une application mobile que j\'ai co-fondée et développée pour accompagner les visiteurs de la CAN 2025 au Maroc. L\'objectif : offrir une expérience fluide, utile et complète à tous les supporters, touristes et professionnels présents pendant la compétition.',
       technicalRole: 'Je suis responsable de l\'architecture technique de l\'application et de l\'ensemble des choix technologiques, du design produit au déploiement mobile.',
-      icon: '🇲🇦',
+      icon: '/logoCani.png',
+      iconIsImage: true,
+      projectUrl: 'https://can-i-help-you.com',
       color: '#c1272d',
       tags: ['React Native', 'Expo', 'Node.js', 'NestJS', 'SQL', 'Cloudflare'],
       features: [
@@ -81,7 +83,23 @@ const Projects = () => {
               onMouseLeave={() => setActiveProject(null)}
             >
               <div className="project-header">
-                <div className="project-icon">{project.icon}</div>
+                {project.iconIsImage ? (
+                  <a 
+                    href={project.projectUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="project-icon project-icon-link"
+                    aria-label={`Visit ${project.title}`}
+                  >
+                    <img 
+                      src={project.icon} 
+                      alt={`${project.title} logo`} 
+                      className="project-icon-img"
+                    />
+                  </a>
+                ) : (
+                  <div className="project-icon">{project.icon}</div>
+                )}
                 <div className="project-status">
                   <span className={`status-badge ${project.status === 'Live' ? 'live' : 'dev'}`}>
                     {project.status}

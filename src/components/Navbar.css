@@ -33,6 +33,12 @@
   text-decoration: none;
 }
 
+.navbar-logo-img {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+}
+
 .logo-text {
   color: var(--text-primary);
 }
