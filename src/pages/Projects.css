@@ -116,6 +116,18 @@
   transition: all var(--transition-normal);
 }
 
+.project-icon-link {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.project-icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: var(--radius-lg);
+}
+
 .project-card:hover .project-icon {
   transform: scale(1.1);
   background: var(--accent);
