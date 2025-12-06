@@ -53,7 +53,6 @@ const Footer = () => {
             <h4>Quick Links</h4>
             <Link to="/">Home</Link>
             <Link to="/projects">Projects</Link>
-            <Link to="/blog">Blog</Link>
           </div>
 
           <div className="footer-social">

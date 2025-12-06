@@ -4,7 +4,6 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
-import Blog from './pages/Blog';
 import './styles/global.css';
 
 function App() {
@@ -16,7 +15,6 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<Projects />} />
-            <Route path="/blog" element={<Blog />} />
           </Routes>
           <Footer />
         </div>
