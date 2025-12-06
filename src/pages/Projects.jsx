@@ -28,37 +28,30 @@ const Projects = () => {
     {
       id: 'can-i-help-you',
       title: 'Can I Help You',
-      subtitle: 'Assistance & Support Platform',
-      description: 'An innovative platform designed to connect people who need help with those who can provide it. This project focuses on building a community-driven support system.',
-      icon: '🤝',
-      color: '#6366f1',
-      tags: ['React', 'Node.js', 'MongoDB', 'Real-time'],
+      subtitle: 'Application mobile dédiée à la CAN 2025 (Maroc)',
+      role: 'Co-Founder & Lead Software Engineer',
+      period: 'sept. 2025 – aujourd\'hui',
+      description: 'Can I Help You est une application mobile que j\'ai co-fondée et développée pour accompagner les visiteurs de la CAN 2025 au Maroc. L\'objectif : offrir une expérience fluide, utile et complète à tous les supporters, touristes et professionnels présents pendant la compétition.',
+      technicalRole: 'Je suis responsable de l\'architecture technique de l\'application et de l\'ensemble des choix technologiques, du design produit au déploiement mobile.',
+      icon: '🇲🇦',
+      color: '#c1272d',
+      tags: ['React Native', 'Expo', 'Node.js', 'NestJS', 'SQL', 'Cloudflare'],
       features: [
-        'Real-time chat support',
-        'User matching algorithm',
-        'Skill-based categorization',
-        'Rating & feedback system',
+        'Visa & documents officiels',
+        'Carte SIM, change & informations administratives',
+        'Transports (aéroport → ville, bus, train, taxi, Uber, InDrive)',
+        'Hébergements par ville, par date et par nombre de personnes',
+        'Stades, hôpitaux, police',
+        'Activités touristiques & restaurants',
+        'Calendrier des matchs',
+        'Espace utilisateur (favoris)',
       ],
-      status: 'In Development',
-      links: {
-        github: '#',
-        demo: '#',
-      },
-    },
-    {
-      id: '51games',
-      title: '51Games',
-      subtitle: 'Gaming Platform & Collection',
-      description: 'A gaming platform featuring a collection of 51 unique games. Built with modern web technologies to deliver an engaging gaming experience directly in the browser.',
-      icon: '🎮',
-      color: '#8b5cf6',
-      tags: ['JavaScript', 'Canvas API', 'Game Dev', 'WebGL'],
-      features: [
-        '51 unique mini-games',
-        'Score tracking system',
-        'Multiplayer support',
-        'Progressive difficulty',
+      technicalFeatures: [
+        'API scalable, optimisée pour le mobile',
+        'Système d\'authentification complet (Google Sign-In, tokens, sécurité)',
+        'Stack Cloud moderne (Expo / React Native, Node/NestJS, SQL, Cloudflare)',
       ],
+      collaboration: 'J\'ai été en co-développement sur plusieurs parties de l\'application avec Laïd Ousseni, qui prenait notamment le relais lors de mes indisponibilités, du code à la gestion des utilisateurs tests, il a toujours répondu présent. Il a également été à l\'initiative de plusieurs fonctionnalités majeures encore présentes aujourd\'hui, telles que : le multilingue, les ressources administratives, la partie restaurants, la partie transports, et bien d\'autres encore.',
       status: 'In Development',
       links: {
         github: '#',
@@ -78,7 +71,7 @@ const Projects = () => {
       </div>
 
       <div className="projects-container">
-        <div className="projects-grid">
+        <div className="projects-grid single-project">
           {projects.map((project, index) => (
             <article 
               key={project.id} 
@@ -99,7 +92,10 @@ const Projects = () => {
               <div className="project-content">
                 <h2 className="project-title">{project.title}</h2>
                 <p className="project-subtitle">{project.subtitle}</p>
+                <p className="project-role"><strong>{project.role}</strong></p>
+                <p className="project-period">{project.period}</p>
                 <p className="project-description">{project.description}</p>
+                <p className="project-technical-role">{project.technicalRole}</p>
 
                 <div className="project-tags">
                   {project.tags.map((tag) => (
@@ -108,7 +104,7 @@ const Projects = () => {
                 </div>
 
                 <div className="project-features">
-                  <h4>Key Features</h4>
+                  <h4>Fonctionnalités principales</h4>
                   <ul>
                     {project.features.map((feature) => (
                       <li key={feature}>
@@ -119,6 +115,25 @@ const Projects = () => {
                       </li>
                     ))}
                   </ul>
+                </div>
+
+                <div className="project-features">
+                  <h4>Développements techniques</h4>
+                  <ul>
+                    {project.technicalFeatures.map((feature) => (
+                      <li key={feature}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="project-collaboration">
+                  <h4>Collaboration</h4>
+                  <p>{project.collaboration}</p>
                 </div>
 
                 <div className="project-actions">

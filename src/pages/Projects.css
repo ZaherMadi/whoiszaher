@@ -50,6 +50,13 @@
   margin-bottom: var(--spacing-3xl);
 }
 
+.projects-grid.single-project {
+  grid-template-columns: 1fr;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .project-card {
   position: relative;
   background: var(--bg-card);
@@ -157,10 +164,52 @@
   margin-bottom: var(--spacing-md);
 }
 
+.project-role {
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: var(--spacing-xs);
+}
+
+.project-period {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: var(--spacing-md);
+}
+
 .project-description {
   color: var(--text-secondary);
   line-height: 1.7;
   margin-bottom: var(--spacing-lg);
+}
+
+.project-technical-role {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--spacing-lg);
+  font-style: italic;
+}
+
+.project-collaboration {
+  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--accent);
+}
+
+.project-collaboration h4 {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: var(--spacing-md);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.project-collaboration p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 0.9rem;
 }
 
 /* Tags */
