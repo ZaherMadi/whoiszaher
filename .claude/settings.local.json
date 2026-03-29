@@ -7,7 +7,9 @@
       "Bash(cp \"image \\(1\\).png\" \"cani-admin.png\")",
       "Bash(cp \"image \\(2\\).png\" \"cani-review.png\")",
       "Bash(cp \"image \\(3\\).png\" \"cani-logo.png\")",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(python3 -c \":*)",
+      "Bash(python3:*)"
     ]
   }
 }
