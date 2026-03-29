@@ -1,8 +1,8 @@
-import React from 'react';
-import { motion, useScroll } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, useScroll, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Server, Database, Smartphone, Globe, Star, BarChart2, Shield } from 'lucide-react';
+import { ArrowLeft, Server, Database, Globe, Star, BarChart2, Shield } from 'lucide-react';
 import { FaInstagram, FaLink } from 'react-icons/fa';
 import AnimatedSection from '../components/AnimatedSection';
 import './ProjectDetail.css';
@@ -21,6 +21,7 @@ const fr = {
   proofPlayStore: "Statistiques Google Play Console",
   proofMap: "Carte interactive Mapbox (Maroc)",
   improvTitle: "Ce que j'améliorerai ensuite",
+  reviewsTitle: "Avis App Store",
 };
 const en = {
   subtitle: "Full-stack Mobile App & Cloudflare Workers API — Live in Production",
@@ -36,6 +37,7 @@ const en = {
   proofPlayStore: "Google Play Console statistics",
   proofMap: "Interactive Mapbox map (Morocco)",
   improvTitle: "What I'd improve next",
+  reviewsTitle: "App Store Reviews",
 };
 
 const features = {
@@ -61,6 +63,112 @@ const improvements = {
   fr: ["CI/CD automatisé avec tests d'intégration (Vitest + Workers)", "Monitoring Sentry + alertes latence", "Internationalisation complète (AR, EN, FR)", "Dashboard analytics recruteur en temps réel"],
   en: ["Automated CI/CD with integration tests (Vitest + Workers)", "Sentry monitoring + latency alerts", "Full internationalisation (AR, EN, FR)", "Real-time analytics recruiter dashboard"],
 };
+
+const reviews = [
+  {
+    title: "Appli très serviable",
+    author: "MGN06300",
+    date: "6 janv. 2026",
+    stars: 5,
+    body: "Je vous la recommande fortement, elle m'a bcp aidée et elle est très bien développée, bravo",
+  },
+  {
+    title: "Utile pour voyage au Maroc",
+    author: "Jadeoul",
+    date: "10 janv. 2026",
+    stars: 5,
+    body: "Très bonne application, facile à utiliser. Elle m'a énormément servi durant ce voyage !",
+  },
+  {
+    title: "Superbe application",
+    author: "Monsieur Zaïd",
+    date: "18 déc. 2025",
+    stars: 5,
+    body: "L'appli est très user-friendly, et il y'a toutes les informations utiles pour la CAN",
+  },
+  {
+    title: "Incroyable",
+    author: "Laid510",
+    date: "5 déc. 2025",
+    stars: 5,
+    body: "L'application est super, je vais aller au Maroc pour la CAN et je vais très sûrement utiliser cette application qui va me permettre de passer un bon séjour.",
+  },
+  {
+    title: "Utile",
+    author: "fazid-06",
+    date: "7 janv. 2026",
+    stars: 5,
+    body: "Je trouve que cette application a très bien été travaillée, elle m'a beaucoup servi pour les matchs 👍",
+  },
+  {
+    title: "Agréablement surpris",
+    author: "Moutz7",
+    date: "9 janv. 2026",
+    stars: 5,
+    body: "Bonne appli !",
+  },
+];
+
+const slideVariants = {
+  enter: { x: 60, opacity: 0 },
+  center: { x: 0, opacity: 1 },
+  exit: { x: -60, opacity: 0 },
+};
+
+const ReviewCarousel = () => {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent(prev => (prev + 1) % reviews.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const r = reviews[current];
+
+  return (
+    <div>
+      <div className="reviews-carousel">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={current}
+            className="review-slide"
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: 0.35, ease: 'easeInOut' }}
+          >
+            <div className="review-stars">
+              {Array.from({ length: r.stars }).map((_, i) => (
+                <span key={i} className="review-star">★</span>
+              ))}
+            </div>
+            <p className="review-title">{r.title}</p>
+            <p className="review-text">« {r.body} »</p>
+            <div className="review-meta">
+              <span className="review-author">{r.author}</span>
+              <span className="review-date">{r.date}</span>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+      <div className="carousel-dots">
+        {reviews.map((_, i) => (
+          <button
+            key={i}
+            className={`carousel-dot${i === current ? ' active' : ''}`}
+            onClick={() => setCurrent(i)}
+            aria-label={`Review ${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const APPSTORE_URL = 'https://apps.apple.com/fr/app/can-i-help-you/id6755744827';
 
 const ProjectCanIHelpYou = () => {
   const { language } = useLanguage();
@@ -90,15 +198,17 @@ const ProjectCanIHelpYou = () => {
             <a href="https://linktr.ee/CANIHELPYOUAPP" target="_blank" rel="noopener noreferrer" className="badge glass-panel">
               <FaLink size={16} /> Linktree
             </a>
-            <span className="badge glass-panel star-badge"><Star size={14} fill="gold" color="gold" /> 4.9 App Store</span>
+            <a href={APPSTORE_URL} target="_blank" rel="noopener noreferrer" className="badge glass-panel star-badge">
+              <Star size={14} fill="gold" color="gold" /> 4.9 App Store
+            </a>
           </div>
 
           {/* Hero proof images */}
           <div className="proof-images-grid">
-            <div className="proof-img-card glass-panel">
+            <a href={APPSTORE_URL} target="_blank" rel="noopener noreferrer" className="proof-img-card glass-panel">
               <img src="/assets/cani-appstore.png" alt="App Store listing" />
               <p className="proof-caption">{c.proofAppStore}</p>
-            </div>
+            </a>
             <div className="proof-img-card glass-panel">
               <img src="/assets/cani-admin.png" alt="Admin panel" />
               <p className="proof-caption">{c.proofAdmin}</p>
@@ -127,32 +237,44 @@ const ProjectCanIHelpYou = () => {
             <p>{c.archBody}</p>
             <div className="architecture-grid">
               <div className="arch-card">
-                <img src="/assets/logo-cloudflare.png" alt="Cloudflare" className="arch-logo" />
+                <div className="arch-logo-wrap">
+                  <img src="/assets/logo-cloudflare.png" alt="Cloudflare" className="arch-logo" />
+                </div>
                 <h3>Edge-Deployed Worker</h3>
                 <p>{language === 'fr' ? 'API monolithique mondiale, zéro cold-start vs AWS Lambda.' : 'Global monolithic API, zero cold-start vs AWS Lambda.'}</p>
               </div>
               <div className="arch-card">
-                <img src="/assets/logo-firebase.png" alt="Firebase" className="arch-logo" />
+                <div className="arch-logo-wrap">
+                  <img src="/assets/logo-firebase.png" alt="Firebase" className="arch-logo" />
+                </div>
                 <h3>Firebase Auth (REST)</h3>
-                <p>{language === 'fr' ? 'JWT vérifié via REST — pas d\'Admin SDK, 100% Edge.' : 'JWT verified via REST — no Admin SDK, 100% Edge compatible.'}</p>
+                <p>{language === 'fr' ? "JWT vérifié via REST — pas d'Admin SDK, 100% Edge." : 'JWT verified via REST — no Admin SDK, 100% Edge compatible.'}</p>
               </div>
               <div className="arch-card">
-                <img src="/assets/logo-upstash.png" alt="Upstash Redis" className="arch-logo" />
+                <div className="arch-logo-wrap">
+                  <img src="/assets/logo-upstash.png" alt="Upstash Redis" className="arch-logo" />
+                </div>
                 <h3>3-Tier Cache</h3>
                 <p>Upstash Redis → Cloudflare KV → Cache-Control headers.</p>
               </div>
               <div className="arch-card">
-                <img src="/assets/logo-neon.png" alt="Neon PostgreSQL" className="arch-logo" />
+                <div className="arch-logo-wrap">
+                  <img src="/assets/logo-neon.png" alt="Neon PostgreSQL" className="arch-logo" />
+                </div>
                 <h3>PostgreSQL / Neon</h3>
                 <p>{language === 'fr' ? 'New Connection Per Request — zéro fuite sur Workers.' : 'New Connection Per Request — zero leaks on Workers.'}</p>
               </div>
               <div className="arch-card">
-                <img src="/assets/logo-mapbox.png" alt="Mapbox" className="arch-logo" />
+                <div className="arch-logo-wrap">
+                  <img src="/assets/logo-mapbox.png" alt="Mapbox" className="arch-logo" />
+                </div>
                 <h3>Mapbox Proxy</h3>
                 <p>{language === 'fr' ? 'Token jamais exposé, tiles KV-cachées 20j.' : 'Token never exposed, tiles KV-cached 20 days.'}</p>
               </div>
               <div className="arch-card">
-                <img src="/assets/logo-tripadvisor.png" alt="TripAdvisor" className="arch-logo" />
+                <div className="arch-logo-wrap">
+                  <img src="/assets/logo-tripadvisor.png" alt="TripAdvisor" className="arch-logo" />
+                </div>
                 <h3>TripAdvisor API</h3>
                 <p>{language === 'fr' ? 'Conformité ToS stricte: live detail, cache listes.' : 'Strict ToS compliance: live detail, cached lists.'}</p>
               </div>
@@ -183,13 +305,19 @@ const ProjectCanIHelpYou = () => {
               </div>
             </div>
             <div className="store-badges">
-              <div className="store-badge glass-panel">
+              <a
+                href={APPSTORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="store-badge glass-panel"
+                style={{ textDecoration: 'none' }}
+              >
                 <img src="/assets/logo-apple.png" alt="App Store" className="store-logo" />
                 <div>
                   <p className="store-name">App Store</p>
                   <p className="store-rating">4.9★ · 19 {language === 'fr' ? 'notes' : 'ratings'}</p>
                 </div>
-              </div>
+              </a>
               <div className="store-badge glass-panel">
                 <img src="/assets/logo-render.png" alt="Render" className="store-logo" />
                 <div>
@@ -205,6 +333,12 @@ const ProjectCanIHelpYou = () => {
                 </div>
               </div>
             </div>
+          </AnimatedSection>
+
+          {/* App Store Reviews */}
+          <AnimatedSection className="detail-section glass-panel">
+            <h2><Star className="detail-icon" size={24} /> {c.reviewsTitle}</h2>
+            <ReviewCarousel />
           </AnimatedSection>
 
           {/* What's next */}
