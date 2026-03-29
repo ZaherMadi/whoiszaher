@@ -20,7 +20,6 @@ const Navbar = () => {
 
   const closeMenu = () => setMobileOpen(false);
 
-  // Helper to determine if we should use hash scroll (on home page) or redirect first
   const NavLinkItem = ({ to, children }) => {
     const isHome = location.pathname === '/';
     if (isHome) {
@@ -58,7 +57,7 @@ const Navbar = () => {
           <NavLinkItem to="skills">{t.nav.skills}</NavLinkItem>
           <NavLinkItem to="about">{t.nav.about}</NavLinkItem>
           <NavLinkItem to="contact">{t.nav.contact}</NavLinkItem>
-          
+
           <button className="lang-toggle nav-link" onClick={toggleLanguage} aria-label="Toggle language">
             <Globe size={18} />
             <span>{language.toUpperCase()}</span>

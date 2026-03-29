@@ -41,8 +41,7 @@ const Footer = () => {
         <div className="footer-content">
           <div className="footer-brand">
             <Link to="/" className="footer-logo">
-              <span className="logo-text">Zaher</span>
-              <span className="logo-highlight">.dev</span>
+              <img src="/logo.png" alt="Who is Zaher - Logo" className="footer-logo-img" />
             </Link>
             <p className="footer-tagline">
               Software Developer & Cloud Enthusiast based in Nice, France.
@@ -53,7 +52,6 @@ const Footer = () => {
             <h4>Quick Links</h4>
             <Link to="/">Home</Link>
             <Link to="/projects">Projects</Link>
-            <Link to="/blog">Blog</Link>
           </div>
 
           <div className="footer-social">

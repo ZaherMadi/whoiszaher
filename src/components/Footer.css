@@ -29,6 +29,12 @@
   margin-bottom: var(--spacing-md);
 }
 
+.footer-logo-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
 .footer-tagline {
   color: var(--text-muted);
   font-size: 0.9rem;
