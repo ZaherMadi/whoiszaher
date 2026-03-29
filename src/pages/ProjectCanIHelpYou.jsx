@@ -81,7 +81,7 @@ const reviews = [
 ];
 
 const APPSTORE_URL = 'https://apps.apple.com/fr/app/can-i-help-you/id6755744827';
-const VIDEO_URL = 'https://1drv.ms/v/c/12412070ff219537/IQB-xrumQfsjS69V2u_iICKwARXQKYvEH2vLMrP7lesZt6Y?e=hameyu';
+const VIDEO_SRC = '/assets/CANI Video1.mp4';
 
 const slideVariants = {
   enter: (dir) => ({ x: dir > 0 ? 70 : -70, opacity: 0 }),
@@ -249,13 +249,14 @@ const ProjectCanIHelpYou = () => {
           <AnimatedSection className="detail-section glass-panel">
             <h2><Star className="detail-icon" size={24} /> {c.videoTitle}</h2>
             <div className="project-video-container">
-              <iframe
+              <video
                 className="project-video-iframe"
-                src={VIDEO_URL}
-                title="CAN I HELP YOU — App Demo"
-                frameBorder="0"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen
+                src={VIDEO_SRC}
+                autoPlay
+                muted
+                loop
+                playsInline
+                controls
               />
             </div>
           </AnimatedSection>
