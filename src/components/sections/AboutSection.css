@@ -5,14 +5,17 @@
 }
 
 .about-content {
-  display: flex;
-  flex-direction: column;
-  gap: 4rem;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .bio-container {
-  max-width: 800px;
+  max-width: 100%;
   padding: 4rem;
   position: relative;
   border-top-left-radius: 40px;
@@ -62,7 +65,6 @@
 }
 
 .hobbies-container {
-  max-width: 600px;
   width: 100%;
 }
 
@@ -85,11 +87,16 @@
   line-height: 1.7;
 }
 
+@media (max-width: 1024px) {
+  .about-content {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 768px) {
   .bio-container {
     padding: 3rem 1.5rem;
   }
-  
   .bio-text {
     font-size: 1.1rem;
   }

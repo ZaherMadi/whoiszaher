@@ -26,7 +26,7 @@
   height: 72px !important;
   min-width: 72px;
   min-height: 72px;
-  border-radius: 50% !important;   /* override glass-panel's 20px */
+  border-radius: 50% !important;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -41,10 +41,8 @@
   transition: box-shadow 0.3s ease;
 }
 
-/* Decorative background-only orbs: a bit more transparent */
 .floating-deco {
   opacity: 0.35 !important;
-  filter: none !important;
 }
 
 /* Logo image inside orb */
@@ -55,39 +53,58 @@
   max-height: 40px;
   object-fit: contain;
   display: block;
+  flex-shrink: 0;
 }
 
-/* Letter/symbol fallback */
+/* Symbol/letter fallback */
 .tech-symbol {
   font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: -0.5px;
   text-align: center;
   line-height: 1;
-  pointer-events: none;
   user-select: none;
 }
 
-/* ── Content layer (above the universe) ── */
+/* ── Content layer — full width, above universe ── */
 .relative-z {
   position: relative;
   z-index: 10;
-  text-align: center;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1400px;
 }
 
-.skills-interactive-area {
-  max-width: 1100px;
-  margin: 0 auto;
+.skills-header {
+  text-align: center;
+  margin-bottom: 4rem;
 }
 
+/* ── Desktop: 2-col layout ── */
+.skills-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.skills-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.skills-right {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ── Instruction ── */
 .skills-instruction {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 3px;
-  margin-bottom: 3.5rem;
+  margin-bottom: 2.5rem;
   opacity: 0.55;
 }
 
@@ -95,66 +112,141 @@
 .skills-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem 2rem;
-  margin-bottom: 4rem;
+  gap: 0.75rem 1rem;
+  margin-bottom: 3rem;
 }
 
 .skill-word {
-  font-size: clamp(1.1rem, 2.5vw, 1.8rem);
+  font-size: clamp(1rem, 1.8vw, 1.5rem);
   font-weight: 700;
   font-family: var(--font-display);
-  padding: 0.75rem 1.75rem;
+  padding: 0.6rem 1.4rem;
   border-radius: 40px;
   background: transparent;
   color: var(--text-muted);
   border: 1px solid transparent;
   cursor: pointer;
-  position: relative;
   transition: color 0.3s ease, background 0.3s ease, border-color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .skill-word:hover,
 .skill-word.active {
   color: #fff;
-  text-shadow: 0 0 20px var(--tech-color, rgba(112, 0, 255, 0.7));
-  background: var(--glass-bg);
+  text-shadow: 0 0 18px var(--tech-color, rgba(112, 0, 255, 0.7));
+  background: rgba(255, 255, 255, 0.04);
   border-color: var(--tech-color, var(--glass-border));
-  box-shadow: 0 0 16px color-mix(in srgb, var(--tech-color, #7000ff) 30%, transparent);
 }
 
 /* ── AWS / Languages detail card ── */
 .skills-details {
   padding: 2rem 2.5rem;
   border-radius: 16px;
-  display: inline-block;
-  margin-top: 1rem;
   text-align: left;
 }
 
 .aws-detail {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   margin-bottom: 0.6rem;
 }
 
 .lang-detail {
   color: var(--text-muted);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
+/* ── Right column: tech legend ── */
+.skills-tech-legend {
+  padding: 2.5rem;
+  border-radius: 20px;
+}
+
+.skills-tech-legend h3 {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
+  font-size: 0.8rem;
+}
+
+.tech-legend-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.tech-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.tech-legend-item:hover {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.1);
+}
+
+.legend-logo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.legend-name {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ── Tablet: single column ── */
+@media (max-width: 1024px) {
+  .skills-body {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .skills-left,
+  .skills-right {
+    align-items: center;
+    text-align: center;
+  }
+
+  .skills-list {
+    justify-content: center;
+  }
+
+  .skills-details {
+    text-align: center;
+  }
+
+  .tech-legend-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ── Mobile ── */
 @media (max-width: 768px) {
-  /* Disable heavy floating anims on small devices */
   .floating-tech {
     display: none;
   }
 
-  .skills-list {
-    gap: 0.75rem 1rem;
+  .skills-section {
+    padding: 5rem 1.5rem;
+  }
+
+  .tech-legend-grid {
+    grid-template-columns: 1fr 1fr;
   }
 
   .skill-word {
     font-size: 1rem;
-    padding: 0.6rem 1.2rem;
+    padding: 0.5rem 1rem;
   }
 }
