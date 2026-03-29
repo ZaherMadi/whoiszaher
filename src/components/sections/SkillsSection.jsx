@@ -98,7 +98,7 @@ const SkillsSection = () => {
                   src={visual.img}
                   alt={tech.name}
                   className="tech-logo-img"
-                  style={{ filter: 'brightness(0) invert(1)' }}
+                  style={{ display: 'block' }}
                 />
               ) : (
                 <div className="tech-symbol" style={{ color: visual?.color || '#fff' }}>
@@ -134,7 +134,7 @@ const SkillsSection = () => {
               src={item.img}
               alt={item.label}
               className="tech-logo-img"
-              style={{ filter: 'brightness(0) invert(1)' }}
+              style={{ display: 'block' }}
             />
           </motion.div>
         ))}

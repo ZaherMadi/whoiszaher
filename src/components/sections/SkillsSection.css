@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
   padding: 8rem 2rem;
-  overflow: hidden; /* Important for containing floating anims */
+  overflow: hidden;
 }
 
 /* Background universe for floating tech */
@@ -19,80 +19,123 @@
   z-index: 1;
 }
 
+/* ── Floating orbs: strict 72×72 circles ── */
 .floating-tech {
   position: absolute;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+  width: 72px !important;
+  height: 72px !important;
+  min-width: 72px;
+  min-height: 72px;
+  border-radius: 50% !important;   /* override glass-panel's 20px */
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: 800;
-  font-size: 1.2rem;
-  transition: box-shadow 0.3s ease, border-color 0.3s ease;
-  pointer-events: none; /* Let clicks pass to the text layer */
+  font-size: 0.85rem;
+  pointer-events: none;
+  background: rgba(20, 20, 30, 0.55) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: box-shadow 0.3s ease;
 }
 
+/* Decorative background-only orbs: a bit more transparent */
+.floating-deco {
+  opacity: 0.35 !important;
+  filter: none !important;
+}
+
+/* Logo image inside orb */
+.tech-logo-img {
+  width: 40px;
+  height: 40px;
+  max-width: 40px;
+  max-height: 40px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Letter/symbol fallback */
+.tech-symbol {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  text-align: center;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Content layer (above the universe) ── */
 .relative-z {
   position: relative;
   z-index: 10;
   text-align: center;
+  width: 100%;
+  max-width: 1100px;
 }
 
 .skills-interactive-area {
-  max-width: 800px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
 .skills-instruction {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 3rem;
-  opacity: 0.6;
+  letter-spacing: 3px;
+  margin-bottom: 3.5rem;
+  opacity: 0.55;
 }
 
+/* ── Skill word buttons ── */
 .skills-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 1rem 2rem;
   margin-bottom: 4rem;
 }
 
 .skill-word {
-  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-size: clamp(1.1rem, 2.5vw, 1.8rem);
   font-weight: 700;
   font-family: var(--font-display);
-  padding: 1rem 2rem;
+  padding: 0.75rem 1.75rem;
   border-radius: 40px;
   background: transparent;
   color: var(--text-muted);
   border: 1px solid transparent;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
   cursor: pointer;
   position: relative;
+  transition: color 0.3s ease, background 0.3s ease, border-color 0.3s ease, text-shadow 0.3s ease;
 }
 
-.skill-word:hover, .skill-word.active {
-  color: var(--text-main);
-  text-shadow: 0 0 20px rgba(112, 0, 255, 0.6);
+.skill-word:hover,
+.skill-word.active {
+  color: #fff;
+  text-shadow: 0 0 20px var(--tech-color, rgba(112, 0, 255, 0.7));
   background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+  border-color: var(--tech-color, var(--glass-border));
+  box-shadow: 0 0 16px color-mix(in srgb, var(--tech-color, #7000ff) 30%, transparent);
 }
 
+/* ── AWS / Languages detail card ── */
 .skills-details {
-  padding: 2rem;
-  border-radius: 12px;
+  padding: 2rem 2.5rem;
+  border-radius: 16px;
   display: inline-block;
-  margin-top: 2rem;
+  margin-top: 1rem;
+  text-align: left;
 }
 
 .aws-detail {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
 }
 
 .lang-detail {
@@ -101,7 +144,17 @@
 }
 
 @media (max-width: 768px) {
+  /* Disable heavy floating anims on small devices */
   .floating-tech {
-    display: none; /* Disable complex floating on small devices to avoid clutter and perf issues */
+    display: none;
+  }
+
+  .skills-list {
+    gap: 0.75rem 1rem;
+  }
+
+  .skill-word {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
   }
 }
