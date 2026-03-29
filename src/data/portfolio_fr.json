@@ -1,0 +1,78 @@
+{
+  "nav": {
+    "projects": "Projets",
+    "skills": "Compétences",
+    "about": "À propos",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Zaher Madi",
+    "subtitle": "Développeur Fullstack (Backend-orienté)",
+    "description": "Je construis des apps de A à Z — de l'API edge au client mobile. Actuellement en alternance chez Agence ROM (Nice) · AWS Solutions Architect en cours.",
+    "cta_projects": "Voir les projets",
+    "cta_contact": "Me contacter",
+    "cta_cv": "Télécharger mon CV"
+  },
+  "projects": {
+    "title": "Projets Phares",
+    "featured": [
+      {
+        "id": "can-i-help-you",
+        "title": "CAN I HELP YOU",
+        "subtitle": "App Mobile Full-stack & API Edge — en production",
+        "description": "Projet solo de bout en bout : app React Native + API Cloudflare Workers servant de vrais utilisateurs. Latence <50ms, 4,9★ sur l'App Store, disponible sur Google Play.",
+        "tags": ["Cloudflare Workers", "React Native / Expo", "PostgreSQL / Neon", "Upstash Redis", "Firebase Auth", "Mapbox", "TripAdvisor API"],
+        "link": "/project/can-i-help-you",
+        "image": "/assets/cani-admin.png"
+      },
+      {
+        "id": "marina-yacht",
+        "title": "Marina Yacht Inventory",
+        "subtitle": "App d'Entreprise · Lead Dev & Mentor",
+        "description": "Lead Developer sur une solution d'entreprise. Architecture complète et encadrement de 3 développeurs juniors (Git, revue de code, pratiques agiles).",
+        "tags": ["Leadership", "Architecture", "Mentoring", "CI/CD", "React"],
+        "link": "/project/marina-yacht",
+        "image": "/assets/marina.jpg"
+      }
+    ]
+  },
+  "skills": {
+    "title": "Tech Stack & Compétences",
+    "instruction": "Survole pour focus · Clique pour invoquer ✦",
+    "list": [
+      { "id": "typescript", "name": "TypeScript / JS" },
+      { "id": "react",      "name": "React / React Native" },
+      { "id": "cloudflare", "name": "Cloudflare Workers" },
+      { "id": "postgres",   "name": "PostgreSQL / Neon" },
+      { "id": "redis",      "name": "Upstash Redis" },
+      { "id": "aws",        "name": "AWS" },
+      { "id": "leadership", "name": "Team Leadership" }
+    ],
+    "awsDetails": "AWS Cloud Practitioner (Obtenu) · AWS Solutions Architect Associate (En cours)",
+    "languages": "Langues : Français (Natif) · Anglais (B1 – 2026, amélioration continue via lecture & applications)"
+  },
+  "about": {
+    "title": "Who is Zaher? (really)",
+    "bio": "Arrivé en 2024 en alternance, Zaher poursuit un Master 2 en Conception Logiciel et Informatique tout en mettant son énergie et sa rigueur au service de l'agence. Développeur full stack junior, il s'est rapidement spécialisé dans la mise à jour technique des CMS ; WordPress et Joomla n'ont (presque) plus de secrets pour lui. Toujours attentif aux détails, il veille à ce que chaque site reste performant, sécurisé et parfaitement fonctionnel. Mais Zaher ne se limite pas au code. Quand il quitte son écran, c'est souvent pour retrouver un autre terrain… celui du padel. Redoutable raquette à la main, il met autant d'intensité et de stratégie dans ses matchs que dans ses projets de développement. Et ça, croyez-nous, c'est tout sauf un hasard.",
+    "bio_author": "L'Équipe Agence ROM",
+    "bio_link": "https://www.rom.fr/about/l-agence/team#bio-zaher-madi",
+    "hobbies": "Au-delà de l'écran : Padel, Boxe, Football & salle — l'équilibre est non négociable. J'affûte aussi mon anglais en lisant : en plein milieu de 'The Housemaid's Secret' et aux Noces Pourpres dans Game of Thrones."
+  },
+  "contact": {
+    "title": "Restons en contact",
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "instagram": "@canihelpyouapp",
+    "linktree": "Linktree CANI"
+  },
+  "project_page": {
+    "back": "← Retour",
+    "context": "Problématique & Contexte",
+    "architecture": "Architecture & Décisions",
+    "features": "Fonctionnalités Livrées",
+    "challenges": "Défis & Compromis",
+    "improvements": "Améliorations futures",
+    "proofs": "Preuves Techniques"
+  }
+}

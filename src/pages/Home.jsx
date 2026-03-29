@@ -1,16 +1,19 @@
-import Hero from '../components/Hero';
-import WhoAmI from '../components/WhoAmI';
-import Skills from '../components/Skills';
-import BlogPreview from '../components/BlogPreview';
+import React from 'react';
+import HeroSection from '../components/sections/HeroSection';
+import FeaturedProjects from '../components/sections/FeaturedProjects';
+import SkillsSection from '../components/sections/SkillsSection';
+import AboutSection from '../components/sections/AboutSection';
+import ContactSection from '../components/sections/ContactSection';
 
 const Home = () => {
   return (
-    <main>
-      <Hero />
-      <WhoAmI />
-      <Skills />
-      <BlogPreview />
-    </main>
+    <div className="home-page">
+      <HeroSection />
+      <FeaturedProjects />
+      <SkillsSection />
+      <AboutSection />
+      <ContactSection />
+    </div>
   );
 };
 

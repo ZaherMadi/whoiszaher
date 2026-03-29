@@ -1,0 +1,78 @@
+{
+  "nav": {
+    "projects": "Projects",
+    "skills": "Skills",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Zaher Madi",
+    "subtitle": "Fullstack Developer (Backend-oriented)",
+    "description": "I build production-grade apps end-to-end — from edge APIs to mobile clients. Currently at Agence ROM (Nice) · AWS Solutions Architect in progress.",
+    "cta_projects": "View Projects",
+    "cta_contact": "Contact Me",
+    "cta_cv": "Download CV"
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "featured": [
+      {
+        "id": "can-i-help-you",
+        "title": "CAN I HELP YOU",
+        "subtitle": "Full-stack mobile app & Edge API — in production",
+        "description": "Solo end-to-end build: React Native app + Cloudflare Workers API serving real users. Sub-50ms latency, 4.9★ on App Store, live on Google Play.",
+        "tags": ["Cloudflare Workers", "React Native / Expo", "PostgreSQL / Neon", "Upstash Redis", "Firebase Auth", "Mapbox", "TripAdvisor API"],
+        "link": "/project/can-i-help-you",
+        "image": "/assets/cani-admin.png"
+      },
+      {
+        "id": "marina-yacht",
+        "title": "Marina Yacht Inventory",
+        "subtitle": "Enterprise App · Lead Developer & Mentor",
+        "description": "Lead Developer on an enterprise solution. Architected the full stack and mentored 3 junior developers through Git, code review, and agile practices.",
+        "tags": ["Team Leadership", "Architecture", "Mentoring", "CI/CD", "React"],
+        "link": "/project/marina-yacht",
+        "image": "/assets/marina.jpg"
+      }
+    ]
+  },
+  "skills": {
+    "title": "Tech Stack & Skills",
+    "instruction": "Hover to focus · Click to invoke ✦",
+    "list": [
+      { "id": "typescript", "name": "TypeScript / JS" },
+      { "id": "react",      "name": "React / React Native" },
+      { "id": "cloudflare", "name": "Cloudflare Workers" },
+      { "id": "postgres",   "name": "PostgreSQL / Neon" },
+      { "id": "redis",      "name": "Upstash Redis" },
+      { "id": "aws",        "name": "AWS" },
+      { "id": "leadership", "name": "Team Leadership" }
+    ],
+    "awsDetails": "AWS Cloud Practitioner (Certified) · AWS Solutions Architect Associate (In progress)",
+    "languages": "Languages: French (Native) · English (B1 – 2026, continuous improvement via reading & apps)"
+  },
+  "about": {
+    "title": "Who is Zaher? (really)",
+    "bio": "Arrived in 2024 as a work-study student, Zaher is pursuing a Master 2 in Software and IT Design while putting his energy and rigor at the service of the agency. A junior full stack developer, he quickly specialized in the technical updating of CMS; WordPress and Joomla hold (almost) no secrets for him. Always attentive to details, he ensures that every site remains high-performing, secure, and perfectly functional. But Zaher doesn't limit himself to code. When he leaves his screen, it's often to return to another court… the padel court. A fearsome racket in hand, he puts as much intensity and strategy into his matches as he does into his development projects. And that, believe us, is anything but a coincidence.",
+    "bio_author": "Agence ROM Team",
+    "bio_link": "https://www.rom.fr/about/l-agence/team#bio-zaher-madi",
+    "hobbies": "Beyond the screen: Padel, Boxing, Football & the gym — balance is non-negotiable. Also sharpening my English through reading: currently mid-way through 'The Housemaid's Secret' and at the Red Wedding in Game of Thrones."
+  },
+  "contact": {
+    "title": "Let's Connect",
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "instagram": "@canihelpyouapp",
+    "linktree": "Linktree CANI"
+  },
+  "project_page": {
+    "back": "← Back",
+    "context": "Problem / Context",
+    "architecture": "Architecture & Decisions",
+    "features": "What I Shipped",
+    "challenges": "Challenges & Tradeoffs",
+    "improvements": "What's Next",
+    "proofs": "Technical Proofs"
+  }
+}

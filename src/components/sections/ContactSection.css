@@ -1,0 +1,81 @@
+.contact-section {
+  padding: 8rem 2rem 4rem 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.contact-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.contact-wrapper .section-title {
+  display: inline-block;
+  margin-bottom: 4rem;
+}
+
+.contact-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 150px;
+  height: 150px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  transition: all 0.3s ease;
+  color: var(--text-main);
+}
+
+.contact-card:hover {
+  transform: translateY(-8px);
+  background: rgba(112, 0, 255, 0.1);
+  border-color: rgba(112, 0, 255, 0.4);
+  color: var(--starlight-white);
+}
+
+.card-icon {
+  color: var(--starlight-blue);
+  transition: all 0.3s ease;
+}
+
+.contact-card:hover .card-icon {
+  color: var(--nebula-pink);
+  transform: scale(1.1);
+}
+
+.contact-card:hover .card-icon.insta {
+  color: #E1306C;
+}
+
+.contact-card:hover .card-icon.linktree {
+  color: #43E660;
+}
+
+.cv-download-area {
+  margin-top: 3rem;
+  border-top: 1px solid var(--glass-border);
+  padding-top: 3rem;
+}
+
+@media (max-width: 768px) {
+  .contact-grid {
+    gap: 1rem;
+  }
+  .contact-card {
+    width: 120px;
+    height: 120px;
+  }
+}

@@ -1,27 +1,30 @@
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ThemeProvider } from './context/ThemeContext';
+import { LanguageProvider } from './context/LanguageContext';
 import Navbar from './components/Navbar';
-import Footer from './components/Footer';
 import Home from './pages/Home';
-import Projects from './pages/Projects';
-import Blog from './pages/Blog';
-import './styles/global.css';
+import ProjectCanIHelpYou from './pages/ProjectCanIHelpYou';
+import ProjectMarinaYacht from './pages/ProjectMarinaYacht';
+import SpaceBackground from './components/SpaceBackground';
+import './index.css';
 
 function App() {
   return (
-    <ThemeProvider>
+    <LanguageProvider>
       <Router>
-        <div className="app">
+        <div className="app-container">
+          <SpaceBackground />
           <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/blog" element={<Blog />} />
-          </Routes>
-          <Footer />
+          <main style={{ position: 'relative', zIndex: 10 }}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/project/can-i-help-you" element={<ProjectCanIHelpYou />} />
+              <Route path="/project/marina-yacht" element={<ProjectMarinaYacht />} />
+            </Routes>
+          </main>
         </div>
       </Router>
-    </ThemeProvider>
+    </LanguageProvider>
   );
 }
 

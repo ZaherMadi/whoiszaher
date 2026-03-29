@@ -1,0 +1,96 @@
+.about-section {
+  padding: 8rem 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  align-items: center;
+}
+
+.bio-container {
+  max-width: 800px;
+  padding: 4rem;
+  position: relative;
+  border-top-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+}
+
+.quote-icon {
+  position: absolute;
+  top: -20px;
+  left: 40px;
+  background: var(--space-dark);
+  padding: 10px;
+  border-radius: 50%;
+  border: 1px solid var(--starlight-blue);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+.bio-text {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: var(--starlight-white);
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+.bio-author {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--glass-border);
+  padding-top: 1.5rem;
+  font-weight: 600;
+  color: var(--starlight-blue);
+}
+
+.bio-source {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: all 0.3s ease;
+}
+
+.bio-source:hover {
+  color: var(--nebula-pink);
+  text-decoration-color: var(--nebula-pink);
+}
+
+.hobbies-container {
+  max-width: 600px;
+  width: 100%;
+}
+
+.parallax-hobbies {
+  padding: 2.5rem;
+  text-align: center;
+  border-radius: 20px;
+  border-color: rgba(217, 0, 255, 0.3);
+  background: linear-gradient(135deg, rgba(20, 20, 30, 0.6), rgba(112, 0, 255, 0.05));
+}
+
+.parallax-hobbies h3 {
+  color: var(--nebula-pink);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.parallax-hobbies p {
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .bio-container {
+    padding: 3rem 1.5rem;
+  }
+  
+  .bio-text {
+    font-size: 1.1rem;
+  }
+}

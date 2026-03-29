@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /c/Users/zaher/OneDrive/Documents/GitHub/whoiszaher/src -type f -name *.json -o -name *.js -o -name *.jsx -o -name *.css)",
+      "Bash(cp \"image.png\" \"cani-appstore.png\")",
+      "Bash(cp \"images.png\" \"logo-render.png\")",
+      "Bash(cp \"image \\(1\\).png\" \"cani-admin.png\")",
+      "Bash(cp \"image \\(2\\).png\" \"cani-review.png\")",
+      "Bash(cp \"image \\(3\\).png\" \"cani-logo.png\")",
+      "Bash(npm run:*)"
+    ]
+  }
+}
