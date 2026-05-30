@@ -1,0 +1,217 @@
+/* ── Page shell ── */
+.marina-page { background: var(--bg); min-height: 100dvh; overflow-x: hidden; }
+.marina-scroll-bar { position:fixed; top:0; left:0; right:0; height:3px; background:var(--teal); transform-origin:0%; z-index:900; }
+
+/* ── Top nav ── */
+.marina-topnav {
+  position:fixed; top:0; left:0; right:0; z-index:70;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:20px clamp(20px,5vw,56px); pointer-events:none;
+}
+.marina-topnav a { pointer-events:auto; }
+.marina-back {
+  display:inline-flex; align-items:center; gap:9px; color:var(--ink); text-decoration:none;
+  font-weight:600; font-size:.95rem;
+  background:rgba(14,17,20,0.5); border:1px solid var(--line-2);
+  border-radius:999px; padding:9px 18px; backdrop-filter:blur(10px);
+  transition:.25s;
+}
+.marina-back:hover { background:rgba(243,241,236,0.12); transform:translateX(-3px); }
+.marina-back svg { width:16px; height:16px; }
+.marina-brand {
+  color:var(--ink); text-decoration:none; font-weight:700; font-size:1.05rem;
+  background:rgba(14,17,20,0.5); border:1px solid var(--line-2);
+  border-radius:999px; padding:9px 18px; backdrop-filter:blur(10px);
+}
+.marina-brand b { color:var(--teal); }
+
+/* ── ScrollExpandMedia ── */
+.marina-sem-section {
+  position:relative;
+  min-height:100dvh;
+  overflow:hidden;
+}
+.marina-sem-stage {
+  position:relative;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:flex-start;
+  min-height:100dvh;
+}
+
+/* Background gradient — fades on scroll */
+.marina-sem-bg {
+  position:absolute; inset:0; z-index:0;
+  background:
+    radial-gradient(80% 60% at 60% 25%, rgba(63,192,212,.18), transparent 60%),
+    radial-gradient(70% 60% at 25% 85%, rgba(124,72,196,.18), transparent 60%),
+    linear-gradient(160deg, #0c1320, #0a0c0e);
+  transition:opacity .1s;
+}
+
+.marina-sem-container {
+  margin:0 auto;
+  display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
+  position:relative; z-index:10; width:100%;
+}
+
+.marina-sem-hero {
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  width:100%; height:100dvh; position:relative;
+}
+
+/* ── Expanding media card ── */
+.marina-sem-media {
+  position:absolute; z-index:0;
+  top:50%; left:50%; transform:translate(-50%,-50%);
+  border-radius:16px; overflow:hidden;
+  max-width:95vw; max-height:85vh;
+  box-shadow:0 0 50px rgba(0,0,0,.3);
+  transition:width .05s linear, height .05s linear;
+}
+
+/* Fallback (shown when no video) */
+.marina-vfallback {
+  position:absolute; inset:0; z-index:1;
+  display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(135deg, #0f1a22, #0b141a);
+  overflow:hidden;
+}
+.marina-sheen {
+  position:absolute; top:-50%; left:-60%; width:60%; height:200%;
+  transform:rotate(18deg);
+  background:linear-gradient(90deg, transparent, rgba(63,192,212,.10), transparent);
+  animation:marina-sheen 5s ease-in-out infinite;
+}
+@keyframes marina-sheen { 0%{left:-60%;} 55%,100%{left:130%;} }
+.marina-play-btn {
+  width:72px; height:72px; border-radius:50%;
+  border:1.5px solid rgba(243,241,236,.5);
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(243,241,236,.08); backdrop-filter:blur(6px);
+  position:relative; z-index:2;
+}
+.marina-vfallback-lbl {
+  position:absolute; top:14px; left:0; right:0; text-align:center;
+  font-size:.74rem; letter-spacing:.05em; color:var(--ink-dim);
+}
+
+/* Scrim over media */
+.marina-vscrim {
+  position:absolute; inset:0; background:rgba(0,0,0,.30);
+  border-radius:12px; pointer-events:none; z-index:2;
+}
+
+/* Meta labels inside media */
+.marina-vmeta {
+  position:absolute; left:0; right:0; bottom:14px; z-index:10;
+  display:flex; flex-direction:column; align-items:center;
+  text-align:center; gap:2px; pointer-events:none;
+}
+.marina-vmeta-date {
+  font-size:clamp(1rem,2vw,1.5rem); color:#bfdbfe;
+  font-weight:500;
+}
+.marina-vmeta-hint {
+  font-size:.95rem; font-weight:500; color:#bfdbfe; opacity:.8;
+}
+
+/* ── Split title ── */
+.marina-title {
+  display:flex; flex-direction:column; gap:10px;
+  align-items:center; justify-content:center;
+  text-align:center; width:100%;
+  position:relative; z-index:10;
+  mix-blend-mode:difference; pointer-events:none;
+}
+.marina-title h2 {
+  font-size:clamp(2.4rem,6vw,4rem); font-weight:700;
+  color:#bfdbfe; line-height:1; letter-spacing:-.02em;
+  transition:transform .05s linear;
+  white-space:nowrap;
+}
+
+/* ── Case study content ── */
+.marina-content {
+  display:flex; flex-direction:column; width:100%;
+  padding:clamp(40px,7vh,90px) clamp(20px,8vw,64px) clamp(80px,12vh,140px);
+  opacity:0; transition:opacity .7s;
+  border-top:1px solid var(--line);
+}
+.marina-content.show { opacity:1; }
+
+.marina-inner { max-width:880px; margin:0 auto; }
+
+/* Reveal */
+.reveal { opacity:0; transform:translateY(24px); transition:opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1); }
+.reveal.in { opacity:1; transform:none; }
+
+/* Meta */
+.marina-meta {
+  display:flex; flex-wrap:wrap; gap:10px 26px;
+  align-items:center; color:var(--ink-soft); font-size:.9rem; margin-bottom:24px;
+}
+.marina-meta-k { display:inline-flex; align-items:center; gap:8px; }
+.marina-dot { width:7px; height:7px; border-radius:50%; background:var(--teal); box-shadow:0 0 8px var(--teal); flex-shrink:0; }
+
+/* Chips */
+.marina-chips { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:38px; }
+.marina-chip {
+  font-size:.78rem; font-weight:500; color:var(--ink);
+  background:rgba(243,241,236,0.06); border:1px solid var(--line-2);
+  border-radius:30px; padding:6px 14px;
+}
+
+/* Section headings */
+.marina-ch {
+  font-family:var(--font-serif); font-style:italic;
+  font-size:clamp(1.8rem,3.6vw,2.6rem); line-height:1.15; letter-spacing:-.01em;
+  margin:48px 0 18px; color:var(--ink);
+}
+.marina-ch:first-of-type { margin-top:0; }
+
+/* Body text */
+.marina-cp { color:var(--ink-soft); font-weight:300; font-size:clamp(1.02rem,1.5vw,1.18rem); line-height:1.75; }
+.marina-cp + .marina-cp { margin-top:18px; }
+.marina-cp b { color:var(--ink); font-weight:500; }
+
+/* Highlights grid */
+.marina-highlights {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:32px 0;
+}
+@media(max-width:680px) { .marina-highlights { grid-template-columns:1fr; } }
+.marina-highlight {
+  border:1px solid var(--line); border-radius:14px; padding:18px 20px;
+  background:linear-gradient(180deg, rgba(243,241,236,0.03), transparent);
+  transition:.25s;
+}
+.marina-highlight:hover { border-color:var(--line-2); transform:translateY(-2px); }
+.marina-highlight h4 { font-size:.95rem; font-weight:600; color:var(--ink); margin-bottom:6px; }
+.marina-highlight p { font-size:.84rem; color:var(--ink-soft); font-weight:300; line-height:1.5; }
+
+/* Stats */
+.marina-stat-row { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:40px 0; }
+@media(max-width:600px) { .marina-stat-row { grid-template-columns:1fr; } }
+.marina-stat {
+  border:1px solid var(--line); border-radius:16px; padding:22px;
+  background:linear-gradient(180deg, rgba(243,241,236,0.03), transparent);
+}
+.marina-stat-v { font-size:2rem; font-weight:600; letter-spacing:-.02em; color:var(--teal); }
+.marina-stat-l { font-size:.86rem; color:var(--ink-soft); margin-top:4px; }
+
+/* List */
+.marina-list { list-style:none; display:flex; flex-direction:column; gap:14px; margin-bottom:8px; }
+.marina-list li { color:var(--ink-soft); font-weight:300; font-size:clamp(1rem,1.4vw,1.1rem); line-height:1.7; }
+.marina-list li strong { color:var(--ink); font-weight:600; }
+
+/* CTAs */
+.marina-cta { display:flex; gap:14px; flex-wrap:wrap; margin-top:50px; }
+.marina-btn {
+  display:inline-flex; align-items:center; gap:10px; text-decoration:none;
+  cursor:pointer; font-weight:600; font-size:.95rem; font-family:inherit;
+  padding:14px 24px; border-radius:999px; border:1px solid transparent; transition:.25s;
+}
+.marina-btn svg { width:16px; height:16px; }
+.marina-btn-primary { background:var(--teal); color:#04181c; }
+.marina-btn-primary:hover { transform:translateY(-3px); box-shadow:0 14px 30px -10px rgba(63,192,212,.6); }
+.marina-btn-glass { background:rgba(243,241,236,0.06); color:var(--ink); border-color:var(--line-2); }
+.marina-btn-glass:hover { background:rgba(243,241,236,0.12); transform:translateY(-3px); }

@@ -6,6 +6,8 @@ import Home from './pages/Home';
 import ProjectCanIHelpYou from './pages/ProjectCanIHelpYou';
 import ProjectMarinaYacht from './pages/ProjectMarinaYacht';
 import SpaceBackground from './components/SpaceBackground';
+import Page404 from './pages/Page404';
+import PageMerci from './pages/PageMerci';
 import './index.css';
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/project/can-i-help-you" element={<ProjectCanIHelpYou />} />
               <Route path="/project/marina-yacht" element={<ProjectMarinaYacht />} />
+              <Route path="/merci" element={<PageMerci />} />
+              <Route path="*" element={<Page404 />} />
             </Routes>
           </main>
         </div>

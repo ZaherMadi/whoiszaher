@@ -1,0 +1,203 @@
+/* ── Page shell ── */
+.cani-page { background: var(--bg); min-height: 100vh; overflow-x: hidden; }
+.cani-scroll-bar { position:fixed; top:0; left:0; right:0; height:3px; background:var(--teal); transform-origin:0%; z-index:900; }
+
+/* ── Top nav ── */
+.cani-topnav {
+  position: fixed; top:0; left:0; right:0; z-index:70;
+  display: flex; align-items:center; justify-content:space-between;
+  padding: 20px clamp(20px,5vw,56px); pointer-events:none;
+}
+.cani-topnav a { pointer-events:auto; }
+.cani-back {
+  display:inline-flex; align-items:center; gap:9px; color:var(--ink); text-decoration:none;
+  font-weight:600; font-size:.95rem;
+  background:rgba(14,17,20,0.5); border:1px solid var(--line-2);
+  border-radius:999px; padding:9px 18px; backdrop-filter:blur(10px);
+  transition:.25s;
+}
+.cani-back:hover { background:rgba(243,241,236,0.12); transform:translateX(-3px); }
+.cani-back svg { width:16px; height:16px; }
+.cani-brand {
+  color:var(--ink); text-decoration:none; font-weight:700; font-size:1.05rem;
+  background:rgba(14,17,20,0.5); border:1px solid var(--line-2);
+  border-radius:999px; padding:9px 18px; backdrop-filter:blur(10px);
+}
+.cani-brand b { color:var(--teal); }
+
+/* ── Particle Hero ── */
+.cani-hero {
+  position:relative; min-height:100dvh;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  overflow:hidden; text-align:center; padding: 80px 20px 60px;
+}
+.cani-hero::before {
+  content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(70% 55% at 50% 38%, rgba(63,192,212,.12), transparent 60%),
+    radial-gradient(60% 50% at 80% 80%, rgba(124,72,196,.16), transparent 60%);
+}
+
+.cani-eyebrow {
+  position:relative; z-index:5;
+  display:inline-flex; align-items:center; gap:10px; margin-bottom:6px;
+  font-size:.8rem; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ink-soft); font-weight:500;
+}
+.cani-eyebrow-dot {
+  width:8px; height:8px; border-radius:50%;
+  background:var(--teal); box-shadow:0 0 10px var(--teal); flex-shrink:0;
+}
+
+.cani-hero-sub {
+  position:relative; z-index:5;
+  max-width:560px; margin:6px auto 0;
+  color:var(--ink-soft); font-weight:300;
+  font-size:clamp(1rem,1.5vw,1.18rem); line-height:1.6;
+}
+.cani-hero-sub b { color:var(--ink); font-weight:500; }
+
+.cani-hero-tags {
+  position:relative; z-index:5;
+  display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin-top:26px;
+}
+.cani-tag {
+  font-size:.78rem; font-weight:500; color:var(--ink);
+  background:rgba(243,241,236,0.06); border:1px solid var(--line-2);
+  border-radius:30px; padding:6px 14px;
+}
+
+.cani-scroll-cue {
+  position:absolute; bottom:38px; left:50%; transform:translateX(-50%); z-index:5;
+  color:var(--ink-dim); font-size:.72rem; letter-spacing:.16em; text-transform:uppercase;
+  display:flex; flex-direction:column; align-items:center; gap:10px;
+}
+.cani-mouse {
+  width:22px; height:36px; border:1.5px solid var(--line-2); border-radius:14px; position:relative;
+}
+.cani-mouse::after {
+  content:''; position:absolute; left:50%; top:7px; transform:translateX(-50%);
+  width:3px; height:7px; border-radius:3px; background:var(--teal);
+  animation:cani-wheel 1.7s ease infinite;
+}
+@keyframes cani-wheel { 0%{opacity:0;top:6px;} 40%{opacity:1;} 80%{opacity:0;top:16px;} }
+
+/* ── Case study ── */
+.cani-content {
+  position:relative; z-index:2;
+  padding: clamp(40px,7vh,90px) clamp(20px,5vw,56px) clamp(80px,12vh,140px);
+  border-top: 1px solid var(--line);
+}
+.cani-inner { max-width: 880px; margin: 0 auto; }
+
+/* Reveal */
+.reveal { opacity:0; transform:translateY(24px); transition:opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1); }
+.reveal.in { opacity:1; transform:none; }
+
+/* Meta */
+.cani-meta {
+  display:flex; flex-wrap:wrap; gap:10px 26px;
+  align-items:center; color:var(--ink-soft); font-size:.9rem; margin-bottom:30px;
+}
+.cani-meta-k { display:inline-flex; align-items:center; gap:8px; }
+.cani-dot { width:7px; height:7px; border-radius:50%; background:var(--teal); box-shadow:0 0 8px var(--teal); flex-shrink:0; }
+.cani-appstore-link { color:var(--teal); text-decoration:none; font-weight:600; }
+.cani-appstore-link:hover { opacity:.8; }
+
+/* Section headings */
+.cani-ch {
+  font-family:var(--font-serif); font-style:italic;
+  font-size:clamp(1.8rem,3.6vw,2.6rem); line-height:1.15; letter-spacing:-.01em;
+  margin: 48px 0 18px; color:var(--ink);
+}
+.cani-ch:first-of-type { margin-top:0; }
+
+/* Body text */
+.cani-cp { color:var(--ink-soft); font-weight:300; font-size:clamp(1.02rem,1.5vw,1.18rem); line-height:1.75; }
+.cani-cp + .cani-cp { margin-top:18px; }
+.cani-cp b { color:var(--ink); font-weight:500; }
+
+/* Screenshot */
+.cani-shot {
+  margin:34px 0; border:1px solid var(--line); border-radius:16px;
+  overflow:hidden; aspect-ratio:16/9; position:relative;
+  background:rgba(243,241,236,0.02);
+}
+.cani-shot img { width:100%; height:100%; object-fit:cover; display:block; }
+
+/* Video */
+.cani-video-wrap { margin:24px 0; border-radius:16px; overflow:hidden; border:1px solid var(--line); }
+.cani-video { width:100%; display:block; max-height:70vh; background:#000; }
+
+/* Architecture grid */
+.cani-arch-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:28px 0 40px;
+}
+@media(max-width:680px) { .cani-arch-grid { grid-template-columns:1fr 1fr; } }
+@media(max-width:440px) { .cani-arch-grid { grid-template-columns:1fr; } }
+.cani-arch-card {
+  border:1px solid var(--line); border-radius:16px; padding:20px;
+  background:linear-gradient(180deg, rgba(243,241,236,0.03), transparent);
+  transition:.25s;
+}
+.cani-arch-card:hover { border-color:var(--line-2); transform:translateY(-2px); }
+.cani-arch-logo { width:32px; height:32px; object-fit:contain; margin-bottom:12px; }
+.cani-arch-card h3 { font-size:.95rem; font-weight:600; color:var(--ink); margin-bottom:6px; }
+.cani-arch-card p { font-size:.84rem; color:var(--ink-soft); font-weight:300; line-height:1.5; }
+
+/* Stats */
+.cani-stat-row { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:40px 0; }
+@media(max-width:600px) { .cani-stat-row { grid-template-columns:1fr; } }
+.cani-stat {
+  border:1px solid var(--line); border-radius:16px; padding:22px;
+  background:linear-gradient(180deg, rgba(243,241,236,0.03), transparent);
+}
+.cani-stat-v { font-size:2rem; font-weight:600; letter-spacing:-.02em; color:var(--teal); }
+.cani-stat-l { font-size:.86rem; color:var(--ink-soft); margin-top:4px; }
+
+/* Proof grid */
+.cani-proof-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:24px 0 40px; }
+@media(max-width:560px) { .cani-proof-grid { grid-template-columns:1fr; } }
+.cani-proof-card {
+  border:1px solid var(--line); border-radius:14px; overflow:hidden;
+  background:rgba(243,241,236,0.02); text-decoration:none;
+  transition:.25s; display:flex; flex-direction:column;
+}
+.cani-proof-card:hover { border-color:var(--line-2); transform:translateY(-2px); }
+.cani-proof-card img { width:100%; aspect-ratio:16/9; object-fit:cover; display:block; }
+.cani-proof-card span { font-size:.82rem; color:var(--ink-soft); padding:10px 12px; }
+
+/* Reviews */
+.cani-reviews { margin:24px 0 40px; }
+.cani-carousel { position:relative; min-height:160px; }
+.cani-review-slide {
+  display:flex; flex-direction:column; gap:8px;
+  border:1px solid var(--line); border-radius:16px; padding:24px;
+  background:linear-gradient(180deg, rgba(243,241,236,0.03), transparent);
+  text-decoration:none; color:var(--ink); transition:border-color .25s;
+}
+.cani-review-slide:hover { border-color:var(--line-2); }
+.cani-stars { color:var(--teal); font-size:1rem; letter-spacing:2px; }
+.cani-review-title { font-weight:600; font-size:1.05rem; }
+.cani-review-body { color:var(--ink-soft); font-weight:300; font-size:.95rem; line-height:1.6; font-style:italic; }
+.cani-review-meta { display:flex; justify-content:space-between; font-size:.8rem; color:var(--ink-dim); margin-top:4px; }
+.cani-carousel-controls { display:flex; align-items:center; justify-content:center; gap:14px; margin-top:16px; }
+.cani-carousel-controls button { background:rgba(243,241,236,0.06); border:1px solid var(--line-2); border-radius:50%; width:34px; height:34px; display:flex; align-items:center; justify-content:center; color:var(--ink); cursor:pointer; transition:.2s; }
+.cani-carousel-controls button:hover { background:rgba(243,241,236,0.12); }
+.cani-dots { display:flex; gap:8px; }
+.cani-dots button { width:8px; height:8px; border-radius:50%; border:none; background:var(--line-2); cursor:pointer; padding:0; transition:.3s; }
+.cani-dots button.on { background:var(--teal); width:24px; border-radius:6px; }
+
+/* CTA */
+.cani-cta { display:flex; gap:14px; flex-wrap:wrap; margin-top:50px; }
+.cani-btn {
+  display:inline-flex; align-items:center; gap:10px; text-decoration:none;
+  cursor:pointer; font-weight:600; font-size:.95rem;
+  padding:14px 24px; border-radius:999px; border:1px solid transparent; transition:.25s;
+  font-family:inherit;
+}
+.cani-btn svg { width:16px; height:16px; }
+.cani-btn-primary { background:var(--teal); color:#04181c; }
+.cani-btn-primary:hover { transform:translateY(-3px); box-shadow:0 14px 30px -10px rgba(63,192,212,.6); }
+.cani-btn-glass { background:rgba(243,241,236,0.06); color:var(--ink); border-color:var(--line-2); }
+.cani-btn-glass:hover { background:rgba(243,241,236,0.12); transform:translateY(-3px); }

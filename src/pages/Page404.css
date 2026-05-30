@@ -1,0 +1,151 @@
+/* ── Full-screen stage ── */
+.p404-stage {
+  position: fixed;
+  inset: 0;
+  width: 100%; height: 100%;
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(120% 100% at 50% 0%, #0e1216, #08090b 70%);
+  z-index: 500; /* sits above Navbar */
+}
+
+/* ── Etheral shadow layers ── */
+.p404-ether {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* Displaced smoke card */
+.p404-ether-disp {
+  position: absolute;
+  inset: -80px;
+  filter: url(#p404EtherFilter);
+  opacity: .5;
+}
+
+.p404-ether-mask {
+  width: 100%; height: 100%;
+  background-color: rgba(104, 116, 134, 1);
+  /* Framer smoke mask image */
+  -webkit-mask-image: url('https://framerusercontent.com/images/ceBGguIpUU8luwByxuQz79t7To.png');
+  mask-image: url('https://framerusercontent.com/images/ceBGguIpUU8luwByxuQz79t7To.png');
+  -webkit-mask-size: cover; mask-size: cover;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: center; mask-position: center;
+  will-change: transform;
+}
+
+/* Brand tint wash: teal upper-left, violet lower-right */
+.p404-ether-tint {
+  position: absolute; inset: 0; pointer-events: none;
+  mix-blend-mode: color;
+  background:
+    radial-gradient(70% 60% at 35% 35%, rgba(63, 192, 212, .55), transparent 60%),
+    radial-gradient(60% 60% at 70% 70%, rgba(124, 72, 196, .55), transparent 60%);
+}
+
+/* Noise texture overlay */
+.p404-ether-noise {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: url('https://framerusercontent.com/images/g0QcWrxr87K0ufOxIUFBakwYA8.png');
+  background-size: 240px; background-repeat: repeat;
+  opacity: .32; mix-blend-mode: overlay;
+}
+
+/* Edge vignette */
+.p404-ether-vignette {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(110% 90% at 50% 45%, transparent 30%, rgba(8, 9, 11, .55) 72%, rgba(8, 9, 11, .92) 100%);
+}
+
+/* ── Content ── */
+.p404-content {
+  position: relative; z-index: 10;
+  text-align: center; padding: 0 24px; max-width: 680px;
+}
+
+/* Giant serif 404 */
+.p404-num {
+  font-family: var(--font-serif);
+  font-style: italic; font-weight: 400;
+  font-size: clamp(6rem, 22vw, 16rem);
+  line-height: .9; letter-spacing: .02em;
+  background: linear-gradient(180deg, #fff, rgba(243, 241, 236, .55));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Heading */
+.p404-h {
+  font-size: clamp(1.5rem, 3.4vw, 2.4rem);
+  font-weight: 600; letter-spacing: -.02em; margin-top: 6px;
+  color: var(--ink);
+}
+.p404-serif {
+  font-family: var(--font-serif);
+  font-style: italic; font-weight: 400;
+  color: var(--teal);
+}
+
+/* Sub */
+.p404-p {
+  margin-top: 16px; color: var(--ink-soft); font-weight: 300;
+  font-size: clamp(1rem, 1.5vw, 1.18rem); line-height: 1.6;
+}
+
+/* CTAs */
+.p404-ctas {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  justify-content: center; margin-top: 36px;
+}
+
+/* ── Liquid glass button ── */
+.p404-lg-btn {
+  position: relative;
+  display: inline-flex; align-items: center; gap: 11px;
+  cursor: pointer; font-family: inherit; font-size: 1rem;
+  font-weight: 600; letter-spacing: .01em; color: var(--ink);
+  text-decoration: none;
+  padding: 15px 30px; border-radius: 999px;
+  border: 1px solid rgba(243, 241, 236, .22);
+  background: linear-gradient(140deg, rgba(243, 241, 236, .16), rgba(243, 241, 236, .04));
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, .5),
+    inset 0 -12px 22px -12px rgba(255, 255, 255, .18),
+    0 22px 50px -20px rgba(0, 0, 0, .8);
+  transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s, border-color .3s;
+  overflow: hidden;
+}
+.p404-lg-btn::before {
+  content: ''; position: absolute; inset: 0; border-radius: 999px; pointer-events: none;
+  background: radial-gradient(120% 100% at 26% 12%, rgba(255, 255, 255, .6), transparent 52%);
+  opacity: .8;
+}
+.p404-lg-btn:hover {
+  transform: translateY(-3px);
+  border-color: rgba(63, 192, 212, .5);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, .6),
+    0 0 34px -6px rgba(63, 192, 212, .4),
+    0 26px 60px -22px rgba(0, 0, 0, .85);
+}
+
+/* Teal-tinted alt variant */
+.p404-lg-btn--alt {
+  background: linear-gradient(140deg, rgba(63, 192, 212, .30), rgba(63, 192, 212, .08));
+  border-color: rgba(63, 192, 212, .4);
+}
+
+/* Shine sweep */
+.p404-shine {
+  position: absolute; top: 0; bottom: 0;
+  width: 60%; left: -70%; pointer-events: none;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, .4), transparent);
+  transform: skewX(-18deg);
+  transition: left .7s ease;
+}
+
+.p404-btn-t { position: relative; z-index: 2; }

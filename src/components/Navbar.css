@@ -1,126 +1,84 @@
 .navbar {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
-  z-index: 1000;
-  transition: all 0.3s ease;
-  background: transparent;
+  top: 0; left: 0; right: 0;
+  z-index: 800;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px clamp(20px,5vw,56px);
+  transition: background .4s ease, backdrop-filter .4s ease, border-color .4s ease;
+  border-bottom: 1px solid transparent;
 }
-
 .navbar.scrolled {
-  background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border-bottom: 1px solid var(--glass-border);
-  height: 70px;
+  background: rgba(10,12,14,0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom-color: var(--line);
 }
 
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  height: 100%;
-  padding: 0 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.brand {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 800;
-  letter-spacing: -1px;
-}
-
+/* ── Logo (image) — kept as-is ── */
 .logo-brand {
-  display: flex;
-  align-items: center;
-  position: relative;
-  width: 140px;
-  height: 44px;
+  display: flex; align-items: center;
+  position: relative; width: 140px; height: 44px;
+  text-decoration: none;
 }
-
 .brand-logo {
-  height: 40px;
-  width: auto;
-  object-fit: contain;
-  position: absolute;
-  left: 0;
-  top: 50%;
+  height: 38px; width: auto; object-fit: contain;
+  position: absolute; left: 0; top: 50%;
   transform: translateY(-50%);
-  transition: opacity 0.3s ease;
+  transition: opacity .3s ease;
 }
-
 .brand-logo-default { opacity: 1; }
 .brand-logo-hover   { opacity: 0; }
-
 .logo-brand:hover .brand-logo-default { opacity: 0; }
 .logo-brand:hover .brand-logo-hover   { opacity: 1; }
 
+/* ── Nav links ── */
 .nav-links {
-  display: flex;
-  gap: 2.5rem;
-  align-items: center;
+  display: flex; gap: 34px; align-items: center;
 }
-
 .nav-link {
-  font-size: 0.95rem;
-  font-weight: 500;
-  opacity: 0.8;
-  transition: opacity 0.2s, color 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  color: var(--ink-soft); text-decoration: none;
+  font-size: .9rem; font-weight: 500; letter-spacing: .01em;
+  transition: color .2s; position: relative;
+  display: flex; align-items: center; gap: .5rem;
 }
-
-.nav-link:hover {
-  opacity: 1;
-  color: var(--starlight-blue);
+.nav-link::after {
+  content: ''; position: absolute; left: 0; bottom: -5px;
+  width: 0; height: 1.5px; background: var(--teal); transition: width .25s;
 }
+.nav-link:hover { color: var(--ink); }
+.nav-link:hover::after { width: 100%; }
 
+/* ── Lang toggle ── */
 .lang-toggle {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 0.4rem 0.8rem;
-  border-radius: 20px;
-  border: 1px solid var(--glass-border);
-  font-size: 0.85rem;
-  font-weight: 600;
+  display: flex; gap: 2px; align-items: center;
+  border: 1px solid var(--line-2); border-radius: 30px;
+  padding: 4px; font-size: .78rem; background: none;
+  cursor: pointer;
 }
-
-.lang-toggle:hover {
-  background: rgba(255, 255, 255, 0.1);
+.lang-btn {
+  background: none; border: none;
+  color: var(--ink-dim); font-family: inherit; font-weight: 600;
+  padding: 3px 10px; border-radius: 30px; cursor: pointer; transition: .2s;
 }
+.lang-btn.on { background: var(--ink); color: var(--bg); }
 
-.mobile-toggle {
-  display: none;
-}
+/* ── Mobile ── */
+.mobile-toggle { display: none; background: none; border: none; color: var(--ink); }
 
-@media (max-width: 768px) {
+@media (max-width: 780px) {
   .nav-links {
     position: fixed;
-    top: 70px;
-    left: 0;
-    right: 0;
-    background: var(--space-dark);
-    flex-direction: column;
+    top: 64px; left: 0; right: 0;
+    background: rgba(10,12,14,0.96);
+    backdrop-filter: blur(14px);
+    flex-direction: column; gap: 2rem;
     padding: 2rem;
-    gap: 2rem;
-    transform: translateY(-100%);
-    opacity: 0;
+    transform: translateY(-110%); opacity: 0;
     pointer-events: none;
-    transition: all 0.4s ease;
-    border-bottom: 1px solid var(--glass-border);
+    transition: transform .4s ease, opacity .4s ease;
+    border-bottom: 1px solid var(--line);
   }
-
-  .nav-links.open {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: all;
-  }
-
-  .mobile-toggle {
-    display: block;
-  }
+  .nav-links.open { transform: translateY(0); opacity: 1; pointer-events: all; }
+  .mobile-toggle { display: block; }
+  .lang-toggle { display: none; }
 }

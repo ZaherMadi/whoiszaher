@@ -1,0 +1,70 @@
+.pres-section {
+  position: relative; z-index: 10;
+  background: var(--bg);
+  padding: clamp(80px,12vh,150px) clamp(20px,5vw,56px);
+  border-top: 1px solid var(--line);
+}
+
+.pres-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(40px,7vw,100px); align-items: start;
+}
+@media (max-width: 860px) { .pres-inner { grid-template-columns: 1fr; gap: 40px; } }
+
+/* Reveal animation */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1); }
+.reveal.in { opacity: 1; transform: none; }
+
+.pres-label {
+  font-size: .8rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--teal); font-weight: 600;
+  display: flex; align-items: center; gap: 12px;
+}
+.pres-label::before { content: ''; width: 34px; height: 1px; background: var(--teal); }
+
+.pres-h {
+  font-family: var(--font-serif); font-style: italic;
+  font-size: clamp(2.2rem,4.5vw,3.4rem); line-height: 1.05;
+  margin-top: 20px; letter-spacing: -.01em; color: var(--ink);
+}
+
+/* Body text */
+.pres-body p {
+  font-size: clamp(1.05rem,1.6vw,1.3rem); line-height: 1.7;
+  color: var(--ink-soft); font-weight: 300; margin-bottom: 22px;
+}
+.pres-body p:last-of-type { margin-bottom: 0; }
+.pres-body b { color: var(--ink); font-weight: 500; }
+.pres-body a {
+  color: var(--teal); text-decoration: none;
+  border-bottom: 1px solid rgba(63,192,212,.4);
+  transition: border-color .2s;
+}
+.pres-body a:hover { border-bottom-color: var(--teal); }
+
+/* Credential cards */
+.pres-creds { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 40px; }
+.pres-cred {
+  display: flex; flex-direction: column; gap: 3px;
+  padding: 16px 20px; border: 1px solid var(--line); border-radius: 16px;
+  background: linear-gradient(180deg, rgba(243,241,236,0.03), transparent);
+  min-width: 150px; transition: border-color .25s, transform .25s;
+}
+.pres-cred:hover { border-color: var(--line-2); transform: translateY(-2px); }
+.pres-cred-k {
+  font-size: .74rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink-dim); font-weight: 500;
+}
+.pres-cred-v { font-size: 1.02rem; font-weight: 600; color: var(--ink); }
+.pres-live {
+  display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--teal); margin-left: 6px; vertical-align: middle;
+  box-shadow: 0 0 8px var(--teal);
+}
+
+/* Footer line */
+.pres-foot {
+  margin-top: 46px; font-size: .85rem; color: var(--ink-dim); letter-spacing: .04em;
+}
+.pres-foot b { color: var(--teal); font-weight: 600; }
