@@ -3,6 +3,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import { Link } from 'react-router-dom';
 import { X } from 'lucide-react';
 import { CLIENTS } from '../../data/clients';
+import LiquidButton from '../LiquidButton';
 import './FeaturedProjects.css';
 
 const PARAMS = {
@@ -141,10 +142,10 @@ const ClientModal = ({ project, isFr, onClose }) => {
         <h3 className="cmodal-title">{project.title}</h3>
         <p className="cmodal-desc">{isFr ? project.descFr : project.descEn}</p>
         {project.address && <p className="cmodal-addr">{project.address}</p>}
-        <a className="cmodal-btn" href={project.url} target="_blank" rel="noopener noreferrer">
+        <LiquidButton as="a" className="cmodal-liquid" href={project.url} target="_blank" rel="noopener noreferrer">
           {isFr ? 'Visiter le site' : 'Visit the site'}
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
-        </a>
+        </LiquidButton>
       </div>
     </div>
   );

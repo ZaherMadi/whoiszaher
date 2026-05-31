@@ -6,12 +6,12 @@ import './ClientsSection.css';
 
 const byId = (id) => CLIENTS.find((c) => c.id === id);
 
-// 3×4 grid keys, row-major. The Agence ROM logo anchors the centre,
-// clients fill the ring around it, "et plus encore" fills the rest.
+// 3×3 grid, row-major. The Agence ROM logo anchors the centre; the eight
+// clients fill the ring around it.
 const GRID = [
-  'pure-montagne',      'tradieco',     'pharmaciens-monaco',
-  'la-semeuse',         '__rom__',      'carre-sainte-maxime',
-  'sainte-rita',        '__more__',     '__more__',
+  'pure-montagne', 'tradieco',       'pharmaciens-monaco',
+  'la-semeuse',    '__rom__',        'carre-sainte-maxime',
+  'sainte-rita',   'theatre-grasse', 'theatre-forum',
 ];
 
 export default function ClientsSection() {
@@ -37,7 +37,7 @@ export default function ClientsSection() {
       </div>
 
       <div className="clients-grid">
-        {GRID.map((key, i) => {
+        {GRID.map((key) => {
           if (key === '__rom__') {
             return (
               <div className="px-cell px-rom" key="rom">
@@ -55,14 +55,6 @@ export default function ClientsSection() {
             );
           }
 
-          if (key === '__more__') {
-            return (
-              <div className="px-cell px-more" key={`more-${i}`}>
-                <span>{isFr ? 'et plus encore' : 'and more'}</span>
-              </div>
-            );
-          }
-
           const c = byId(key);
           return (
             <a
@@ -73,10 +65,21 @@ export default function ClientsSection() {
               rel="noopener noreferrer"
               style={{ '--brand': c.brand }}
               title={c.name}
+              aria-label={c.name}
             >
               <PixelCanvas colors={c.pixelColors} gap={5} speed={30} />
-              <span className="px-name">{c.short || c.name}</span>
-              {c.badge && <span className="px-badge">{isFr ? c.badge : c.badge}</span>}
+              {c.useLogo && c.logo ? (
+                <img
+                  src={c.logo}
+                  alt={c.name}
+                  className={`px-logo${c.logoMono ? ' px-logo--mono' : ''}`}
+                  loading="lazy"
+                  draggable={false}
+                />
+              ) : (
+                <span className="px-name">{c.short || c.name}</span>
+              )}
+              {c.badge && <span className="px-badge">{c.badge}</span>}
             </a>
           );
         })}

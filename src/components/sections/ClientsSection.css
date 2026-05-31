@@ -72,6 +72,20 @@
 }
 .px-client:hover .px-badge { color: color-mix(in srgb, var(--brand) 70%, #fff); border-color: color-mix(in srgb, var(--brand) 50%, transparent); }
 
+/* Logos — faint white silhouette at rest, real brand colours on hover */
+.px-logo {
+  position: relative; z-index: 1;
+  width: auto; height: auto;
+  max-width: 66%; max-height: clamp(26px,4.6vw,42px);
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: .56;
+  transition: opacity .3s ease, filter .3s ease, transform .3s ease;
+}
+.px-client:hover .px-logo { opacity: 1; filter: none; transform: scale(1.06); }
+/* Dark/mono logos (e.g. black wordmarks) stay white on hover so they remain visible */
+.px-client:hover .px-logo--mono { filter: brightness(0) invert(1); }
+
 /* Centre — Agence ROM logo: very faint at rest, glows on hover */
 .px-rom { background: #0b0e10; }
 .px-rom-link { position: relative; z-index: 1; display: grid; place-items: center; width: 100%; height: 100%; }

@@ -4,8 +4,11 @@
  * carousel (FeaturedProjects) and the "Références" grid (ClientsSection).
  *
  * - brand / pixelColors : drive the per-card shimmer + hover glow tint.
- * - logo                : downloaded locally in /public/assets/clients/, kept
- *                         ready to display later (names are shown for now).
+ * - logo + useLogo       : when useLogo is true the grid shows the (transparent)
+ *                          logo as a white silhouette that reveals its real
+ *                          colours on hover. Otherwise the brand name is shown.
+ * - logoMono             : logo whose real colour is dark — keep it white on
+ *                          hover instead of revealing its (invisible) colour.
  * - descFr / descEn      : 2–3 line summary shown in the project popup.
  * -------------------------------------------------------------------------- */
 
@@ -16,6 +19,7 @@ export const CLIENTS = [
     short: 'Pure Montagne',
     url: 'https://www.puremontagneresort.fr/',
     logo: '/assets/clients/pure-montagne.png',
+    useLogo: false,
     brand: '#B0843F',
     pixelColors: ['#B0843F', '#C9A05A', '#8A6A34'],
     tagFr: 'Tourisme de montagne — Saint-Martin-Vésubie',
@@ -30,6 +34,7 @@ export const CLIENTS = [
     short: 'Tradieco',
     url: 'https://www.tradieco.com/',
     logo: '/assets/clients/tradieco.png',
+    useLogo: true,
     brand: '#1FA089',
     pixelColors: ['#1FA089', '#37C2A8', '#147A68'],
     tagFr: 'Constructeur de maisons individuelles — Auvergne',
@@ -44,6 +49,7 @@ export const CLIENTS = [
     short: 'Ordre des Pharmaciens — Monaco',
     url: 'https://www.ordrepharmaciens.mc/',
     logo: '/assets/clients/pharmaciens-monaco.png',
+    useLogo: true,
     brand: '#2E9B57',
     pixelColors: ['#2E9B57', '#46B870', '#1E7A42'],
     tagFr: 'Institution ordinale — Principauté de Monaco',
@@ -59,6 +65,7 @@ export const CLIENTS = [
     badge: 'Association',
     url: 'https://www.lasemeuse.asso.fr/',
     logo: '/assets/clients/la-semeuse.jpg',
+    useLogo: false,
     brand: '#D5202B',
     pixelColors: ['#D5202B', '#E7434D', '#A3161F'],
     tagFr: "Éducation populaire — Nice, depuis 1904",
@@ -73,6 +80,7 @@ export const CLIENTS = [
     short: 'Le Carré — Sainte-Maxime',
     url: 'https://www.carre-sainte-maxime.fr/',
     logo: '/assets/clients/carre.svg',
+    useLogo: false,
     brand: '#BB3587',
     pixelColors: ['#BB3587', '#D44F9F', '#8F2668'],
     tagFr: 'Pôle culturel & théâtre — Sainte-Maxime',
@@ -87,6 +95,8 @@ export const CLIENTS = [
     short: 'Sainte Rita — Nice',
     url: 'https://www.sainte-rita.net/',
     logo: '/assets/clients/sainte-rita.png',
+    useLogo: true,
+    logoMono: true,
     brand: '#B08D57',
     pixelColors: ['#B08D57', '#CBA873', '#8A6B3C'],
     tagFr: "Église de l'Annonciation — Vieux-Nice",
@@ -94,5 +104,35 @@ export const CLIENTS = [
     address: '1 rue de la Poissonnerie, 06300 Nice',
     descFr: "Église baroque de l'Annonciation, dite Sainte-Rita, au cœur du Vieux-Nice, et sa boutique d'objets religieux. Site Joomla (YOOtheme) : refontes et maintenance.",
     descEn: "Baroque Church of the Annunciation, known as Sainte-Rita, in the heart of Old Nice, and its religious-goods shop. Joomla (YOOtheme) site: redesigns and maintenance.",
+  },
+  {
+    id: 'theatre-grasse',
+    name: 'Théâtre de Grasse',
+    short: 'Théâtre de Grasse',
+    url: 'https://www.theatredegrasse.com/',
+    logo: '/assets/clients/theatre-grasse.svg',
+    useLogo: true,
+    brand: '#E8540F',
+    pixelColors: ['#E8540F', '#F47A3D', '#B23E08'],
+    tagFr: 'Scène conventionnée — Grasse',
+    tagEn: 'Accredited performing-arts venue — Grasse',
+    address: '2 av. Maximin Isnard, 06130 Grasse',
+    descFr: "Scène conventionnée d'intérêt national (danse & cirque) à Grasse. Site vitrine immersif — couleurs fortes, animations et storytelling — pensé pour la billetterie et l'acquisition d'audience.",
+    descEn: "Nationally accredited performing-arts venue (dance & circus) in Grasse. Immersive showcase site — bold colours, animation and storytelling — built around ticketing and audience growth.",
+  },
+  {
+    id: 'theatre-forum',
+    name: 'Théâtre Le Forum',
+    short: 'Le Forum — Fréjus',
+    url: 'https://www.theatreleforum.fr/',
+    logo: null,
+    useLogo: false,
+    brand: '#2D6E8E',
+    pixelColors: ['#2D6E8E', '#4A93B5', '#1E4E66'],
+    tagFr: 'Théâtre intercommunal — Fréjus',
+    tagEn: 'Intercommunal theatre — Fréjus',
+    address: '83 bd de la Mer, 83600 Fréjus',
+    descFr: "Théâtre intercommunal de Fréjus, « Le Forum » : grande salle modulable de plus de 850 places — spectacles vivants, concerts et danse. Accompagnement et évolutions du site web.",
+    descEn: "Fréjus intercommunal theatre, 'Le Forum': a modular 850+ seat hall — live shows, concerts and dance. Website support and improvements.",
   },
 ];
