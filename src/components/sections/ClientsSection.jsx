@@ -69,13 +69,20 @@ export default function ClientsSection() {
             >
               <PixelCanvas colors={c.pixelColors} gap={5} speed={30} />
               {c.useLogo && c.logo ? (
-                <img
-                  src={c.logo}
-                  alt={c.name}
-                  className={`px-logo${c.logoMono ? ' px-logo--mono' : ''}`}
-                  loading="lazy"
-                  draggable={false}
-                />
+                c.logoHover ? (
+                  <span className="px-logo-stack">
+                    <img src={c.logo} alt={c.name} className="px-logo-rest" loading="lazy" draggable={false} />
+                    <img src={c.logoHover} alt="" aria-hidden="true" className="px-logo-hover" loading="lazy" draggable={false} />
+                  </span>
+                ) : (
+                  <img
+                    src={c.logo}
+                    alt={c.name}
+                    className={`px-logo${c.logoMono ? ' px-logo--mono' : ''}`}
+                    loading="lazy"
+                    draggable={false}
+                  />
+                )
               ) : (
                 <span className="px-name">{c.short || c.name}</span>
               )}

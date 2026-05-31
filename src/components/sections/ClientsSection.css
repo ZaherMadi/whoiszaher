@@ -86,6 +86,27 @@
 /* Dark/mono logos (e.g. black wordmarks) stay white on hover so they remain visible */
 .px-client:hover .px-logo--mono { filter: brightness(0) invert(1); }
 
+/* Two-logo crossfade: faint silhouette at rest, the brand's own logo on hover */
+.px-logo-stack { position: relative; z-index: 1; display: grid; place-items: center; }
+.px-logo-stack > img { grid-area: 1 / 1; }
+.px-logo-rest {
+  width: auto; height: auto;
+  max-width: 66%; max-height: clamp(26px,4.6vw,42px);
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: .56;
+  transition: opacity .3s ease;
+}
+.px-logo-hover {
+  width: auto; height: auto;
+  max-width: 62%; max-height: clamp(38px,5.4vw,52px);
+  object-fit: contain;
+  opacity: 0; transform: scale(.94);
+  transition: opacity .3s ease, transform .3s ease;
+}
+.px-client:hover .px-logo-rest { opacity: 0; }
+.px-client:hover .px-logo-hover { opacity: 1; transform: scale(1.02); }
+
 /* Centre — Agence ROM logo: very faint at rest, glows on hover */
 .px-rom { background: #0b0e10; }
 .px-rom-link { position: relative; z-index: 1; display: grid; place-items: center; width: 100%; height: 100%; }
