@@ -17,6 +17,7 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === '/';
+  const isProject = location.pathname.startsWith('/project');
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 40);
@@ -25,6 +26,10 @@ const Navbar = () => {
   }, []);
 
   const closeMenu = () => setMobileOpen(false);
+
+  // Project pages have their own top-nav — hide the global navbar to avoid a
+  // double header (and the stray brand peeking on scroll) on mobile.
+  if (isProject) return null;
 
   return (
     <header className={`navbar ${isScrolled ? 'scrolled' : ''}`}>

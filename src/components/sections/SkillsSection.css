@@ -250,8 +250,21 @@
     display: none;
   }
 
+  /* Let the (tall) content flow from the top instead of being vertically
+     centred in a 100vh box, which buried the production-stack legend. */
   .skills-section {
     padding: 5rem 1.5rem;
+    min-height: auto;
+    align-items: flex-start;
+  }
+
+  /* The scroll-triggered entrance can leave the legend stuck invisible on
+     touch; force it visible so the tech icons always show. */
+  .skills-right,
+  .skills-right .skills-tech-legend,
+  .tech-legend-item {
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   .tech-legend-grid {

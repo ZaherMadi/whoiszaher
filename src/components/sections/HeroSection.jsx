@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
+import LiquidButton from '../LiquidButton';
 import './HeroSection.css';
 
 const HeroSection = () => {
@@ -64,7 +65,7 @@ const HeroSection = () => {
           <div className="hero-content" ref={contentRef}>
             <span className="hero-eyebrow">
               <span className="hero-live" />
-              {language === 'fr' ? 'Développeur fullstack · cloud' : 'Fullstack developer · cloud'}
+              {language === 'fr' ? 'Support Client / Full-Stack · cloud' : 'Client Support / Full-Stack · cloud'}
             </span>
 
             <h1 className="hero-title">
@@ -97,10 +98,11 @@ const HeroSection = () => {
             </div>
           </div>
 
-          <div className="scroll-cue" ref={cueRef}>
-            <div className="scroll-mouse" />
-            scroll
-          </div>
+          <a href="#intro" className="scroll-cue" ref={cueRef} aria-label={language === 'fr' ? 'Défiler vers le bas' : 'Scroll down'}>
+            <LiquidButton as="span" className="scroll-liquid">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14M19 12l-7 7-7-7" /></svg>
+            </LiquidButton>
+          </a>
         </div>
       </div>
 

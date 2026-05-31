@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { X } from 'lucide-react';
 import { CLIENTS } from '../../data/clients';
 import LiquidButton from '../LiquidButton';
@@ -157,9 +157,11 @@ export default function FeaturedProjects() {
   const [active, setActive] = useState(0);
   const [userTouched, setUserTouched] = useState(false);
   const [modal, setModal] = useState(null);
+  const navigate = useNavigate();
   const autoRef = useRef(null);
   const stageRef = useRef(null);
   const downRef = useRef(null);
+  const draggedRef = useRef(false);
   const N = PROJECTS.length;
   const maxOffset = Math.max(0, Math.floor(PARAMS.maxVisible / 2));
   const stepDeg = maxOffset > 0 ? PARAMS.spreadDeg / maxOffset : 0;
@@ -200,7 +202,9 @@ export default function FeaturedProjects() {
     const onUp = e => {
       if (!downRef.current) return;
       const dx = e.clientX - downRef.current.x;
-      if (downRef.current.moved && Math.abs(dx) > 55) { setUserTouched(true); stopAuto(); setActive(a => wrap(dx < 0 ? a + 1 : a - 1)); }
+      const swiped = downRef.current.moved && Math.abs(dx) > 40;
+      draggedRef.current = swiped;
+      if (swiped) { setUserTouched(true); stopAuto(); setActive(a => wrap(dx < 0 ? a + 1 : a - 1)); }
       downRef.current = null;
     };
     const onMove = e => { if (downRef.current && Math.abs(e.clientX - downRef.current.x) > 8) downRef.current.moved = true; };
@@ -239,8 +243,13 @@ export default function FeaturedProjects() {
             const isA = signedOffset(i) === 0;
             return (
             <article key={p.id} className={`fan-card ${isA?'active':''}`} style={getCardStyle(i)}
-              onPointerDown={e => { if(!isA) return; downRef.current={x:e.clientX,moved:false}; }}
-              onClick={() => { if(!isA){setUserTouched(true);stopAuto();setActive(i);} }}>
+              onPointerDown={e => { downRef.current={x:e.clientX,moved:false}; draggedRef.current=false; }}
+              onClick={() => {
+                if (draggedRef.current) { draggedRef.current = false; return; }
+                if (!isA) { setUserTouched(true); stopAuto(); setActive(i); return; }
+                if (p.kind === 'client') openModal(p);
+                else if (p.link && p.link !== '#') navigate(p.link);
+              }}>
               <div className="fan-card-face" style={getFaceStyle(i)}>
                 <ProjectMedia project={p} isActive={isA} />
                 <div className="fan-veil"/><div className="fan-frost" style={{opacity:!isA?1:0}}/>

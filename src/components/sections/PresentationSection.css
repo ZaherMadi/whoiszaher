@@ -68,3 +68,20 @@
   margin-top: 46px; font-size: .85rem; color: var(--ink-dim); letter-spacing: .04em;
 }
 .pres-foot b { color: var(--teal); font-weight: 600; }
+
+/* Facet toggle — Support Client (default) / Full-Stack */
+.pres-tabs {
+  display: inline-flex; gap: 4px; padding: 5px;
+  border: 1px solid var(--line-2); border-radius: 999px;
+  background: rgba(243,241,236,0.03); margin-bottom: 26px;
+}
+.pres-tab {
+  padding: 9px 20px; border-radius: 999px; border: none; background: none;
+  font-family: inherit; font-size: .9rem; font-weight: 600; letter-spacing: .01em;
+  color: var(--ink-soft); cursor: pointer; white-space: nowrap;
+  transition: color .25s, background .25s, box-shadow .25s;
+}
+.pres-tab:hover { color: var(--ink); }
+.pres-tab.on { color: var(--bg); background: var(--teal); box-shadow: 0 6px 18px -6px var(--teal); }
+.pres-facet { animation: facet-fade .35s ease; }
+@keyframes facet-fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }

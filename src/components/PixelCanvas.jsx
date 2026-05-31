@@ -61,7 +61,7 @@ function createPixel(ctx, canvas, x, y, color, baseSpeed, delay) {
   return p;
 }
 
-export default function PixelCanvas({ colors, gap = 5, speed = 30 }) {
+export default function PixelCanvas({ colors, gap = 5, speed = 30, playing }) {
   const canvasRef = useRef(null);
   const wrapRef = useRef(null);
   const pixelsRef = useRef([]);
@@ -155,6 +155,12 @@ export default function PixelCanvas({ colors, gap = 5, speed = 30 }) {
       card?.removeEventListener('mouseleave', handleLeave);
     };
   }, [init, animate]);
+
+  // Imperative play control — used on touch devices where there is no hover.
+  useEffect(() => {
+    if (playing === undefined) return;
+    animate(playing ? 'appear' : 'disappear');
+  }, [playing, animate]);
 
   return (
     <div ref={wrapRef} className="px-canvas-wrap" aria-hidden="true">

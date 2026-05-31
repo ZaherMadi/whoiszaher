@@ -189,6 +189,7 @@ const ProjectMarinaYacht = () => {
   const metaDateRef = useRef(null);
   const metaHintRef = useRef(null);
   const contentRef  = useRef(null);
+  const appVideoRef = useRef(null);
 
   // Lightbox state
   const [lbIndex, setLbIndex] = useState(-1);
@@ -209,6 +210,17 @@ const ProjectMarinaYacht = () => {
     contentRef.current?.querySelectorAll('.reveal').forEach(el => io.observe(el));
     return () => io.disconnect();
   }, [language]);
+
+  // Auto play/loop the in-app teaser video when it nears the viewport.
+  useEffect(() => {
+    const v = appVideoRef.current; if (!v) return;
+    const io = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) v.play().catch(() => {}); else v.pause(); },
+      { threshold: 0.3 }
+    );
+    io.observe(v);
+    return () => io.disconnect();
+  }, []);
 
   return (
     <div className="marina-page">
@@ -371,6 +383,7 @@ const ProjectMarinaYacht = () => {
                 </p>
                 <div className="marina-app-video-wrap reveal">
                   <video
+                    ref={appVideoRef}
                     src={APP_TEASER_VIDEO}
                     className="marina-app-video"
                     controls
