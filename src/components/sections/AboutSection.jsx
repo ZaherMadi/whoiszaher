@@ -24,12 +24,14 @@ const AboutSection = () => {
           <span className="about-qmark">"</span>
           <p className="about-quote">
             {language === 'fr'
-              ? <>Zaher, c'est cette <em>énergie rare</em> : il apprend vite, livre proprement, et tire toute l'équipe vers le haut.</>
-              : <>Zaher has that <em>rare energy</em>: he learns fast, delivers clean code, and lifts the whole team up.</>
+              ? <>Toujours attentif aux détails, il veille à ce que chaque site reste <em>performant, sécurisé et parfaitement fonctionnel</em>. Il met autant d'intensité et de stratégie dans ses matchs de padel que dans ses projets de développement.</>
+              : <>Always attentive to detail, he makes sure every site stays <em>fast, secure and perfectly functional</em>. He puts as much intensity and strategy into his padel matches as into his development projects.</>
             }
           </p>
           <p className="about-quote-by">
-            {language === 'fr' ? "L'équipe — Agence ROM" : 'The team — Agence ROM'}
+            <a href="https://www.rom.fr/about/l-agence/team#bio-zaher-madi" target="_blank" rel="noopener noreferrer">
+              {language === 'fr' ? 'Bio officielle — Agence ROM, Nice ↗' : 'Official bio — Agence ROM, Nice ↗'}
+            </a>
           </p>
         </div>
 

@@ -4,11 +4,19 @@ import { useLanguage } from '../context/LanguageContext';
 import { Menu, X } from 'lucide-react';
 import './Navbar.css';
 
+const NavLinkItem = ({ to, isHome, onSelect, children }) => {
+  if (isHome) {
+    return <a href={`#${to}`} className="nav-link" onClick={onSelect}>{children}</a>;
+  }
+  return <Link to={`/#${to}`} className="nav-link" onClick={onSelect}>{children}</Link>;
+};
+
 const Navbar = () => {
   const { language, toggleLanguage, t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const isHome = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 40);
@@ -17,14 +25,6 @@ const Navbar = () => {
   }, []);
 
   const closeMenu = () => setMobileOpen(false);
-
-  const NavLinkItem = ({ to, children }) => {
-    const isHome = location.pathname === '/';
-    if (isHome) {
-      return <a href={`#${to}`} className="nav-link" onClick={closeMenu}>{children}</a>;
-    }
-    return <Link to={`/#${to}`} className="nav-link" onClick={closeMenu}>{children}</Link>;
-  };
 
   return (
     <header className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
@@ -36,10 +36,10 @@ const Navbar = () => {
 
       {/* ── Desktop nav ── */}
       <nav className={`nav-links ${mobileOpen ? 'open' : ''}`}>
-        <NavLinkItem to="projects">{t.nav.projects}</NavLinkItem>
-        <NavLinkItem to="skills">{t.nav.skills}</NavLinkItem>
-        <NavLinkItem to="about">{t.nav.about}</NavLinkItem>
-        <NavLinkItem to="contact">{t.nav.contact}</NavLinkItem>
+        <NavLinkItem to="projects" isHome={isHome} onSelect={closeMenu}>{t.nav.projects}</NavLinkItem>
+        <NavLinkItem to="skills"   isHome={isHome} onSelect={closeMenu}>{t.nav.skills}</NavLinkItem>
+        <NavLinkItem to="about"    isHome={isHome} onSelect={closeMenu}>{t.nav.about}</NavLinkItem>
+        <NavLinkItem to="contact"  isHome={isHome} onSelect={closeMenu}>{t.nav.contact}</NavLinkItem>
       </nav>
 
       {/* ── Right: lang + mobile toggle ── */}

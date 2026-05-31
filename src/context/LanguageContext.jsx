@@ -10,11 +10,11 @@ export const LanguageProvider = ({ children }) => {
     return localStorage.getItem('language') || 'fr';
   });
 
-  const [t, setT] = useState(language === 'fr' ? fr : en);
+  const t = language === 'fr' ? fr : en;
 
   useEffect(() => {
     localStorage.setItem('language', language);
-    setT(language === 'fr' ? fr : en);
+    document.documentElement.lang = language;
   }, [language]);
 
   const toggleLanguage = () => {

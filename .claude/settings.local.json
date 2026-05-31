@@ -9,7 +9,16 @@
       "Bash(cp \"image \\(3\\).png\" \"cani-logo.png\")",
       "Bash(npm run:*)",
       "Bash(python3 -c \":*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "WebFetch(domain:www.rom.fr)",
+      "WebSearch",
+      "WebFetch(domain:www.lasemeuse.asso.fr)",
+      "WebFetch(domain:www.carre-sainte-maxime.fr)",
+      "Bash(curl -sSL -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\)\" -o public/assets/clients/carre.svg \"https://www.carre-sainte-maxime.fr/images/LE_CARRE_logo_COMM_2024_large_BLCPINK-LABEL.svg\")",
+      "WebFetch(domain:www.ordrepharmaciens.mc)",
+      "WebFetch(domain:www.tradieco.com)",
+      "WebFetch(domain:www.puremontagneresort.fr)",
+      "Bash(git add *)"
     ]
   }
 }

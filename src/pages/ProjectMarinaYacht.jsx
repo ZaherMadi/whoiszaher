@@ -1,8 +1,72 @@
-import React, { useEffect, useRef, useCallback } from 'react';
-import { motion, useScroll } from 'framer-motion';
+import React, { useEffect, useRef, useCallback, useState } from 'react';
+import { motion, useScroll, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { Link } from 'react-router-dom';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import './ProjectMarinaYacht.css';
+
+const HERO_VIDEO = '/assets/Teaser marina.mp4';
+const APP_TEASER_VIDEO = '/assets/MYI TeaserApp.mp4';
+const GALLERY = [
+  { src: '/assets/MYI Onboarding.png',             alt: 'Onboarding 1' },
+  { src: '/assets/MYI Oboarding P2.png',           alt: 'Onboarding 2' },
+  { src: '/assets/MYI Screen Notifications .jpeg', alt: 'Notifications screen' },
+];
+
+/* ─── Lightbox ─────────────────────────────────────────────────────── */
+const Lightbox = ({ items, index, onClose, onPrev, onNext }) => {
+  useEffect(() => {
+    const onKey = e => {
+      if (e.key === 'Escape')      onClose();
+      else if (e.key === 'ArrowLeft')  onPrev();
+      else if (e.key === 'ArrowRight') onNext();
+    };
+    window.addEventListener('keydown', onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [onClose, onPrev, onNext]);
+
+  const item = items[index];
+
+  return (
+    <motion.div
+      className="marina-lightbox"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.22 }}
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+    >
+      <button className="marina-lb-close" onClick={onClose} aria-label="Fermer">
+        <X size={22} />
+      </button>
+      <button className="marina-lb-nav marina-lb-prev" onClick={e => { e.stopPropagation(); onPrev(); }} aria-label="Précédent">
+        <ChevronLeft size={28} />
+      </button>
+      <motion.img
+        key={item.src}
+        src={item.src}
+        alt={item.alt}
+        className="marina-lb-img"
+        initial={{ opacity: 0, scale: 0.92 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.96 }}
+        transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+        onClick={e => e.stopPropagation()}
+      />
+      <button className="marina-lb-nav marina-lb-next" onClick={e => { e.stopPropagation(); onNext(); }} aria-label="Suivant">
+        <ChevronRight size={28} />
+      </button>
+      <span className="marina-lb-counter">{index + 1} / {items.length}</span>
+    </motion.div>
+  );
+};
 
 /* ─── ScrollExpandMedia hook ─────────────────────────────────────────
    Faithful port of the scroll-hijack pattern from the design.
@@ -126,6 +190,13 @@ const ProjectMarinaYacht = () => {
   const metaHintRef = useRef(null);
   const contentRef  = useRef(null);
 
+  // Lightbox state
+  const [lbIndex, setLbIndex] = useState(-1);
+  const openLb  = i => setLbIndex(i);
+  const closeLb = () => setLbIndex(-1);
+  const prevLb  = useCallback(() => setLbIndex(i => (i - 1 + GALLERY.length) % GALLERY.length), []);
+  const nextLb  = useCallback(() => setLbIndex(i => (i + 1) % GALLERY.length), []);
+
   useScrollExpand({ mediaRef, bgRef, vScrimRef, titleARef, titleBRef,
     metaDateRef, metaHintRef, contentRef });
 
@@ -166,18 +237,15 @@ const ProjectMarinaYacht = () => {
 
               {/* Expanding media card */}
               <div className="marina-sem-media" ref={mediaRef} style={{ width: 300, height: 400 }}>
-                {/* Elegant fallback — shown until video loads */}
-                <div className="marina-vfallback" id="marinaFallback">
-                  <div className="marina-sheen" />
-                  <div className="marina-play-btn">
-                    <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 26, height: 26, marginLeft: 4, color: 'var(--ink)' }}>
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                  <span className="marina-vfallback-lbl">
-                    {isFr ? 'Application d\'entreprise' : 'Enterprise application'}
-                  </span>
-                </div>
+                <video
+                  className="marina-hero-video"
+                  src={HERO_VIDEO}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                />
                 <div className="marina-vscrim" ref={vScrimRef} />
                 <div className="marina-vmeta">
                   <p className="marina-vmeta-date" ref={metaDateRef}>
@@ -273,6 +341,46 @@ const ProjectMarinaYacht = () => {
                   <li><strong>Workflow Agile:</strong> Scrums &amp; Sprints {isFr ? 'adaptés aux profils juniors.' : 'adapted to junior profiles.'}</li>
                 </ul>
 
+                {/* Gallery */}
+                <h2 className="marina-ch reveal">{isFr ? 'Aperçu de l\'application' : 'App preview'}</h2>
+                <p className="marina-cp reveal">
+                  {isFr
+                    ? 'Quelques écrans de l\'application — clique pour agrandir.'
+                    : 'A few screens from the app — click to enlarge.'}
+                </p>
+                <div className="marina-gallery reveal">
+                  {GALLERY.map((g, i) => (
+                    <button
+                      key={g.src}
+                      type="button"
+                      className="marina-gallery-thumb"
+                      onClick={() => openLb(i)}
+                      aria-label={isFr ? `Ouvrir ${g.alt}` : `Open ${g.alt}`}
+                    >
+                      <img src={g.src} alt={g.alt} loading="lazy" />
+                    </button>
+                  ))}
+                </div>
+
+                {/* App teaser video */}
+                <h2 className="marina-ch reveal">{isFr ? 'Extrait vidéo de l\'application' : 'In-app video clip'}</h2>
+                <p className="marina-cp reveal">
+                  {isFr
+                    ? <>Voici un <b>extrait vidéo plus approfondi</b> de l'application — tournée directement sur <b>Expo Go</b>, en local.</>
+                    : <>Here's a <b>more in-depth video</b> of the application — recorded directly on <b>Expo Go</b>, running locally.</>}
+                </p>
+                <div className="marina-app-video-wrap reveal">
+                  <video
+                    src={APP_TEASER_VIDEO}
+                    className="marina-app-video"
+                    controls
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                  />
+                </div>
+
                 {/* CTAs */}
                 <div className="marina-cta reveal">
                   <Link to="/" className="marina-btn marina-btn-primary">
@@ -289,6 +397,18 @@ const ProjectMarinaYacht = () => {
           </div>
         </div>
       </section>
+
+      <AnimatePresence>
+        {lbIndex >= 0 && (
+          <Lightbox
+            items={GALLERY}
+            index={lbIndex}
+            onClose={closeLb}
+            onPrev={prevLb}
+            onNext={nextLb}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };

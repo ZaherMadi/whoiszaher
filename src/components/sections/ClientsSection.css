@@ -1,0 +1,97 @@
+.clients-section {
+  position: relative; z-index: 2;
+  padding: clamp(70px,11vh,130px) clamp(20px,5vw,56px);
+  overflow: hidden;
+}
+.clients-glow {
+  position: absolute; width: 620px; height: 620px;
+  left: 50%; top: 32%; transform: translate(-50%,-50%);
+  border-radius: 50%; filter: blur(130px); opacity: .42; pointer-events: none; z-index: 0;
+  background: radial-gradient(circle, rgba(63,192,212,.16), transparent 70%);
+}
+
+/* Head */
+.clients-head { text-align: center; max-width: 760px; margin: 0 auto clamp(30px,5vh,54px); position: relative; z-index: 2; }
+.clients-label {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-size: .8rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--teal); font-weight: 600; white-space: nowrap;
+}
+.clients-label::before, .clients-label::after { content: ''; width: 30px; height: 1px; background: var(--teal); opacity: .6; }
+.clients-title {
+  font-weight: 600; line-height: 1.05; letter-spacing: -.03em;
+  font-size: clamp(2rem,5vw,3.4rem); margin-top: 16px; color: var(--ink);
+}
+.clients-serif { font-family: var(--font-serif); font-weight: 400; font-style: italic; }
+.clients-sub { margin-top: 16px; color: var(--ink-soft); font-size: 1rem; font-weight: 300; line-height: 1.6; }
+.clients-sub a { color: var(--teal); border-bottom: 1px solid rgba(63,192,212,.4); transition: .2s; }
+.clients-sub a:hover { color: #fff; border-color: #fff; }
+
+/* Grid — hairline borders via 1px gap over a line-coloured background */
+.clients-grid {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1px; background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 18px; overflow: hidden;
+  max-width: 920px; margin: 0 auto;
+}
+
+.px-cell {
+  position: relative; isolation: isolate;
+  display: grid; place-items: center;
+  min-height: clamp(118px,16vh,166px);
+  background: #0d1013;
+  overflow: hidden; text-decoration: none;
+  transition: box-shadow .3s ease, background .3s ease;
+}
+.px-canvas-wrap { position: absolute; inset: 0; overflow: hidden; z-index: 0; }
+.px-canvas { display: block; }
+
+/* Client cells */
+.px-client { cursor: pointer; }
+.px-name {
+  position: relative; z-index: 1;
+  font-family: var(--font-display); font-weight: 600; letter-spacing: -.01em;
+  font-size: clamp(.92rem,1.5vw,1.18rem); line-height: 1.22; text-align: center;
+  padding: 0 16px; color: var(--ink-soft);
+  transition: color .3s ease, transform .3s ease;
+}
+.px-client:hover { background: #0f1419; z-index: 3; }
+.px-client:hover .px-name { color: #fff; transform: scale(1.04); }
+.px-client:hover {
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--brand) 55%, transparent),
+    0 12px 34px -12px color-mix(in srgb, var(--brand) 50%, transparent);
+}
+.px-badge {
+  position: absolute; top: 13px; left: 50%; transform: translateX(-50%);
+  z-index: 1; font-size: .58rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ink-dim); border: 1px solid var(--line-2); border-radius: 20px; padding: 2px 9px;
+  transition: .3s;
+}
+.px-client:hover .px-badge { color: color-mix(in srgb, var(--brand) 70%, #fff); border-color: color-mix(in srgb, var(--brand) 50%, transparent); }
+
+/* Centre — Agence ROM logo: very faint at rest, glows on hover */
+.px-rom { background: #0b0e10; }
+.px-rom-link { position: relative; z-index: 1; display: grid; place-items: center; width: 100%; height: 100%; }
+.px-rom-logo {
+  width: auto; height: clamp(40px,6vw,58px);
+  opacity: .12;
+  transition: opacity .35s ease, transform .35s ease, filter .35s ease;
+}
+.px-rom:hover { z-index: 3; box-shadow: inset 0 0 0 1px rgba(63,192,212,.4), 0 0 42px -8px rgba(63,192,212,.32); }
+.px-rom:hover .px-rom-logo {
+  opacity: 1; transform: scale(1.07);
+  filter: drop-shadow(0 6px 22px rgba(63,192,212,.55)) drop-shadow(0 0 10px rgba(124,72,196,.4));
+}
+
+/* "et plus encore" */
+.px-more span {
+  position: relative; z-index: 1; color: var(--ink-dim);
+  font-style: italic; font-family: var(--font-serif); font-size: 1.08rem;
+}
+
+@media (max-width: 680px) {
+  .clients-grid { grid-template-columns: repeat(2,1fr); }
+}

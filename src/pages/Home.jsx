@@ -5,6 +5,8 @@ import FeaturedProjects from '../components/sections/FeaturedProjects';
 import SkillsSection from '../components/sections/SkillsSection';
 import AboutSection from '../components/sections/AboutSection';
 import ContactSection from '../components/sections/ContactSection';
+import ClientsSection from '../components/sections/ClientsSection';
+import Footer from '../components/Footer';
 
 const Home = () => (
   <div className="home-page">
@@ -14,6 +16,8 @@ const Home = () => (
     <SkillsSection />
     <AboutSection />
     <ContactSection />
+    <ClientsSection />
+    <Footer />
   </div>
 );
 

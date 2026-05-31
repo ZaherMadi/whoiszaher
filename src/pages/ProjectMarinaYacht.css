@@ -203,6 +203,96 @@
 .marina-list li { color:var(--ink-soft); font-weight:300; font-size:clamp(1rem,1.4vw,1.1rem); line-height:1.7; }
 .marina-list li strong { color:var(--ink); font-weight:600; }
 
+/* Hero video — fills the expanding media card */
+.marina-hero-video {
+  position:absolute; inset:0; z-index:1;
+  width:100%; height:100%; object-fit:cover;
+  background:#0b141a;
+}
+
+/* Gallery */
+.marina-gallery {
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(120px, 1fr));
+  gap:12px;
+  margin:18px 0 8px;
+}
+.marina-gallery-thumb {
+  position:relative;
+  aspect-ratio:9/16;
+  border:1px solid var(--line);
+  border-radius:12px;
+  overflow:hidden;
+  padding:0;
+  cursor:pointer;
+  background:var(--bg-2);
+  transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+.marina-gallery-thumb:hover {
+  border-color:var(--teal);
+  transform:translateY(-3px);
+  box-shadow:0 12px 28px -14px rgba(63,192,212,.55);
+}
+.marina-gallery-thumb img {
+  width:100%; height:100%; object-fit:cover; display:block;
+}
+
+/* App teaser video */
+.marina-app-video-wrap {
+  margin:18px 0 8px;
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:#000;
+  box-shadow:0 20px 50px -22px rgba(0,0,0,.7);
+}
+.marina-app-video {
+  width:100%; height:auto; display:block; max-height:70vh;
+}
+
+/* Lightbox */
+.marina-lightbox {
+  position:fixed; inset:0; z-index:1000;
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(5,7,10,.86); backdrop-filter:blur(14px);
+  padding:clamp(16px,4vw,40px);
+}
+.marina-lb-img {
+  max-width:min(94vw, 1100px);
+  max-height:88vh;
+  object-fit:contain;
+  border-radius:14px;
+  box-shadow:0 30px 80px -20px rgba(0,0,0,.8);
+  user-select:none;
+}
+.marina-lb-close {
+  position:absolute; top:18px; right:18px;
+  width:42px; height:42px; border-radius:50%;
+  background:rgba(243,241,236,.08); border:1px solid var(--line-2);
+  color:var(--ink); cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:.2s; backdrop-filter:blur(6px);
+}
+.marina-lb-close:hover { background:rgba(243,241,236,.18); transform:scale(1.05); }
+.marina-lb-nav {
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:48px; height:48px; border-radius:50%;
+  background:rgba(243,241,236,.06); border:1px solid var(--line-2);
+  color:var(--ink); cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:.2s; backdrop-filter:blur(6px);
+}
+.marina-lb-nav:hover { background:rgba(243,241,236,.16); }
+.marina-lb-prev { left:clamp(10px, 3vw, 28px); }
+.marina-lb-next { right:clamp(10px, 3vw, 28px); }
+.marina-lb-counter {
+  position:absolute; bottom:22px; left:50%; transform:translateX(-50%);
+  font-size:.82rem; color:var(--ink-soft); letter-spacing:.06em;
+}
+@media (max-width:600px) {
+  .marina-lb-nav { width:40px; height:40px; }
+}
+
 /* CTAs */
 .marina-cta { display:flex; gap:14px; flex-wrap:wrap; margin-top:50px; }
 .marina-btn {

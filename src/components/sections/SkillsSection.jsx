@@ -228,7 +228,7 @@ const DecoOrb = ({ pos, orbitParams, color, img, delay }) => {
 
 // ── Main component ─────────────────────────────────────────────────────────────
 const SkillsSection = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <section id="skills" className="skills-section">
@@ -310,7 +310,7 @@ const SkillsSection = () => {
           {/* RIGHT: tech legend */}
           <AnimatedSection className="skills-right" delay={0.2}>
             <div className="skills-tech-legend glass-panel">
-              <h3>{t.language === 'fr' ? 'Stack utilisé en production' : 'Production stack'}</h3>
+              <h3>{language === 'fr' ? 'Stack utilisé en production' : 'Production stack'}</h3>
               <div className="tech-legend-grid">
                 {legendTechs.map((tech, i) => (
                   <motion.div

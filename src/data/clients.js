@@ -1,0 +1,98 @@
+/* -----------------------------------------------------------------------------
+ * Clients
+ * Real references delivered at Agence ROM (Nice) — used by both the projects
+ * carousel (FeaturedProjects) and the "Références" grid (ClientsSection).
+ *
+ * - brand / pixelColors : drive the per-card shimmer + hover glow tint.
+ * - logo                : downloaded locally in /public/assets/clients/, kept
+ *                         ready to display later (names are shown for now).
+ * - descFr / descEn      : 2–3 line summary shown in the project popup.
+ * -------------------------------------------------------------------------- */
+
+export const CLIENTS = [
+  {
+    id: 'pure-montagne',
+    name: 'Pure Montagne',
+    short: 'Pure Montagne',
+    url: 'https://www.puremontagneresort.fr/',
+    logo: '/assets/clients/pure-montagne.png',
+    brand: '#B0843F',
+    pixelColors: ['#B0843F', '#C9A05A', '#8A6A34'],
+    tagFr: 'Tourisme de montagne — Saint-Martin-Vésubie',
+    tagEn: 'Mountain tourism — Saint-Martin-Vésubie',
+    address: '219 av. Marquise de Saravalle, 06450 Saint-Martin-Vésubie',
+    descFr: "Marque de tourisme des vallées de la Vésubie et de la Valdeblore (Resort & Spa 4★ à Saint-Martin-Vésubie). Refonte du site et du parcours de réservation pour clarifier l'offre et rendre la réservation plus intuitive.",
+    descEn: "Tourism brand for the Vésubie & Valdeblore valleys (4★ Resort & Spa in Saint-Martin-Vésubie). Website and booking-flow redesign to clarify the offer and make booking more intuitive.",
+  },
+  {
+    id: 'tradieco',
+    name: 'Tradieco',
+    short: 'Tradieco',
+    url: 'https://www.tradieco.com/',
+    logo: '/assets/clients/tradieco.png',
+    brand: '#1FA089',
+    pixelColors: ['#1FA089', '#37C2A8', '#147A68'],
+    tagFr: 'Constructeur de maisons individuelles — Auvergne',
+    tagEn: 'Individual home builder — Auvergne',
+    address: '42 rue de la République, 03000 Avermes',
+    descFr: "Constructeur leader de maisons individuelles en Auvergne. Site Joomla : maintenance, migrations et refontes successives, en appui de la stratégie d'acquisition de leads.",
+    descEn: "Leading individual-home builder in Auvergne. Joomla site: maintenance, migrations and successive redesigns, supporting their lead-acquisition strategy.",
+  },
+  {
+    id: 'pharmaciens-monaco',
+    name: 'Ordre des Pharmaciens de Monaco',
+    short: 'Ordre des Pharmaciens — Monaco',
+    url: 'https://www.ordrepharmaciens.mc/',
+    logo: '/assets/clients/pharmaciens-monaco.png',
+    brand: '#2E9B57',
+    pixelColors: ['#2E9B57', '#46B870', '#1E7A42'],
+    tagFr: 'Institution ordinale — Principauté de Monaco',
+    tagEn: 'Professional order — Principality of Monaco',
+    address: "Les Jardins d'Apolline, 1 prom. Honoré II, 98000 Monaco",
+    descFr: "Institution qui veille au respect des règles et devoirs de la profession de pharmacien en Principauté de Monaco. Site institutionnel sous Joomla : refontes et maintenance technique.",
+    descEn: "The body ensuring compliance with the rules and duties of the pharmacy profession in the Principality of Monaco. Joomla institutional site: redesigns and technical maintenance.",
+  },
+  {
+    id: 'la-semeuse',
+    name: 'La Semeuse',
+    short: 'La Semeuse',
+    badge: 'Association',
+    url: 'https://www.lasemeuse.asso.fr/',
+    logo: '/assets/clients/la-semeuse.jpg',
+    brand: '#D5202B',
+    pixelColors: ['#D5202B', '#E7434D', '#A3161F'],
+    tagFr: "Éducation populaire — Nice, depuis 1904",
+    tagEn: 'Popular education — Nice, since 1904',
+    address: '2 montée Auguste Kerl, 06300 Nice',
+    descFr: "Association niçoise d'éducation populaire fondée en 1904 : plus de 70 disciplines sportives, culturelles et sociales, et un théâtre. Site Joomla (YOOtheme) : migrations et refontes successives.",
+    descEn: "Nice-based popular-education association founded in 1904: 70+ sports, cultural and social activities, plus a theatre. Joomla (YOOtheme) site: successive migrations and redesigns.",
+  },
+  {
+    id: 'carre-sainte-maxime',
+    name: 'Le Carré Sainte-Maxime',
+    short: 'Le Carré — Sainte-Maxime',
+    url: 'https://www.carre-sainte-maxime.fr/',
+    logo: '/assets/clients/carre.svg',
+    brand: '#BB3587',
+    pixelColors: ['#BB3587', '#D44F9F', '#8F2668'],
+    tagFr: 'Pôle culturel & théâtre — Sainte-Maxime',
+    tagEn: 'Cultural venue & theatre — Sainte-Maxime',
+    address: '107 route du Plan de la Tour, 83120 Sainte-Maxime',
+    descFr: "Pôle culturel Carré Léon Gaumont : théâtre, danse, musique, cinéma et médiathèque (plus de 100 spectacles par an). Site Joomla : refontes et maintenance de la billetterie et de l'agenda.",
+    descEn: "Carré Léon Gaumont cultural hub: theatre, dance, music, cinema and media library (100+ shows a year). Joomla site: redesigns and ticketing/agenda maintenance.",
+  },
+  {
+    id: 'sainte-rita',
+    name: 'Sainte Rita',
+    short: 'Sainte Rita — Nice',
+    url: 'https://www.sainte-rita.net/',
+    logo: '/assets/clients/sainte-rita.png',
+    brand: '#B08D57',
+    pixelColors: ['#B08D57', '#CBA873', '#8A6B3C'],
+    tagFr: "Église de l'Annonciation — Vieux-Nice",
+    tagEn: 'Church of the Annunciation — Old Nice',
+    address: '1 rue de la Poissonnerie, 06300 Nice',
+    descFr: "Église baroque de l'Annonciation, dite Sainte-Rita, au cœur du Vieux-Nice, et sa boutique d'objets religieux. Site Joomla (YOOtheme) : refontes et maintenance.",
+    descEn: "Baroque Church of the Annunciation, known as Sainte-Rita, in the heart of Old Nice, and its religious-goods shop. Joomla (YOOtheme) site: redesigns and maintenance.",
+  },
+];

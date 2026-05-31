@@ -36,9 +36,13 @@ const HeroSection = () => {
 
   const handleCvClick = (e) => {
     e.preventDefault();
-    // Open CV in background tab then redirect to /merci
+    // Open CV in background tab, briefly show toast, then redirect to /merci
     window.open('/docs/CV_Zaher_Madi.pdf', '_blank');
-    setTimeout(() => navigate('/merci'), 400);
+    setToast(true);
+    setTimeout(() => {
+      setToast(false);
+      navigate('/merci');
+    }, 1400);
   };
 
   return (
