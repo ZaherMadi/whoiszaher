@@ -125,15 +125,18 @@
   animation:cmodal-fade .22s ease;
 }
 .cmodal {
-  position:relative; width:min(520px,100%); border-radius:22px; padding:36px 34px 32px;
-  background:linear-gradient(180deg,#11151a,#0b0e10); border:1px solid var(--line-2); overflow:hidden;
+  position:relative; width:min(620px,100%); max-height:88vh;
+  display:flex; flex-direction:column;
+  border-radius:22px; overflow:hidden;
+  background:linear-gradient(180deg,#11151a,#0b0e10); border:1px solid var(--line-2);
   box-shadow:0 40px 90px -30px rgba(0,0,0,.9), inset 0 0 0 1px color-mix(in srgb, var(--bc) 28%, transparent);
   animation:cmodal-pop .3s cubic-bezier(.16,1,.3,1);
 }
+.cmodal-body { overflow-y:auto; padding:40px 32px 30px; -webkit-overflow-scrolling:touch; }
 .cmodal::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg, var(--bc), transparent 82%); }
 .cmodal-close {
-  position:absolute; top:16px; right:16px; width:34px; height:34px; border-radius:50%;
-  display:grid; place-items:center; color:var(--ink-soft); background:rgba(243,241,236,.06); transition:.2s;
+  position:absolute; top:16px; right:16px; z-index:5; width:34px; height:34px; border-radius:50%;
+  display:grid; place-items:center; color:var(--ink-soft); background:rgba(14,17,20,.7); backdrop-filter:blur(6px); transition:.2s;
 }
 .cmodal-close:hover { background:rgba(243,241,236,.14); color:#fff; }
 .cmodal-tag { font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; font-weight:600; color:color-mix(in srgb, var(--bc) 65%, #fff); }
@@ -149,6 +152,22 @@
 .cmodal-btn:hover { filter:brightness(1.12); transform:translateY(-2px); }
 .cmodal-btn svg { width:16px; height:16px; }
 .cmodal-liquid { margin-top:24px; }
+
+/* Popup gallery / links / embed */
+.cmodal-gallery { margin-top:22px; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px; }
+.cmodal-shot { display:block; border-radius:12px; overflow:hidden; border:1px solid var(--line-2); background:#0b0e10; transition:transform .25s, border-color .25s; }
+.cmodal-shot:hover { transform:translateY(-2px); border-color:color-mix(in srgb, var(--bc) 60%, transparent); }
+.cmodal-shot img { width:100%; height:150px; object-fit:cover; object-position:top; display:block; }
+.cmodal-links { margin-top:18px; display:flex; flex-wrap:wrap; gap:10px; }
+.cmodal-linkchip {
+  display:inline-flex; align-items:center; gap:8px; padding:9px 15px; border-radius:999px;
+  border:1px solid var(--line-2); color:var(--ink); font-size:.85rem; font-weight:500;
+  background:rgba(243,241,236,.04); text-decoration:none; transition:.2s;
+}
+.cmodal-linkchip:hover { border-color:color-mix(in srgb, var(--bc) 55%, transparent); background:color-mix(in srgb, var(--bc) 14%, transparent); }
+.cmodal-linkchip svg { width:15px; height:15px; color:var(--bc); }
+.cmodal-embed { margin-top:20px; border-radius:14px; overflow:hidden; border:1px solid var(--line-2); background:#fff; }
+.cmodal-embed iframe { display:block; width:100%; height:540px; border:0; }
 
 @keyframes cmodal-fade { from{opacity:0} to{opacity:1} }
 @keyframes cmodal-pop { from{opacity:0; transform:translateY(14px) scale(.96)} to{opacity:1; transform:none} }

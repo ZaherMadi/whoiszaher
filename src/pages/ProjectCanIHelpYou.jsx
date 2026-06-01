@@ -307,6 +307,18 @@ const ProjectCanIHelpYou = () => {
             <video src={VIDEO_SRC} autoPlay muted loop playsInline controls className="cani-video" />
           </div>
 
+          {/* On parle de ce projet — social proof */}
+          <h2 className="cani-ch reveal">{isFr ? 'On parle de ce projet :' : 'People are talking about it:'}</h2>
+          <div className="cani-embed reveal">
+            <iframe
+              src="https://www.linkedin.com/embed/feed/update/urn:li:share:7408127292075507712"
+              title="Post LinkedIn — CAN I HELP YOU"
+              frameBorder="0"
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
+
           {/* Architecture */}
           <h2 className="cani-ch reveal">{isFr ? 'L\'architecture' : 'The architecture'}</h2>
           <p className="cani-cp reveal">

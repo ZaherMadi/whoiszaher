@@ -85,6 +85,27 @@ const PresentationSection = () => {
             {paras.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
+
+            {facet === 'support' && (
+              <figure className="pres-incident">
+                <img src="/assets/clients/erreur-500-joomla.png" alt="Erreur 500 — Joomla" loading="lazy" />
+                <figcaption>
+                  {isFr ? (
+                    <>
+                      <p><b>Erreur 500.</b> Vous voyez cette belle image ? Elle vous fait peur ? Moi non — enfin, plus autant que la première fois. Le cache ? La liaison BDD ? Une config qui a sauté ? Une mise à jour mal passée ?</p>
+                      <p>Il n'y a jamais de fumée sans feu : c'est pour ça qu'on garde <b>un plan pour chaque erreur</b> — et qu'on l'affine avec le temps. WAF, DNS, logs… on déroule, posément.</p>
+                      <p className="pres-incident-wink">Au fait, on s'est déjà rencontrés, non ? Mais si — ce 1<sup>er</sup> juin : <code>INK-LLJ-47893-224</code>. Eh bien… c'était moi. Merci pour votre rapidité 😉</p>
+                    </>
+                  ) : (
+                    <>
+                      <p><b>500 error.</b> See this lovely page? Does it scare you? Not me — well, not as much as the first time. The cache? The DB link? A config that dropped? A bad update?</p>
+                      <p>There's never smoke without fire: that's why you keep <b>a plan for every error</b> — and refine it over time. WAF, DNS, logs… you work through it, calmly.</p>
+                      <p className="pres-incident-wink">By the way, haven't we met before? We have — this June 1st: <code>INK-LLJ-47893-224</code>. Well… that was me. Thanks for the quick reply 😉</p>
+                    </>
+                  )}
+                </figcaption>
+              </figure>
+            )}
           </div>
 
           <div className="pres-creds">

@@ -32,6 +32,7 @@ const CLIENT_PROJECTS = CLIENTS.map((c) => ({
   sub: c.tagFr, subEn: c.tagEn, link: '#',
   brand: c.brand, url: c.url, badge: c.badge,
   descFr: c.descFr, descEn: c.descEn, address: c.address,
+  gallery: c.gallery, links: c.links, embed: c.embed,
 }));
 
 const PROJECTS = [...PERSONAL_PROJECTS, ...CLIENT_PROJECTS];
@@ -138,14 +139,45 @@ const ClientModal = ({ project, isFr, onClose }) => {
         <button className="cmodal-close" onClick={onClose} aria-label={isFr ? 'Fermer' : 'Close'}>
           <X size={20} />
         </button>
-        <span className="cmodal-tag">{isFr ? project.sub : project.subEn}</span>
-        <h3 className="cmodal-title">{project.title}</h3>
-        <p className="cmodal-desc">{isFr ? project.descFr : project.descEn}</p>
-        {project.address && <p className="cmodal-addr">{project.address}</p>}
-        <LiquidButton as="a" className="cmodal-liquid" href={project.url} target="_blank" rel="noopener noreferrer">
-          {isFr ? 'Visiter le site' : 'Visit the site'}
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
-        </LiquidButton>
+        <div className="cmodal-body">
+          <span className="cmodal-tag">{isFr ? project.sub : project.subEn}</span>
+          <h3 className="cmodal-title">{project.title}</h3>
+          <p className="cmodal-desc">{isFr ? project.descFr : project.descEn}</p>
+
+          {project.gallery?.length > 0 && (
+            <div className="cmodal-gallery">
+              {project.gallery.map((src) => (
+                <a key={src} href={src} target="_blank" rel="noopener noreferrer" className="cmodal-shot">
+                  <img src={src} alt={project.title} loading="lazy" />
+                </a>
+              ))}
+            </div>
+          )}
+
+          {project.links?.length > 0 && (
+            <div className="cmodal-links">
+              {project.links.map((l) => (
+                <a key={l.url} href={l.url} target="_blank" rel="noopener noreferrer" className="cmodal-linkchip">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7L12 19"/></svg>
+                  {l.label}
+                </a>
+              ))}
+            </div>
+          )}
+
+          {project.embed && (
+            <div className="cmodal-embed">
+              <iframe src={project.embed} title={`${project.title} — LinkedIn`} frameBorder="0" allowFullScreen loading="lazy" />
+            </div>
+          )}
+
+          {project.address && <p className="cmodal-addr">{project.address}</p>}
+
+          <LiquidButton as="a" className="cmodal-liquid" href={project.url} target="_blank" rel="noopener noreferrer">
+            {isFr ? 'Visiter le site' : 'Visit the site'}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </LiquidButton>
+        </div>
       </div>
     </div>
   );

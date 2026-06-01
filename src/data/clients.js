@@ -4,12 +4,13 @@
  * carousel (FeaturedProjects) and the "Références" grid (ClientsSection).
  *
  * - brand / pixelColors : drive the per-card shimmer + hover glow tint.
- * - logo + useLogo       : when useLogo is true the grid shows the (transparent)
- *                          logo as a white silhouette that reveals its real
- *                          colours on hover. Otherwise the brand name is shown.
- * - logoMono             : logo whose real colour is dark — keep it white on
- *                          hover instead of revealing its (invisible) colour.
- * - descFr / descEn      : 2–3 line summary shown in the project popup.
+ * - logo + useLogo       : grid shows the (transparent) logo as a white
+ *                          silhouette that reveals its colours on hover.
+ * - logoMono             : logo whose real colour is dark — keep it white.
+ * - descFr / descEn      : write-up shown in the project popup.
+ * - gallery              : screenshots shown in the popup.
+ * - links                : extra links (e.g. flipbooks) shown in the popup.
+ * - embed                : LinkedIn post embedded in the popup.
  * -------------------------------------------------------------------------- */
 
 export const CLIENTS = [
@@ -26,8 +27,8 @@ export const CLIENTS = [
     tagFr: 'Tourisme de montagne — Saint-Martin-Vésubie',
     tagEn: 'Mountain tourism — Saint-Martin-Vésubie',
     address: '219 av. Marquise de Saravalle, 06450 Saint-Martin-Vésubie',
-    descFr: "Marque de tourisme des vallées de la Vésubie et de la Valdeblore (Resort & Spa 4★ à Saint-Martin-Vésubie). Refonte du site et du parcours de réservation pour clarifier l'offre et rendre la réservation plus intuitive.",
-    descEn: "Tourism brand for the Vésubie & Valdeblore valleys (4★ Resort & Spa in Saint-Martin-Vésubie). Website and booking-flow redesign to clarify the offer and make booking more intuitive.",
+    descFr: "Celui-là a duré dans le temps ! Une revue par-ci, une fonctionnalité par-là, une migration par là... Je connais ce site comme ma poche, à force. Le plus intéressant n'est malheureusement pas visible : la migration Joomla 3 → 5 — grosse migration, beaucoup de modules à reprendre, sans oublier l'infra du site à migrer aussi. Croyez-moi, il y a eu de la casse !",
+    descEn: "This one ran for a long time! A review here, a feature there, a migration over there... I know this site like the back of my hand by now. The most interesting part sadly isn't visible: the Joomla 3 → 5 migration — a big one, with many modules to rework, plus the site's whole infrastructure to migrate. Believe me, there was some breakage!",
   },
   {
     id: 'tradieco',
@@ -74,8 +75,9 @@ export const CLIENTS = [
     tagFr: "Éducation populaire — Nice, depuis 1904",
     tagEn: 'Popular education — Nice, since 1904',
     address: '2 montée Auguste Kerl, 06300 Nice',
-    descFr: "Association niçoise d'éducation populaire fondée en 1904 : plus de 70 disciplines sportives, culturelles et sociales, et un théâtre. Site Joomla (YOOtheme) : migrations et refontes successives.",
-    descEn: "Nice-based popular-education association founded in 1904: 70+ sports, cultural and social activities, plus a theatre. Joomla (YOOtheme) site: successive migrations and redesigns.",
+    descFr: "Migration Joomla 3 → 5, et ce ne fut pas de tout repos. L'avantage des composants, plug-ins et thèmes, c'est qu'ils facilitent l'intégration. L'inconvénient, quand ils viennent d'éditeurs et d'époques différents : un sacré paquet d'erreurs à investiguer. Et c'est avec patience qu'on dénoue le nœud.",
+    descEn: "A Joomla 3 → 5 migration, and it was no walk in the park. The upside of components, plug-ins and themes is that they speed up integration. The downside, when they come from different vendors and eras: a hefty stack of errors to investigate. And it's with patience that you untie the knot.",
+    gallery: ['/assets/clients/la-semeuse-site.png'],
   },
   {
     id: 'carre-sainte-maxime',
@@ -89,8 +91,15 @@ export const CLIENTS = [
     tagFr: 'Pôle culturel & théâtre — Sainte-Maxime',
     tagEn: 'Cultural venue & theatre — Sainte-Maxime',
     address: '107 route du Plan de la Tour, 83120 Sainte-Maxime',
-    descFr: "Pôle culturel Carré Léon Gaumont : théâtre, danse, musique, cinéma et médiathèque (plus de 100 spectacles par an). Site Joomla : refontes et maintenance de la billetterie et de l'agenda.",
-    descEn: "Carré Léon Gaumont cultural hub: theatre, dance, music, cinema and media library (100+ shows a year). Joomla site: redesigns and ticketing/agenda maintenance.",
+    descFr: "Mon tout premier gros projet. Refonte totale — deux fois — et j'étais au cœur du développement, du début à la fin. Il reste encore quelques composants que je me souviens avoir codés comme si c'était ce matin, et des animations aussi. On n'oublie jamais ses premières fois, paraît-il.",
+    descEn: "My very first big project. A full redesign — twice — and I was at the heart of the development, from start to finish. A few components (and animations) I still remember writing like it was this morning. You never forget your first time, they say.",
+    gallery: [
+      '/assets/clients/carre-flipbook.png',
+      '/assets/clients/carre-switcher-1.png',
+      '/assets/clients/carre-switcher-2.png',
+      '/assets/clients/carre-formulaire.png',
+    ],
+    embed: 'https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7219343774169075712',
   },
   {
     id: 'sainte-rita',
@@ -105,8 +114,12 @@ export const CLIENTS = [
     tagFr: "Église de l'Annonciation — Vieux-Nice",
     tagEn: 'Church of the Annunciation — Old Nice',
     address: '1 rue de la Poissonnerie, 06300 Nice',
-    descFr: "Église baroque de l'Annonciation, dite Sainte-Rita, au cœur du Vieux-Nice, et sa boutique d'objets religieux. Site Joomla (YOOtheme) : refontes et maintenance.",
-    descEn: "Baroque Church of the Annunciation, known as Sainte-Rita, in the heart of Old Nice, and its religious-goods shop. Joomla (YOOtheme) site: redesigns and maintenance.",
+    descFr: "Refonte graphique totale — on revient de loin. En 2021, le site tournait encore sous Joomla 2 (oui, ça existe encore...). À ma signature, en 2023, il était passé sous Joomla 3. Ma mission : le faire migrer petit à petit vers Joomla 4 puis Joomla 5, en réintégrant tous les composants au passage. Alors oui — un grand oui — il y a eu de la casse.",
+    descEn: "A complete visual redesign — we came a long way. In 2021 the site still ran on Joomla 2 (yes, that still exists...). When I came on board in 2023 it had moved to Joomla 3. My mission: migrate it step by step to Joomla 4 then Joomla 5, re-integrating every component along the way. So yes — a big yes — there was breakage.",
+    gallery: [
+      '/assets/clients/sainte-rita-revue-1.png',
+      '/assets/clients/sainte-rita-revue-2.png',
+    ],
   },
   {
     id: 'theatre-grasse',
@@ -120,8 +133,12 @@ export const CLIENTS = [
     tagFr: 'Scène conventionnée — Grasse',
     tagEn: 'Accredited performing-arts venue — Grasse',
     address: '2 av. Maximin Isnard, 06130 Grasse',
-    descFr: "Scène conventionnée d'intérêt national (danse & cirque) à Grasse. Site vitrine immersif — couleurs fortes, animations et storytelling — pensé pour la billetterie et l'acquisition d'audience.",
-    descEn: "Nationally accredited performing-arts venue (dance & circus) in Grasse. Immersive showcase site — bold colours, animation and storytelling — built around ticketing and audience growth.",
+    descFr: "Refonte graphique (encore et toujours !). Des flipping books — comme sur Le Carré ou Pascal Coste —, l'intégration de la homepage, et bien plus encore.",
+    descEn: "A visual redesign (again and always!). Flipping books — like on Le Carré or Pascal Coste —, the homepage integration, and much more.",
+    gallery: ['/assets/clients/tdg-flipbook.png'],
+    links: [
+      { label: 'Flipbook — programme', url: 'https://www.theatredegrasse.com/programme-tdg-flipbook/' },
+    ],
   },
   {
     id: 'theatre-forum',
@@ -135,7 +152,12 @@ export const CLIENTS = [
     tagFr: 'Théâtre intercommunal — Fréjus',
     tagEn: 'Intercommunal theatre — Fréjus',
     address: '83 bd de la Mer, 83600 Fréjus',
-    descFr: "Théâtre intercommunal de Fréjus, « Le Forum » : grande salle modulable de plus de 850 places — spectacles vivants, concerts et danse. Accompagnement et évolutions du site web.",
-    descEn: "Fréjus intercommunal theatre, 'Le Forum': a modular 850+ seat hall — live shows, concerts and dance. Website support and improvements.",
+    descFr: "Refonte graphique. Plusieurs pages intégrées, du formulaire à la homepage.",
+    descEn: "A visual redesign. Several pages integrated, from the contact form to the homepage.",
+    gallery: [
+      '/assets/clients/forum-homepage.png',
+      '/assets/clients/forum-homepage-hover.png',
+      '/assets/clients/forum-formulaire.png',
+    ],
   },
 ];

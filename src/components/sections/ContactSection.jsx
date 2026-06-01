@@ -45,7 +45,6 @@ const ContactSection = () => {
         {/* Liquid glass button */}
         <a href="mailto:zahermadi@yahoo.fr" className="lg-btn reveal" ref={btnRef}>
           <span className="lg-shine" />
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
           <span>{language === 'fr' ? 'Contactez-moi' : 'Contact me'}</span>
         </a>
 
