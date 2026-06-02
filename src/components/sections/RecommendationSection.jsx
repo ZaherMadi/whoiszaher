@@ -1,14 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
+import LetterScroll from '../LetterScroll';
 import './RecommendationSection.css';
 
-/* Closing flourish: a "letter of recommendation" that opens on click to reveal
- * the PDF. Placed right before the contact CTA. */
+/* Closing flourish before the contact CTA: a sealed letter that opens the
+ * immersive parchment-scroll overlay (LetterScroll). */
 const RecommendationSection = () => {
   const { language } = useLanguage();
   const isFr = language === 'fr';
-  const [open, setOpen] = useState(false);
   const sectionRef = useRef(null);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const io = new IntersectionObserver(
@@ -29,34 +30,17 @@ const RecommendationSection = () => {
             : <>What — all that wasn't enough for you? Alright, fair enough — you're demanding. So let me finish with this lovely letter the owner of my former agency wrote about me. A "letter of recommendation," apparently. She must have her reasons.</>}
         </p>
 
-        <div className={`reco-stage reveal ${open ? 'open' : ''}`}>
-          <button
-            type="button"
-            className="reco-cover"
-            onClick={() => setOpen(true)}
-            aria-expanded={open}
-            aria-controls="reco-doc"
-          >
-            <span className="reco-seal" aria-hidden="true">✦</span>
+        <div className="reco-stage reveal">
+          <button type="button" className="reco-cover" onClick={() => setOpen(true)} aria-haspopup="dialog">
+            <span className="reco-seal" aria-hidden="true">Z</span>
             <span className="reco-cover-title">{isFr ? 'Lettre de recommandation' : 'Letter of recommendation'}</span>
-            <span className="reco-cover-sub">{isFr ? 'Direction · Agence ROM' : 'Management · Agence ROM'}</span>
-            <span className="reco-cover-hint">{isFr ? '✶ Cliquez pour ouvrir' : '✶ Click to open'}</span>
+            <span className="reco-cover-sub">Société Nouvelle ROM</span>
+            <span className="reco-cover-hint">{isFr ? '✶ Cliquez pour dérouler la lettre' : '✶ Click to unroll the letter'}</span>
           </button>
-
-          <div className="reco-paper" id="reco-doc">
-            <img
-              className="reco-letter-img"
-              src="/assets/reco-zaher.png"
-              alt={isFr ? 'Lettre de recommandation — Zaher Madi' : 'Letter of recommendation — Zaher Madi'}
-              loading="lazy"
-            />
-            <a className="reco-dl" href="/assets/reco-zaher.pdf" target="_blank" rel="noopener noreferrer">
-              {isFr ? 'Ouvrir le PDF en grand' : 'Open the full PDF'}
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M9 7h8v8" /></svg>
-            </a>
-          </div>
         </div>
       </div>
+
+      {open && <LetterScroll isFr={isFr} onClose={() => setOpen(false)} />}
     </section>
   );
 };
