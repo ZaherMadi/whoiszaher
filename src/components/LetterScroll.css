@@ -1,7 +1,8 @@
 /* -----------------------------------------------------------------------------
  * LetterScroll — immersive "letter of recommendation" overlay.
- * Faithful port of the Claude Design handoff (rolled parchment scroll that
- * unrolls when the wax seal cracks; click to read fullscreen).
+ * Faithful port of the Claude Design handoff (v2): a folded, sealed parchment
+ * letter; the wax seal cracks, the folded letter dissolves and two brass rolls
+ * unroll the scroll to reveal the letter (click to read fullscreen).
  * Classes are ls- prefixed to stay isolated from the rest of the site.
  * -------------------------------------------------------------------------- */
 
@@ -48,9 +49,9 @@
   --pw:430px; --ph:608px;
   filter:drop-shadow(0 40px 60px rgba(0,0,0,.6));}
 
-/* ───────── ROLLED PARCHMENT ENDS ───────── */
+/* ───────── ROLLED PARCHMENT ENDS (hidden until opened) ───────── */
 .ls-roll{position:relative; width:calc(var(--pw) + 26px); height:clamp(36px,5.4vh,52px); z-index:4;
-  border-radius:130px / 22px;
+  border-radius:130px / 22px; opacity:0; transition:opacity .55s ease;
   background:
     linear-gradient(180deg,
       #4f3619 0%, #7c5a30 6%,
@@ -60,6 +61,7 @@
   box-shadow:
     0 1px 0 rgba(255,247,225,.55) inset,
     0 11px 19px -8px rgba(0,0,0,.5);}
+.ls-scene.open .ls-roll{opacity:1;}
 .ls-roll .ls-lip{position:absolute; left:6px; right:6px; bottom:3px; height:52%; z-index:1;
   border-radius:0 0 120px 120px / 0 0 30px 30px;
   background:linear-gradient(180deg, var(--parch-hi) 0%, var(--parch) 52%, var(--parch-mid) 100%);
@@ -117,9 +119,39 @@
 .ls-scene.ready .ls-paper-wrap{cursor:zoom-in;}
 .ls-scene.ready .ls-paper-wrap:hover .ls-open-cue{background:rgba(205,170,114,.18); border-color:rgba(205,170,114,.5);}
 
+/* ───────── FOLDED SEALED LETTER · the closed, clickable state ───────── */
+.ls-letter-closed{position:absolute; left:50%; top:50%; z-index:9; cursor:pointer;
+  width:var(--pw); height:calc(var(--pw) * 0.72);
+  transform:translate(-50%,-50%); transform-origin:center;
+  filter:drop-shadow(0 24px 40px rgba(0,0,0,.62));
+  transition:transform .85s cubic-bezier(.5,.05,.4,1), opacity .75s ease;}
+.ls-scene.open .ls-letter-closed{opacity:0; transform:translate(-50%,-50%) scale(1.06); pointer-events:none;}
+.ls-packet{position:absolute; inset:0; border-radius:6px; overflow:hidden;
+  background:conic-gradient(from 0deg at 50% 50%,
+    var(--parch-hi) 0deg 45deg, var(--parch) 45deg 135deg,
+    #c2a36e 135deg 225deg, var(--parch-mid) 225deg 315deg,
+    var(--parch-hi) 315deg 360deg);
+  box-shadow:inset 0 0 18px 2px rgba(48,27,10,.62), inset 0 0 62px 14px rgba(40,23,9,.34),
+    inset 0 1px 0 rgba(255,247,225,.45);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='216' preserveAspectRatio='none'%3E%3Cfilter id='lt' x='-6%25' y='-8%25' width='112%25' height='116%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02 0.026' numOctaves='2' seed='4' result='n'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='n' scale='9'/%3E%3C/filter%3E%3Crect x='9' y='9' width='282' height='198' rx='7' fill='white' filter='url(%23lt)'/%3E%3C/svg%3E") center/100% 100% no-repeat;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='216' preserveAspectRatio='none'%3E%3Cfilter id='lt' x='-6%25' y='-8%25' width='112%25' height='116%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02 0.026' numOctaves='2' seed='4' result='n'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='n' scale='9'/%3E%3C/filter%3E%3Crect x='9' y='9' width='282' height='198' rx='7' fill='white' filter='url(%23lt)'/%3E%3C/svg%3E") center/100% 100% no-repeat;}
+.ls-packet::before{content:''; position:absolute; inset:0;
+  background:conic-gradient(from 0deg at 50% 50%,
+    transparent 0 43.5deg, rgba(74,48,22,.5) 44.4deg 45.6deg, transparent 46.5deg 133.5deg,
+    rgba(74,48,22,.5) 134.4deg 135.6deg, transparent 136.5deg 223.5deg,
+    rgba(74,48,22,.5) 224.4deg 225.6deg, transparent 226.5deg 313.5deg,
+    rgba(74,48,22,.5) 314.4deg 315.6deg, transparent 316.5deg 360deg);}
+.ls-packet::after{content:''; position:absolute; inset:0; mix-blend-mode:multiply; opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='lp'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23lp)' opacity='0.5'/%3E%3C/svg%3E");}
+.ls-inscription{position:absolute; top:13%; left:0; right:0; text-align:center; z-index:2;
+  font-family:var(--font-serif); font-style:italic; font-size:clamp(1.05rem,2.4vh,1.5rem); color:#5a3a1c;
+  letter-spacing:.01em; opacity:.82; transform:rotate(-1.4deg); pointer-events:none;
+  text-shadow:0 1px 0 rgba(255,247,225,.5);}
+.ls-inscription small{display:block; font-size:.62em; opacity:.85; margin-top:.25em; letter-spacing:.06em;}
+
 /* ───────── WAX SEAL ───────── */
-.ls-seal{position:absolute; left:50%; top:0; cursor:pointer;
-  transform:translate(-50%,calc(-50% + 9px)); z-index:8; width:clamp(86px,13vh,116px); height:clamp(86px,13vh,116px);
+.ls-seal{position:absolute; left:50%; top:50%; cursor:pointer; z-index:8;
+  transform:translate(-50%,-50%); width:clamp(80px,11.5vh,108px); height:clamp(80px,11.5vh,108px);
   transition:transform 1s cubic-bezier(.55,.06,.5,1.2), opacity .9s ease;}
 .ls-wax{width:100%; height:100%; border-radius:50%; position:relative;
   background:radial-gradient(circle at 36% 28%, var(--wax-hi) 0%, var(--wax) 30%, var(--wax-mid) 62%, var(--wax-deep) 100%);
@@ -129,13 +161,7 @@
 .ls-emboss{font-family:var(--font-serif); font-style:italic; font-size:clamp(2.4rem,7vh,3.4rem); line-height:1; color:#4a0f08;
   text-shadow:0 1px 0 rgba(255,170,150,.32), 0 -1px 1px rgba(0,0,0,.45); transform:translateY(-2px);}
 .ls-ring{position:absolute; inset:11%; border-radius:50%; border:1.5px dashed rgba(74,15,8,.45);}
-.ls-scene.broken .ls-seal{transform:translate(-50%,calc(-50% - 40px)) scale(.6) rotate(-15deg); opacity:0; pointer-events:none;}
-
-/* ribbon */
-.ls-ribbon{position:absolute; left:50%; top:0; transform:translateX(-50%); z-index:6; width:30px; height:0; pointer-events:none;
-  background:linear-gradient(90deg, var(--wax-deep), var(--wax), var(--wax-deep)); opacity:.85;
-  transition:height 1s cubic-bezier(.2,.8,.2,1), opacity .8s ease;}
-.ls-scene.broken .ls-ribbon{opacity:0;}
+.ls-scene.broken .ls-seal{transform:translate(-50%,calc(-50% - 50px)) scale(.54) rotate(-16deg); opacity:0; pointer-events:none;}
 
 /* ───────── LIGHTBOX ───────── */
 .ls-lightbox{position:fixed; inset:0; z-index:2100; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:18px;
@@ -162,5 +188,5 @@
 
 @media(prefers-reduced-motion:reduce){
   .ls-glow,.ls-mote{animation:none !important;}
-  .ls-paper-wrap,.ls-roll,.ls-seal,.ls-ribbon{transition-duration:.01ms !important;}
+  .ls-paper-wrap,.ls-roll,.ls-seal,.ls-letter-closed{transition-duration:.01ms !important;}
 }

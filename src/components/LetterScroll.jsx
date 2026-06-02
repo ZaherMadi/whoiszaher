@@ -2,10 +2,10 @@ import React, { useEffect, useRef } from 'react';
 import './LetterScroll.css';
 
 /* -----------------------------------------------------------------------------
- * LetterScroll — immersive recommendation-letter overlay.
- * Port of the Claude Design prototype: a sealed parchment scroll held by two
- * brass rolls; the wax seal cracks and the scroll unrolls to reveal the letter,
- * which can be opened fullscreen. Mounted on demand and closed via onClose.
+ * LetterScroll — immersive recommendation-letter overlay (v2).
+ * A folded, sealed parchment letter; the wax seal cracks, the folded letter
+ * dissolves and two brass rolls unroll the scroll to reveal the letter, which
+ * can be read fullscreen. Mounted on demand and closed via onClose.
  * -------------------------------------------------------------------------- */
 
 const LETTER_IMG = '/assets/reco-zaher.png';
@@ -15,7 +15,7 @@ const ALT = 'Lettre de recommandation — Zaher Madi, par Lorraine Lucchini (Soc
 export default function LetterScroll({ onClose, isFr = true }) {
   const sceneRef = useRef(null);
   const sealRef = useRef(null);
-  const ribbonRef = useRef(null);
+  const letterClosedRef = useRef(null);
   const paperWrapRef = useRef(null);
   const lightboxRef = useRef(null);
   const dustRef = useRef(null);
@@ -25,7 +25,7 @@ export default function LetterScroll({ onClose, isFr = true }) {
   useEffect(() => {
     const scene = sceneRef.current;
     const seal = sealRef.current;
-    const ribbon = ribbonRef.current;
+    const letterClosed = letterClosedRef.current;
     const paperWrap = paperWrapRef.current;
     const lightbox = lightboxRef.current;
     const dust = dustRef.current;
@@ -36,6 +36,8 @@ export default function LetterScroll({ onClose, isFr = true }) {
     const RATIO = 640 / 905;
     let isOpen = false;
     let animating = false;
+    const timers = [];
+    const after = (ms, fn) => { const id = setTimeout(fn, ms); timers.push(id); return id; };
 
     function layout() {
       const vh = window.innerHeight, vw = window.innerWidth;
@@ -79,7 +81,7 @@ export default function LetterScroll({ onClose, isFr = true }) {
       }
       animating = true;
       requestAnimationFrame(step);
-      setTimeout(finish, dur + 200);
+      after(dur + 200, finish);
     }
 
     function setToggle() {
@@ -91,13 +93,20 @@ export default function LetterScroll({ onClose, isFr = true }) {
       if (isOpen || animating) return;
       isOpen = true; setToggle();
       scene.classList.remove('ready');
-      ribbon.style.height = '38px';
-      setTimeout(() => { scene.classList.add('broken'); ribbon.style.height = '0px'; }, 540);
-      setTimeout(() => {
+      // 1. the wax seal cracks and lifts off the letter
+      after(170, () => scene.classList.add('broken'));
+      // 2. the folded letter dissolves as the scroll takes its place
+      after(760, () => scene.classList.add('open'));
+      // safety net: guarantee the letter & seal vanish even if a throttled tab stalls the transition
+      after(1650, () => {
+        letterClosed.style.transition = 'none'; letterClosed.style.opacity = '0'; letterClosed.style.pointerEvents = 'none';
+        seal.style.transition = 'none'; seal.style.opacity = '0';
+      });
+      // 3. the parchment unrolls delicately
+      after(1200, () => {
         const ph = parseFloat(getComputedStyle(scene).getPropertyValue('--ph'));
-        scene.classList.add('open');
         animateHeight(ph, 2300, easeOutQuint, () => scene.classList.add('ready'));
-      }, 1040);
+      });
     }
 
     function closeScroll() {
@@ -105,15 +114,21 @@ export default function LetterScroll({ onClose, isFr = true }) {
       isOpen = false; setToggle();
       scene.classList.remove('ready');
       closeLightbox();
-      animateHeight(0, 1650, easeInQuint, () => { scene.classList.remove('open', 'broken'); });
+      animateHeight(0, 1650, easeInQuint, () => {
+        scene.classList.remove('open', 'broken');
+        letterClosed.style.transition = ''; letterClosed.style.opacity = ''; letterClosed.style.pointerEvents = '';
+        seal.style.transition = ''; seal.style.opacity = '';
+      });
     }
 
     function openLightbox() { if (!isOpen || animating) return; lightbox.classList.add('show'); }
     function closeLightbox() { lightbox.classList.remove('show'); }
 
-    const autoT = setTimeout(openScroll, 700);
+    // first reveal plays automatically, a beat after load so the sealed letter is seen
+    after(1300, openScroll);
+
     const onToggle = () => (isOpen ? closeScroll() : openScroll());
-    const onSeal = () => { if (!isOpen) openScroll(); };
+    const onLetter = () => { if (!isOpen) openScroll(); };
     const onPaperClick = openLightbox;
     const onLbBg = (e) => { if (e.target === lightbox) closeLightbox(); };
     const onKey = (e) => {
@@ -123,7 +138,7 @@ export default function LetterScroll({ onClose, isFr = true }) {
       }
     };
     toggle.addEventListener('click', onToggle);
-    seal.addEventListener('click', onSeal);
+    letterClosed.addEventListener('click', onLetter);
     paperWrap.addEventListener('click', onPaperClick);
     lightbox.addEventListener('click', onLbBg);
     document.addEventListener('keydown', onKey);
@@ -132,10 +147,10 @@ export default function LetterScroll({ onClose, isFr = true }) {
     document.body.style.overflow = 'hidden';
 
     return () => {
-      clearTimeout(autoT);
+      timers.forEach(clearTimeout);
       window.removeEventListener('resize', layout);
       toggle.removeEventListener('click', onToggle);
-      seal.removeEventListener('click', onSeal);
+      letterClosed.removeEventListener('click', onLetter);
       paperWrap.removeEventListener('click', onPaperClick);
       lightbox.removeEventListener('click', onLbBg);
       document.removeEventListener('keydown', onKey);
@@ -157,9 +172,9 @@ export default function LetterScroll({ onClose, isFr = true }) {
             {isFr ? 'Retour' : 'Back'}
           </button>
           <span className="ls-eyebrow"><span className="ls-ln" />{isFr ? 'Lettre de recommandation' : 'Letter of recommendation'}</span>
-          <button className="ls-back ls-scroll-toggle" ref={toggleRef} aria-label="Refermer la lettre">
+          <button className="ls-back ls-scroll-toggle" ref={toggleRef} aria-label="Dérouler la lettre">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 7V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2M4 7h16M6 7v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7M9 12h6" /></svg>
-            <span ref={toggleLabelRef}>{isFr ? 'Refermer' : 'Close'}</span>
+            <span ref={toggleLabelRef}>{isFr ? 'Dérouler' : 'Unroll'}</span>
           </button>
         </div>
 
@@ -181,11 +196,17 @@ export default function LetterScroll({ onClose, isFr = true }) {
 
           <div className="ls-roll ls-roll-bottom"><span className="ls-roll-relief" /><span className="ls-lip" /><span className="ls-roll-cap l" /><span className="ls-roll-cap r" /></div>
 
-          <div className="ls-ribbon" ref={ribbonRef} />
-          <div className="ls-seal" ref={sealRef}>
-            <div className="ls-wax">
-              <div className="ls-ring" />
-              <div className="ls-emboss">Z</div>
+          <div className="ls-letter-closed" ref={letterClosedRef}>
+            <div className="ls-packet" />
+            <div className="ls-inscription">
+              {isFr ? 'À qui de droit' : 'To whom it may concern'}
+              <small>{isFr ? '— Lettre de recommandation —' : '— Letter of recommendation —'}</small>
+            </div>
+            <div className="ls-seal" ref={sealRef}>
+              <div className="ls-wax">
+                <div className="ls-ring" />
+                <div className="ls-emboss">Z</div>
+              </div>
             </div>
           </div>
         </div>
