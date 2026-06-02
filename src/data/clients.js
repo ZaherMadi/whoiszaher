@@ -26,8 +26,8 @@ export const CLIENTS = [
     tagFr: 'Tourisme & activités de montagne — Vésubie',
     tagEn: 'Mountain tourism & activities — Vésubie',
     address: "Vallées de la Vésubie & Valdeblore — Côte d'Azur",
-    descFr: "Celui-là a duré dans le temps ! Une revue par-ci, une fonctionnalité par-là, une migration par là... Je connais ce site comme ma poche, à force. Le plus intéressant n'est malheureusement pas visible : la migration Joomla 3 → 5 — grosse migration, beaucoup de modules à reprendre, sans oublier l'infra du site à migrer aussi. Croyez-moi, il y a eu de la casse !",
-    descEn: "This one ran for a long time! A review here, a feature there, a migration over there... I know this site like the back of my hand by now. The most interesting part sadly isn't visible: the Joomla 3 → 5 migration — a big one, with many modules to rework, plus the site's whole infrastructure to migrate. Believe me, there was some breakage!",
+    descFr: "Celui-là a duré dans le temps ! Une revue par-ci, une fonctionnalité par-là, une migration par là... Je connais ce site comme ma poche, à force. Le plus intéressant n'est malheureusement pas visible : la migration Joomla 3 → 5 — grosse migration, beaucoup de modules à reprendre, sans oublier l'infra du site à migrer aussi. Croyez-moi, il y a eu de la casse ! Côté contenu, là encore, tout tourne sous Zoo (YooTheme) et Zoolander.",
+    descEn: "This one ran for a long time! A review here, a feature there, a migration over there... I know this site like the back of my hand by now. The most interesting part sadly isn't visible: the Joomla 3 → 5 migration — a big one, with many modules to rework, plus the site's whole infrastructure to migrate. Believe me, there was some breakage! On the content side, it again runs on Zoo (YooTheme) and Zoolander.",
     gallery: [
       '/assets/clients/pure-montagne-1.jpg',
       '/assets/clients/pure-montagne-2.jpg',
@@ -50,6 +50,7 @@ export const CLIENTS = [
     address: '42 rue de la République, 03000 Avermes',
     descFr: "Constructeur leader de maisons individuelles en Auvergne. Site Joomla : maintenance, migrations et refontes successives, en appui de la stratégie d'acquisition de leads.",
     descEn: "Leading individual-home builder in Auvergne. Joomla site: maintenance, migrations and successive redesigns, supporting their lead-acquisition strategy.",
+    gallery: ['/assets/clients/tradieco-1.jpg'],
   },
   {
     id: 'pharmaciens-monaco',
@@ -63,8 +64,13 @@ export const CLIENTS = [
     tagFr: 'Institution ordinale — Principauté de Monaco',
     tagEn: 'Professional order — Principality of Monaco',
     address: "Les Jardins d'Apolline, 1 prom. Honoré II, 98000 Monaco",
-    descFr: "Institution qui veille au respect des règles et devoirs de la profession de pharmacien en Principauté de Monaco. Site institutionnel sous Joomla : refontes et maintenance technique.",
-    descEn: "The body ensuring compliance with the rules and duties of the pharmacy profession in the Principality of Monaco. Joomla institutional site: redesigns and technical maintenance.",
+    descFr: "Institution qui veille au respect des règles et devoirs de la profession de pharmacien à Monaco. Au départ, une simple mise à jour depuis Joomla 3… qui a viré en refonte complète : trop de composants cassés. J'ai reconstruit toute la base de contenu sous Zoo (YooTheme) et recréé, via ZooEssentials, des composants à données dynamiques — dont l'annuaire des pharmaciens.",
+    descEn: "The body ensuring compliance with the rules and duties of the pharmacy profession in Monaco. What started as a simple Joomla 3 update turned into a full rebuild — too many broken components. I rebuilt the entire content base on Zoo (YooTheme) and recreated dynamic-data components via ZooEssentials — including the pharmacist directory.",
+    gallery: [
+      '/assets/clients/pharmaciens-1.jpg',
+      '/assets/clients/pharmaciens-2.jpg',
+      '/assets/clients/pharmaciens-3.jpg',
+    ],
   },
   {
     id: 'la-semeuse',
@@ -120,8 +126,8 @@ export const CLIENTS = [
     tagFr: "Église de l'Annonciation — Vieux-Nice",
     tagEn: 'Church of the Annunciation — Old Nice',
     address: '1 rue de la Poissonnerie, 06300 Nice',
-    descFr: "Refonte graphique totale — on revient de loin. En 2021, le site tournait encore sous Joomla 2 (oui, ça existe encore...). À ma signature, en 2023, il était passé sous Joomla 3. Ma mission : le faire migrer petit à petit vers Joomla 4 puis Joomla 5, en réintégrant tous les composants au passage. Alors oui — un grand oui — il y a eu de la casse.",
-    descEn: "A complete visual redesign — we came a long way. In 2021 the site still ran on Joomla 2 (yes, that still exists...). When I came on board in 2023 it had moved to Joomla 3. My mission: migrate it step by step to Joomla 4 then Joomla 5, re-integrating every component along the way. So yes — a big yes — there was breakage.",
+    descFr: "Refonte graphique totale — on revient de loin. En 2021, le site tournait encore sous Joomla 2 (oui, ça existe encore...). À ma signature, en 2023, il était passé sous Joomla 3. Ma mission : le faire migrer petit à petit vers Joomla 4 puis Joomla 5, en réintégrant tous les composants au passage. Alors oui — un grand oui — il y a eu de la casse. Comme sur la plupart de mes Joomla, le contenu s'appuie sur Zoo (YooTheme) et Zoolander, avec des composants à données dynamiques via ZooEssentials.",
+    descEn: "A complete visual redesign — we came a long way. In 2021 the site still ran on Joomla 2 (yes, that still exists...). When I came on board in 2023 it had moved to Joomla 3. My mission: migrate it step by step to Joomla 4 then Joomla 5, re-integrating every component along the way. So yes — a big yes — there was breakage. As on most of my Joomla sites, the content runs on Zoo (YooTheme) and Zoolander, with dynamic-data components via ZooEssentials.",
     gallery: [
       '/assets/clients/sainte-rita-revue-1.png',
       '/assets/clients/sainte-rita-revue-2.png',

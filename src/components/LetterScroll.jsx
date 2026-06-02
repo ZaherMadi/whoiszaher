@@ -13,6 +13,7 @@ const LETTER_PDF = '/assets/reco-zaher.pdf';
 const ALT = 'Lettre de recommandation — Zaher Madi, par Lorraine Lucchini (Société Nouvelle ROM)';
 
 export default function LetterScroll({ onClose, isFr = true }) {
+  const stageRef = useRef(null);
   const sceneRef = useRef(null);
   const sealRef = useRef(null);
   const letterClosedRef = useRef(null);
@@ -31,6 +32,7 @@ export default function LetterScroll({ onClose, isFr = true }) {
     const dust = dustRef.current;
     const toggle = toggleRef.current;
     const toggleLabel = toggleLabelRef.current;
+    const stage = stageRef.current;
     if (!scene || !paperWrap) return;
 
     const RATIO = 640 / 905;
@@ -130,6 +132,13 @@ export default function LetterScroll({ onClose, isFr = true }) {
     const onToggle = () => (isOpen ? closeScroll() : openScroll());
     const onLetter = () => { if (!isOpen) openScroll(); };
     const onPaperClick = openLightbox;
+    // Clicking anywhere outside the parchment (the dark stage) re-rolls the
+    // open letter — a quick way to close it without the toolbar button.
+    const onStageClick = (e) => {
+      if (!isOpen || animating) return;
+      if (e.target.closest('.ls-scene') || e.target.closest('.ls-topbar')) return;
+      closeScroll();
+    };
     const onLbBg = (e) => { if (e.target === lightbox) closeLightbox(); };
     const onKey = (e) => {
       if (e.key === 'Escape') {
@@ -140,6 +149,7 @@ export default function LetterScroll({ onClose, isFr = true }) {
     toggle.addEventListener('click', onToggle);
     letterClosed.addEventListener('click', onLetter);
     paperWrap.addEventListener('click', onPaperClick);
+    stage.addEventListener('click', onStageClick);
     lightbox.addEventListener('click', onLbBg);
     document.addEventListener('keydown', onKey);
 
@@ -152,6 +162,7 @@ export default function LetterScroll({ onClose, isFr = true }) {
       toggle.removeEventListener('click', onToggle);
       letterClosed.removeEventListener('click', onLetter);
       paperWrap.removeEventListener('click', onPaperClick);
+      stage.removeEventListener('click', onStageClick);
       lightbox.removeEventListener('click', onLbBg);
       document.removeEventListener('keydown', onKey);
       document.body.style.overflow = prevOverflow;
@@ -160,7 +171,7 @@ export default function LetterScroll({ onClose, isFr = true }) {
 
   return (
     <>
-      <div className="ls-stage">
+      <div className="ls-stage" ref={stageRef}>
         <div className="ls-glow" />
         <div className="ls-dust" ref={dustRef} />
         <div className="ls-vignette" />
