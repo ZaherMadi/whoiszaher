@@ -33,6 +33,7 @@ const CLIENT_PROJECTS = CLIENTS.map((c) => ({
   brand: c.brand, url: c.url, badge: c.badge,
   descFr: c.descFr, descEn: c.descEn, address: c.address,
   gallery: c.gallery, links: c.links, embed: c.embed,
+  cover: c.gallery && c.gallery[0],
 }));
 
 const PROJECTS = [...PERSONAL_PROJECTS, ...CLIENT_PROJECTS];
@@ -70,12 +71,23 @@ const ProjectMedia = ({ project, isActive }) => {
     }
   }, [hovered, isActive]);
 
-  // Client cards: brand-tinted cover with the company name as the hero.
+  // Client cards: a real screenshot of the site when we have one, otherwise a
+  // branded cover with the company name.
   if (project.kind === 'client') {
     return (
-      <div className="fan-img fan-brandcover" style={{ '--bc': project.brand }}>
+      <div className={`fan-img fan-brandcover${project.cover ? ' fan-brandcover--img' : ''}`} style={{ '--bc': project.brand }}>
+        {project.cover ? (
+          <img
+            className="fan-cover-img"
+            src={project.cover}
+            alt={project.title}
+            draggable={false}
+            onError={e => { e.currentTarget.style.opacity = '0'; }}
+          />
+        ) : (
+          <span className="fan-cover-mark">{project.title}</span>
+        )}
         {project.badge && <span className="fan-cover-badge">{project.badge}</span>}
-        <span className="fan-cover-mark">{project.title}</span>
       </div>
     );
   }
@@ -288,6 +300,7 @@ export default function FeaturedProjects() {
                 <div className="fan-body">
                   {p.kind === 'client' ? (
                     <>
+                      {p.cover && <h3 className="fan-proj-title">{p.title}</h3>}
                       <p className="fan-proj-sub">{isFr?p.sub:p.subEn}</p>
                       {isA && (
                         <button className="fan-open" onClick={e => { e.stopPropagation(); openModal(p); }}>
