@@ -3,7 +3,8 @@
     "projects": "Projets",
     "skills": "Compétences",
     "about": "À propos",
-    "contact": "Contact"
+    "contact": "Contact",
+    "timeline": "Parcours"
   },
   "hero": {
     "title": "Zaher Madi",
@@ -21,7 +22,15 @@
         "title": "CAN I HELP YOU",
         "subtitle": "App Mobile Full-stack & API Edge — en production",
         "description": "Projet solo de bout en bout : app React Native + API Cloudflare Workers servant de vrais utilisateurs. Latence <50ms, 4,9★ sur l'App Store, disponible sur Google Play.",
-        "tags": ["Cloudflare Workers", "React Native / Expo", "PostgreSQL / Neon", "Upstash Redis", "Firebase Auth", "Mapbox", "TripAdvisor API"],
+        "tags": [
+          "Cloudflare Workers",
+          "React Native / Expo",
+          "PostgreSQL / Neon",
+          "Upstash Redis",
+          "Firebase Auth",
+          "Mapbox",
+          "TripAdvisor API"
+        ],
         "link": "/project/can-i-help-you",
         "image": "/assets/cani-admin.png"
       },
@@ -30,7 +39,13 @@
         "title": "Marina Yacht Inventory",
         "subtitle": "App d'Entreprise · Lead Dev & Mentor",
         "description": "Lead Developer sur une solution d'entreprise. Architecture complète et encadrement de 3 développeurs juniors (Git, revue de code, pratiques agiles).",
-        "tags": ["Leadership", "Architecture", "Mentoring", "CI/CD", "React"],
+        "tags": [
+          "Leadership",
+          "Architecture",
+          "Mentoring",
+          "CI/CD",
+          "React"
+        ],
         "link": "/project/marina-yacht",
         "image": "/assets/marina.jpg"
       }
@@ -40,13 +55,34 @@
     "title": "Tech Stack & Compétences",
     "instruction": "Survole pour focus · Clique pour invoquer ✦",
     "list": [
-      { "id": "typescript", "name": "TypeScript / JS" },
-      { "id": "react",      "name": "React / React Native" },
-      { "id": "cloudflare", "name": "Cloudflare Workers" },
-      { "id": "postgres",   "name": "PostgreSQL / Neon" },
-      { "id": "redis",      "name": "Upstash Redis" },
-      { "id": "aws",        "name": "AWS" },
-      { "id": "leadership", "name": "Team Leadership" }
+      {
+        "id": "typescript",
+        "name": "TypeScript / JS"
+      },
+      {
+        "id": "react",
+        "name": "React / React Native"
+      },
+      {
+        "id": "cloudflare",
+        "name": "Cloudflare Workers"
+      },
+      {
+        "id": "postgres",
+        "name": "PostgreSQL / Neon"
+      },
+      {
+        "id": "redis",
+        "name": "Upstash Redis"
+      },
+      {
+        "id": "aws",
+        "name": "AWS"
+      },
+      {
+        "id": "leadership",
+        "name": "Team Leadership"
+      }
     ],
     "awsDetails": "AWS Cloud Practitioner (Obtenu) · AWS Solutions Architect Associate (En cours)",
     "languages": "Langues : Français (Natif) · Anglais (B1 – 2026, amélioration continue via lecture & applications)"

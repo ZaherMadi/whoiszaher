@@ -65,7 +65,7 @@ const HeroSection = () => {
           <div className="hero-content" ref={contentRef}>
             <span className="hero-eyebrow">
               <span className="hero-live" />
-              {language === 'fr' ? 'Support Client / Full-Stack · cloud' : 'Client Support / Full-Stack · cloud'}
+              {language === 'fr' ? 'Expert support Public Cloud · Infomaniak' : 'Public Cloud support expert · Infomaniak'}
             </span>
 
             <h1 className="hero-title">

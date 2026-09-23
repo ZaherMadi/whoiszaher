@@ -19,7 +19,12 @@
       "WebFetch(domain:www.tradieco.com)",
       "WebFetch(domain:www.puremontagneresort.fr)",
       "Bash(git add *)",
-      "mcp__Claude_Preview__preview_start"
+      "mcp__Claude_Preview__preview_start",
+      "Bash(mv \"Carre FlipingBook.png\" carre-flipbook.png)",
+      "Bash(mv \"Carre Formulaire.png\" carre-formulaire.png)",
+      "Bash(mv \"Carre Switcher 1.png\" carre-switcher-1.png)",
+      "Bash(mv \"Carre Switcher 2.png\" carre-switcher-2.png)",
+      "Bash(mv \"Erreur500Joomla.png\" erreur-500-joomla.png)"
     ]
   }
 }

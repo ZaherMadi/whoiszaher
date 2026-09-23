@@ -101,3 +101,5 @@
   font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .85em;
   background: rgba(63,192,212,0.12); color: var(--teal); padding: 2px 7px; border-radius: 6px;
 }
+
+.pres-cert { margin-top: 36px; font-size: clamp(.98rem,1.3vw,1.1rem) !important; }

@@ -41,6 +41,7 @@ const Footer = () => {
       <div className="footer-inner">
         <nav className="footer-nav">
           <a href="#about">{language === 'fr' ? 'À propos' : 'About'}</a>
+          <a href="#parcours">{language === 'fr' ? 'Parcours' : 'Journey'}</a>
           <a href="#projects">{language === 'fr' ? 'Projets' : 'Projects'}</a>
           <a href="#skills">{language === 'fr' ? 'Compétences' : 'Skills'}</a>
           <a href="#contact">Contact</a>
@@ -76,7 +77,7 @@ const Footer = () => {
 
         <div className="footer-base">
           <span className="footer-brand">whoiszaher — © {new Date().getFullYear()}</span>
-          <span>Zaher Madi</span>
+          <span>Zaher Madi · {language === 'fr' ? 'Dispo à Nice et Genève !' : 'Available in Nice & Geneva!'}</span>
         </div>
       </div>
     </footer>

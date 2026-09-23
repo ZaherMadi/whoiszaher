@@ -3,7 +3,8 @@
     "projects": "Projects",
     "skills": "Skills",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "timeline": "Journey"
   },
   "hero": {
     "title": "Zaher Madi",
@@ -21,7 +22,15 @@
         "title": "CAN I HELP YOU",
         "subtitle": "Full-stack mobile app & Edge API — in production",
         "description": "Solo end-to-end build: React Native app + Cloudflare Workers API serving real users. Sub-50ms latency, 4.9★ on App Store, live on Google Play.",
-        "tags": ["Cloudflare Workers", "React Native / Expo", "PostgreSQL / Neon", "Upstash Redis", "Firebase Auth", "Mapbox", "TripAdvisor API"],
+        "tags": [
+          "Cloudflare Workers",
+          "React Native / Expo",
+          "PostgreSQL / Neon",
+          "Upstash Redis",
+          "Firebase Auth",
+          "Mapbox",
+          "TripAdvisor API"
+        ],
         "link": "/project/can-i-help-you",
         "image": "/assets/cani-admin.png"
       },
@@ -30,7 +39,13 @@
         "title": "Marina Yacht Inventory",
         "subtitle": "Enterprise App · Lead Developer & Mentor",
         "description": "Lead Developer on an enterprise solution. Architected the full stack and mentored 3 junior developers through Git, code review, and agile practices.",
-        "tags": ["Team Leadership", "Architecture", "Mentoring", "CI/CD", "React"],
+        "tags": [
+          "Team Leadership",
+          "Architecture",
+          "Mentoring",
+          "CI/CD",
+          "React"
+        ],
         "link": "/project/marina-yacht",
         "image": "/assets/marina.jpg"
       }
@@ -40,13 +55,34 @@
     "title": "Tech Stack & Skills",
     "instruction": "Hover to focus · Click to invoke ✦",
     "list": [
-      { "id": "typescript", "name": "TypeScript / JS" },
-      { "id": "react",      "name": "React / React Native" },
-      { "id": "cloudflare", "name": "Cloudflare Workers" },
-      { "id": "postgres",   "name": "PostgreSQL / Neon" },
-      { "id": "redis",      "name": "Upstash Redis" },
-      { "id": "aws",        "name": "AWS" },
-      { "id": "leadership", "name": "Team Leadership" }
+      {
+        "id": "typescript",
+        "name": "TypeScript / JS"
+      },
+      {
+        "id": "react",
+        "name": "React / React Native"
+      },
+      {
+        "id": "cloudflare",
+        "name": "Cloudflare Workers"
+      },
+      {
+        "id": "postgres",
+        "name": "PostgreSQL / Neon"
+      },
+      {
+        "id": "redis",
+        "name": "Upstash Redis"
+      },
+      {
+        "id": "aws",
+        "name": "AWS"
+      },
+      {
+        "id": "leadership",
+        "name": "Team Leadership"
+      }
     ],
     "awsDetails": "AWS Cloud Practitioner (Certified) · AWS Solutions Architect Associate (In progress)",
     "languages": "Languages: French (Native) · English (B1 – 2026, continuous improvement via reading & apps)"

@@ -41,6 +41,7 @@ const Navbar = () => {
 
       {/* ── Desktop nav ── */}
       <nav className={`nav-links ${mobileOpen ? 'open' : ''}`}>
+        <NavLinkItem to="parcours" isHome={isHome} onSelect={closeMenu}>{t.nav.timeline}</NavLinkItem>
         <NavLinkItem to="projects" isHome={isHome} onSelect={closeMenu}>{t.nav.projects}</NavLinkItem>
         <NavLinkItem to="skills"   isHome={isHome} onSelect={closeMenu}>{t.nav.skills}</NavLinkItem>
         <NavLinkItem to="about"    isHome={isHome} onSelect={closeMenu}>{t.nav.about}</NavLinkItem>

@@ -18,10 +18,10 @@ const FACETS = {
   },
   fullstack: {
     fr: [
-      `Loin de moi l'idée de me prendre pour un couteau suisse, mais il est vrai que j'ai une double casquette. En effet, je serai bientôt diplômé Expert en conception logicielle. Alors fort heureusement, développer est dans mes cordes ! J'ai à cœur de m'investir dans des projets toujours plus passionnants les uns que les autres, que ce soit pour développer de A à Z, conseiller, ou donner un coup de pouce. Je serai toujours de près ou de loin derrière un clavier, à tester des solutions ou de nouvelles idées. C'est d'ailleurs ainsi que mes premières applications sont nées : cette même flamme m'a poussé à développer des projets qui me tenaient à cœur et qui répondaient à de vrais besoins.`,
+      `Loin de moi l'idée de me prendre pour un couteau suisse, mais il est vrai que j'ai une double casquette. En effet, je viens de finir mon mastère, qui délivre le titre Expert en développement logiciel (RNCP niveau 7). Alors fort heureusement, développer est dans mes cordes ! J'ai à cœur de m'investir dans des projets toujours plus passionnants les uns que les autres, que ce soit pour développer de A à Z, conseiller, ou donner un coup de pouce. Je serai toujours de près ou de loin derrière un clavier, à tester des solutions ou de nouvelles idées. C'est d'ailleurs ainsi que mes premières applications sont nées : cette même flamme m'a poussé à développer des projets qui me tenaient à cœur et qui répondaient à de vrais besoins.`,
     ],
     en: [
-      `Far be it from me to call myself a Swiss Army knife, but I do wear two hats. Indeed, I'll soon graduate as a Software Design Expert — so, happily, building things is well within my reach! I love getting involved in ever more exciting projects, whether to develop from A to Z, to advise, or to lend a hand. I'll always be behind a keyboard one way or another, testing solutions or new ideas. That's exactly how my first apps were born: that same spark pushed me to build projects I cared about, answering real needs.`,
+      `Far be it from me to call myself a Swiss Army knife, but I do wear two hats. Indeed, I've just completed my Master's, which awards the Software Development Expert title (RNCP level 7) — so, happily, building things is well within my reach! I love getting involved in ever more exciting projects, whether to develop from A to Z, to advise, or to lend a hand. I'll always be behind a keyboard one way or another, testing solutions or new ideas. That's exactly how my first apps were born: that same spark pushed me to build projects I cared about, answering real needs.`,
     ],
   },
 };
@@ -113,28 +113,31 @@ const PresentationSection = () => {
             )}
           </div>
 
+          <p className="pres-cert reveal">
+            {isFr
+              ? <>Je viens de finir mon mastère, qui délivre le titre <b>Expert en développement logiciel</b> — <a href="https://www.francecompetences.fr/recherche/rncp/39583/" target="_blank" rel="noopener noreferrer">RNCP 39583, niveau 7</a>. J'ai validé la certification « Public Cloud — Foundational » d'Infomaniak, et je songe à passer la <b>Solutions Architect</b> d'AWS.</>
+              : <>I've just completed my Master's, which awards the <b>Software Development Expert</b> title — <a href="https://www.francecompetences.fr/recherche/rncp/39583/" target="_blank" rel="noopener noreferrer">RNCP 39583, level 7</a>. I've earned Infomaniak's "Public Cloud — Foundational" certification, and I'm considering AWS <b>Solutions Architect</b> next.</>}
+          </p>
           <div className="pres-creds">
             <div className="pres-cred reveal">
-              <span className="pres-cred-k">{isFr ? 'Formation' : 'Education'}</span>
-              <span className="pres-cred-v">{isFr ? 'Master · Dev logiciel' : 'Master · Software Dev'}</span>
+              <span className="pres-cred-k">{isFr ? 'Diplôme' : 'Degree'}</span>
+              <span className="pres-cred-v">{isFr ? 'Expert en dév. logiciel' : 'Software Dev. Expert'}</span>
             </div>
             <div className="pres-cred reveal">
-              <span className="pres-cred-k">{isFr ? 'Certification' : 'Certification'}</span>
+              <span className="pres-cred-k">{isFr ? 'Certifications' : 'Certifications'}</span>
               <span className="pres-cred-v">AWS Cloud Practitioner</span>
+              <span className="pres-cred-k" style={{ marginTop: 4 }}>+ Infomaniak · Public Cloud</span>
             </div>
             <div className="pres-cred reveal">
-              <span className="pres-cred-k">{isFr ? 'En cours' : 'In progress'}</span>
-              <span className="pres-cred-v">
-                AWS Solutions Architect <span className="pres-live" />
-              </span>
-              <span className="pres-cred-k" style={{ marginTop: 4 }}>+ Infomaniak · Public Cloud</span>
+              <span className="pres-cred-k">{isFr ? 'À venir' : 'Up next'}</span>
+              <span className="pres-cred-v">AWS Solutions Architect <span className="pres-live" /></span>
             </div>
           </div>
 
           <p className="pres-foot reveal">
             {isFr
-              ? <>En alternance chez Agence ROM (Nice) · <b>Disponible dès le 3 juin</b> ✦</>
-              : <>Apprenticeship at Agence ROM (Nice) · <b>Available from June 3rd</b> ✦</>
+              ? <>Passé par l'Agence ROM (Nice) puis Infomaniak · Public Cloud · <b>Disponible dès le 1er octobre</b> ✦</>
+              : <>Agence ROM (Nice), then Infomaniak · Public Cloud · <b>Available from October 1st</b> ✦</>
             }
           </p>
         </div>
