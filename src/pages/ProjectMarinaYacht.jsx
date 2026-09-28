@@ -5,8 +5,21 @@ import { Link } from 'react-router-dom';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import './ProjectMarinaYacht.css';
 
-const HERO_VIDEO = '/assets/Teaser marina.mp4';
+// Cloudflare R2 bucket base URL for hero video. Set VITE_R2_BASE in .env.local
+// (or on Vercel) to e.g. https://pub-XXXXXX.r2.dev  or  https://cdn.whoiszaher.com
+// Falls back to the local file so dev still works even without R2 configured.
+const R2_BASE = import.meta.env.VITE_R2_BASE || '';
+const HERO_VIDEO = R2_BASE
+  ? `${R2_BASE}/Teaser marina sous titre v2.mp4`
+  : '/assets/Teaser marina.mp4';
+const HERO_POSTER = '/assets/marina.jpg';
 const APP_TEASER_VIDEO = '/assets/MYI TeaserApp.mp4';
+// Making-of hosted on Google Drive. `?autoplay=1` is respected only when the
+// browser allows iframe autoplay (usually requires muted state, which Drive's
+// preview iframe cannot expose). For guaranteed autoplay, upload the clip to
+// the R2 bucket and swap this for a <video muted autoplay loop /> element.
+const MAKING_OF_FILE_ID = '1SpGJ4yWUk8T0BMLszIq_WIj3pFioLe2m';
+const MAKING_OF_EMBED = `https://drive.google.com/file/d/${MAKING_OF_FILE_ID}/preview?autoplay=1`;
 const GALLERY = [
   { src: '/assets/MYI Onboarding.png',             alt: 'Onboarding 1' },
   { src: '/assets/MYI Oboarding P2.png',           alt: 'Onboarding 2' },
@@ -241,22 +254,30 @@ const ProjectMarinaYacht = () => {
       {/* ── ScrollExpandMedia hero ── */}
       <section className="marina-sem-section">
         <div className="marina-sem-stage">
-          {/* Background gradient (fades as media expands) */}
+          {/* Background looping video (R2) — muted, autoplay, behind everything */}
+          <video
+            className="marina-bg-video"
+            src={HERO_VIDEO}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-hidden="true"
+          />
+          {/* Background gradient (fades as media expands, revealing video underneath) */}
           <div className="marina-sem-bg" ref={bgRef} />
 
           <div className="marina-sem-container">
             <div className="marina-sem-hero">
 
-              {/* Expanding media card */}
+              {/* Expanding media card — shows marina.jpg poster */}
               <div className="marina-sem-media" ref={mediaRef} style={{ width: 300, height: 400 }}>
-                <video
-                  className="marina-hero-video"
-                  src={HERO_VIDEO}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
+                <img
+                  className="marina-hero-poster"
+                  src={HERO_POSTER}
+                  alt="Marina Yacht Inventory"
+                  draggable={false}
                 />
                 <div className="marina-vscrim" ref={vScrimRef} />
                 <div className="marina-vmeta">
@@ -374,8 +395,26 @@ const ProjectMarinaYacht = () => {
                   ))}
                 </div>
 
-                {/* App teaser video */}
-                <h2 className="marina-ch reveal">{isFr ? 'Extrait vidéo de l\'application' : 'In-app video clip'}</h2>
+                {/* Making-of video (Google Drive embed) */}
+                <h2 className="marina-ch reveal">Making-of</h2>
+                <p className="marina-cp reveal">
+                  {isFr
+                    ? <>Un regard <b>derrière les coulisses</b> du projet.</>
+                    : <>A look <b>behind the scenes</b> of the project.</>}
+                </p>
+                <div className="marina-app-video-wrap marina-making-of reveal">
+                  <iframe
+                    src={MAKING_OF_EMBED}
+                    className="marina-app-video"
+                    title="Marina Yacht Inventory — Making-of"
+                    allow="autoplay; encrypted-media; fullscreen"
+                    allowFullScreen
+                    frameBorder="0"
+                  />
+                </div>
+
+                {/* App preview video */}
+                <h2 className="marina-ch reveal">{isFr ? 'Aperçu application' : 'App preview'}</h2>
                 <p className="marina-cp reveal">
                   {isFr
                     ? <>Voici un <b>extrait vidéo plus approfondi</b> de l'application — tournée directement sur <b>Expo Go</b>, en local.</>

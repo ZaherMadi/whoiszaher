@@ -18,12 +18,21 @@ const FACETS = {
   },
   fullstack: {
     fr: [
-      `Loin de moi l'idée de me prendre pour un couteau suisse, mais il est vrai que j'ai une double casquette. En effet, je viens de finir mon mastère, qui délivre le titre Expert en développement logiciel (RNCP niveau 7). Alors fort heureusement, développer est dans mes cordes ! J'ai à cœur de m'investir dans des projets toujours plus passionnants les uns que les autres, que ce soit pour développer de A à Z, conseiller, ou donner un coup de pouce. Je serai toujours de près ou de loin derrière un clavier, à tester des solutions ou de nouvelles idées. C'est d'ailleurs ainsi que mes premières applications sont nées : cette même flamme m'a poussé à développer des projets qui me tenaient à cœur et qui répondaient à de vrais besoins.`,
+      `J'ai toujours aimé construire des projets — vous le verrez à travers mes applications et mon GitHub. Aujourd'hui, ce que j'aime vraiment, c'est développer et concevoir. Loin de moi l'envie d'être au four et au fourneau… mais quand on est en cuisine, on n'a aucun souci à faire ce qui doit être fait — et même la vaisselle, n'est-ce pas ? 😊`,
+      `C'est pour ça que mes projets et mes expériences sont si remplis, et pourquoi j'ai à cœur de m'investir dans de nouveaux projets. Chaque projet auquel j'ai contribué a eu une fin. On ressent toujours cette satisfaction au moment du déploiement, mais il reste un fond de tristesse quand un chapitre se referme.`,
+      `Finalement, le plus important, c'est peut-être bien de faire partie de l'histoire, plus que de l'avoir réalisée. C'est ce que je me dis aujourd'hui. Alors, me voilà — soif d'aventure, prêt à commencer un nouveau chapitre.`,
     ],
     en: [
-      `Far be it from me to call myself a Swiss Army knife, but I do wear two hats. Indeed, I've just completed my Master's, which awards the Software Development Expert title (RNCP level 7) — so, happily, building things is well within my reach! I love getting involved in ever more exciting projects, whether to develop from A to Z, to advise, or to lend a hand. I'll always be behind a keyboard one way or another, testing solutions or new ideas. That's exactly how my first apps were born: that same spark pushed me to build projects I cared about, answering real needs.`,
+      `I've always loved building things — you'll see it across my apps and my GitHub. What I really love today is developing and designing. I'm not looking to juggle every hat under the sun, but when you're in the kitchen, there's no problem doing whatever needs to be done — even the dishes, right? 😊`,
+      `That's why my projects and my experience are so full, and why I'm eager to invest in new ones. Every project I've contributed to has had an ending. There's always that satisfaction at deployment, but also a quiet sadness when a chapter closes.`,
+      `In the end, maybe what matters most is being part of the story, more than having built it. That's what I tell myself today. So here I am — thirsty for adventure, ready to start a new chapter.`,
     ],
   },
+};
+
+const FULLSTACK_HOOK = {
+  fr: `Est-ce que ça vous dirait qu'on écrive ce chapitre ensemble ?`,
+  en: `Would you like to write this chapter together?`,
 };
 
 const PresentationSection = () => {
@@ -86,6 +95,13 @@ const PresentationSection = () => {
               <p key={i}>{p}</p>
             ))}
 
+            {facet === 'fullstack' && (
+              <p className="pres-hook">
+                <span className="pres-hook-mark">✦</span>
+                <em>{FULLSTACK_HOOK[isFr ? 'fr' : 'en']}</em>
+              </p>
+            )}
+
             {facet === 'support' && (
               <div className="pres-incident">
                 <img className="pres-incident-shot" src="/assets/clients/erreur-500-joomla.png" alt="Erreur 500 — Joomla" loading="lazy" />
@@ -101,13 +117,6 @@ const PresentationSection = () => {
                       <p>There's never smoke without fire: that's why you keep <b>a plan for every error</b> — and refine it over time. WAF, DNS, logs… you work through it, calmly.</p>
                     </>
                   )}
-                </div>
-                <img className="pres-incident-shot pres-incident-proof" src="/assets/RencontreSupport.jpeg" alt={isFr ? 'Test Support — préprod, 1ᵉʳ juin' : 'Test Support — preprod, June 1st'} loading="lazy" />
-                <div className="pres-incident-cap">
-                  <p className="pres-incident-wink">{isFr
-                    ? <>Au fait, on s'est déjà rencontrés, non ? Mais si — ce 1<sup>er</sup> juin, 18 h 50 : <code>INK-LLJ-47893-224</code>. Eh bien… c'était moi. Merci pour votre rapidité 😉</>
-                    : <>By the way, haven't we met before? We have — this June 1st, 6:50 pm: <code>INK-LLJ-47893-224</code>. Well… that was me. Thanks for the quick reply 😉</>}
-                  </p>
                 </div>
               </div>
             )}
