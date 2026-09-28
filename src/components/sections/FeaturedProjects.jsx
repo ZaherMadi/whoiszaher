@@ -23,6 +23,7 @@ const MARINA_VIDEO = '/assets/Teaser marina.mp4';
 const PERSONAL_PROJECTS = [
   { id:'can-i-help-you', title:'CAN I HELP YOU', sub:"App mobile d'entraide en temps réel · solo", subEn:'Real-time mutual aid mobile app · solo', link:'/project/can-i-help-you', img:'/assets/cani-appstore.png' },
   { id:'marina-yacht', title:'Marina Yacht Inventory', sub:"Gestion d'inventaire · lead & mentor", subEn:'Inventory management · lead & mentor', link:'/project/marina-yacht', img: MARINA_CYCLE[0], cycle: MARINA_CYCLE, video: MARINA_VIDEO },
+  { id:'5hc-ai', title:'5HC · IA auto-hébergée', titleEn:'5HC · Self-hosted AI', sub:'Plateforme LLM sur Kubernetes · Infomaniak + OpenShift', subEn:'LLM platform on Kubernetes · Infomaniak + OpenShift', link:'/project/5hc-ai', img:'/assets/project-5hc-ai.png' },
 ];
 
 // Real client work delivered at Agence ROM — no dedicated page, a popup

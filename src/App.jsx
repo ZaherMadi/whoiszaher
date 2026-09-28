@@ -8,6 +8,7 @@ import './index.css';
 
 const ProjectCanIHelpYou = lazy(() => import('./pages/ProjectCanIHelpYou'));
 const ProjectMarinaYacht = lazy(() => import('./pages/ProjectMarinaYacht'));
+const Project5HcAi = lazy(() => import('./pages/Project5HcAi'));
 const Page404 = lazy(() => import('./pages/Page404'));
 const PageMerci = lazy(() => import('./pages/PageMerci'));
 
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/project/can-i-help-you" element={<ProjectCanIHelpYou />} />
                 <Route path="/project/marina-yacht" element={<ProjectMarinaYacht />} />
+                <Route path="/project/5hc-ai" element={<Project5HcAi />} />
                 <Route path="/merci" element={<PageMerci />} />
                 <Route path="*" element={<Page404 />} />
               </Routes>
