@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import './PresentationSection.css';
 
-// Two facets, switchable via the toggle. "Support Client" is the default.
+// Two facets, switchable via the toggle. "Full-Stack" is the default.
 const FACETS = {
   support: {
     fr: [
@@ -20,12 +20,12 @@ const FACETS = {
     fr: [
       `J'ai toujours aimé construire des projets — vous le verrez à travers mes applications et mon GitHub. Aujourd'hui, ce que j'aime vraiment, c'est développer et concevoir. Loin de moi l'envie d'être au four et au fourneau… mais quand on est en cuisine, on n'a aucun souci à faire ce qui doit être fait — et même la vaisselle, n'est-ce pas ? 😊`,
       `C'est pour ça que mes projets et mes expériences sont si remplis, et pourquoi j'ai à cœur de m'investir dans de nouveaux projets. Chaque projet auquel j'ai contribué a eu une fin. On ressent toujours cette satisfaction au moment du déploiement, mais il reste un fond de tristesse quand un chapitre se referme.`,
-      `Finalement, le plus important, c'est peut-être bien de faire partie de l'histoire, plus que de l'avoir réalisée. C'est ce que je me dis aujourd'hui. Alors, me voilà — soif d'aventure, prêt à commencer un nouveau chapitre.`,
+      `Finalement, le plus important, c'est peut-être bien de faire partie de l'histoire, plus que de l'avoir réalisée. Et cette histoire ne s'arrête plus au code : aujourd'hui je déploie aussi ce que je développe. Infrastructure as code avec Terraform, conteneurs et clusters Kubernetes, LLM auto-hébergés sur OpenStack et OpenShift — de l'API jusqu'à l'infra qui la fait tourner. Alors, me voilà — soif d'aventure, prêt à commencer un nouveau chapitre.`,
     ],
     en: [
       `I've always loved building things — you'll see it across my apps and my GitHub. What I really love today is developing and designing. I'm not looking to juggle every hat under the sun, but when you're in the kitchen, there's no problem doing whatever needs to be done — even the dishes, right? 😊`,
       `That's why my projects and my experience are so full, and why I'm eager to invest in new ones. Every project I've contributed to has had an ending. There's always that satisfaction at deployment, but also a quiet sadness when a chapter closes.`,
-      `In the end, maybe what matters most is being part of the story, more than having built it. That's what I tell myself today. So here I am — thirsty for adventure, ready to start a new chapter.`,
+      `In the end, maybe what matters most is being part of the story, more than having built it. And that story no longer stops at the code: today I also deploy what I build. Infrastructure as code with Terraform, containers and Kubernetes clusters, self-hosted LLMs on OpenStack and OpenShift — from the API down to the infra that runs it. So here I am — thirsty for adventure, ready to start a new chapter.`,
     ],
   },
 };
@@ -39,7 +39,7 @@ const PresentationSection = () => {
   const { language } = useLanguage();
   const isFr = language === 'fr';
   const sectionRef = useRef(null);
-  const [facet, setFacet] = useState('support');
+  const [facet, setFacet] = useState('fullstack');
 
   useEffect(() => {
     const io = new IntersectionObserver(
@@ -124,8 +124,8 @@ const PresentationSection = () => {
 
           <p className="pres-cert reveal">
             {isFr
-              ? <>Je viens de finir mon mastère, qui délivre le titre <b>Expert en développement logiciel</b> — <a href="https://www.francecompetences.fr/recherche/rncp/39583/" target="_blank" rel="noopener noreferrer">RNCP 39583, niveau 7</a>. J'ai validé la certification « Public Cloud — Foundational » d'Infomaniak, et je songe à passer la <b>Solutions Architect</b> d'AWS.</>
-              : <>I've just completed my Master's, which awards the <b>Software Development Expert</b> title — <a href="https://www.francecompetences.fr/recherche/rncp/39583/" target="_blank" rel="noopener noreferrer">RNCP 39583, level 7</a>. I've earned Infomaniak's "Public Cloud — Foundational" certification, and I'm considering AWS <b>Solutions Architect</b> next.</>}
+              ? <>Je viens de finir mon mastère, qui délivre le titre <b>Expert en développement logiciel</b> — <a href="https://www.francecompetences.fr/recherche/rncp/39583/" target="_blank" rel="noopener noreferrer">RNCP 39583, niveau 7</a>. J'ai validé la certification « Public Cloud — Foundational » d'Infomaniak, et je viens d'obtenir la <b>HashiCorp Terraform Associate (004)</b>.</>
+              : <>I've just completed my Master's, which awards the <b>Software Development Expert</b> title — <a href="https://www.francecompetences.fr/recherche/rncp/39583/" target="_blank" rel="noopener noreferrer">RNCP 39583, level 7</a>. I've earned Infomaniak's "Public Cloud — Foundational" certification, and I've just passed the <b>HashiCorp Terraform Associate (004)</b>.</>}
           </p>
           <div className="pres-creds">
             <div className="pres-cred reveal">
@@ -134,19 +134,20 @@ const PresentationSection = () => {
             </div>
             <div className="pres-cred reveal">
               <span className="pres-cred-k">{isFr ? 'Certifications' : 'Certifications'}</span>
-              <span className="pres-cred-v">AWS Cloud Practitioner</span>
-              <span className="pres-cred-k" style={{ marginTop: 4 }}>+ Infomaniak · Public Cloud</span>
+              <span className="pres-cred-v">Terraform Associate (004)</span>
+              <span className="pres-cred-k" style={{ marginTop: 4 }}>+ AWS Cloud Practitioner · Infomaniak Public Cloud</span>
             </div>
             <div className="pres-cred reveal">
-              <span className="pres-cred-k">{isFr ? 'À venir' : 'Up next'}</span>
-              <span className="pres-cred-v">AWS Solutions Architect <span className="pres-live" /></span>
+              <span className="pres-cred-k">{isFr ? 'En cours' : 'In progress'}</span>
+              <span className="pres-cred-v">{isFr ? 'Projet multi-LLM' : 'Multi-LLM project'} <span className="pres-live" /></span>
+              <span className="pres-cred-k" style={{ marginTop: 4 }}>OpenStack · Kubernetes · OpenShift</span>
             </div>
           </div>
 
           <p className="pres-foot reveal">
             {isFr
-              ? <>Passé par l'Agence ROM (Nice) puis Infomaniak · Public Cloud · <b>Disponible dès le 1er octobre</b> ✦</>
-              : <>Agence ROM (Nice), then Infomaniak · Public Cloud · <b>Available from October 1st</b> ✦</>
+              ? <>Passé par l'Agence ROM (Nice) puis Infomaniak · Public Cloud · <b>Disponible immédiatement</b> ✦</>
+              : <>Agence ROM (Nice), then Infomaniak · Public Cloud · <b>Available immediately</b> ✦</>
             }
           </p>
         </div>

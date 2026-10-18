@@ -77,7 +77,7 @@ const Footer = () => {
 
         <div className="footer-base">
           <span className="footer-brand">whoiszaher — © {new Date().getFullYear()}</span>
-          <span>Zaher Madi · {language === 'fr' ? 'Dispo à Nice et Genève !' : 'Available in Nice & Geneva!'}</span>
+          <span>Zaher Madi · {language === 'fr' ? 'Dispo à Nice / Paris (France) et dans le canton de Genève / Vaud (Suisse)' : 'Available in Nice / Paris (France) and in the cantons of Geneva / Vaud (Switzerland)'}</span>
         </div>
       </div>
     </footer>

@@ -37,8 +37,8 @@ const ContactSection = () => {
         </h2>
         <p className="contact-sub reveal">
           {language === 'fr'
-            ? <>Une idée, un projet, ou juste envie d'échanger ? Je suis <b>disponible dès le 1er octobre</b>.</>
-            : <>An idea, a project, or just want to chat? I'm <b>available from October 1st</b>.</>
+            ? <>Une idée, un projet, ou juste envie d'échanger ? Je suis <b>disponible immédiatement</b>.</>
+            : <>An idea, a project, or just want to chat? I'm <b>available immediately</b>.</>
           }
         </p>
 

@@ -88,7 +88,7 @@ const ITEMS = [
   },
   {
     id: 'imk', kind: 'imk', img: U('photo-1544197150-b99a580bb7a8', 900),
-    when: { fr: 'Juillet → Octobre 2026', en: 'July → October 2026' },
+    when: { fr: 'Juillet → Septembre 2026', en: 'July → September 2026' },
     whenExact: { fr: '13 juillet → 29 septembre 2026', en: 'July 13 → September 29, 2026' },
     title: { fr: 'Expert support Public Cloud', en: 'Public Cloud support expert' },
     org: { fr: 'Infomaniak', en: 'Infomaniak' },
@@ -107,10 +107,12 @@ const ITEMS = [
           "Des appels en continu — deux heures par jour en moyenne, jusqu'à quatre, et un client peut arriver à tout moment.",
           'Le reste du temps en tickets : configurations avancées, bugs reproductibles, incidents critiques.',
           'Tous les profils accompagnés, du particulier à la PME, du développeur au pro — en français comme en anglais.',
+          "Diagnostic quotidien d'instances cloud, de serveurs mutualisés et de VPS (Grafana).",
+          'Environnements Docker isolés pour analyser des sites piratés.',
           'Remontée des signaux terrain aux équipes techniques et produit.',
           "Enrichissement des bases de connaissance et des outils d'IA utilisés en support.",
         ],
-        tags: ['Linux', 'Hébergement web', 'DNS', 'E-mails', 'Réseau', 'Cloud souverain', 'Outils IA'],
+        tags: ['Linux', 'Hébergement web', 'DNS', 'E-mails', 'Réseau', 'Docker', 'Grafana', 'Cloud souverain', 'Outils IA'],
       },
       en: {
         title: 'Public Cloud support expert', org: 'Infomaniak · nearly three months',
@@ -125,11 +127,24 @@ const ITEMS = [
           'Calls all day long — two hours a day on average, up to four, and a customer can come in at any moment.',
           'Tickets the rest of the time: advanced configurations, reproducible bugs, critical incidents.',
           'Every kind of customer, from individuals to SMBs, developers to pros — in French and in English.',
+          'Daily diagnosis of cloud instances, shared hosting servers and VPS (Grafana).',
+          'Isolated Docker environments to analyse hacked websites.',
           'Field signals escalated to technical and product teams.',
           'Enriching knowledge bases and the AI tools used in support.',
         ],
-        tags: ['Linux', 'Web hosting', 'DNS', 'E-mail', 'Networking', 'Sovereign cloud', 'AI tools'],
+        tags: ['Linux', 'Web hosting', 'DNS', 'E-mail', 'Networking', 'Docker', 'Grafana', 'Sovereign cloud', 'AI tools'],
       },
+    },
+  },
+  {
+    id: 'terraform', side: 'top', kind: 'cert', img: '/assets/terraform-004.png', fit: 'contain',
+    when: { fr: '2026 · Octobre', en: '2026 · October' },
+    title: { fr: 'Terraform Associate (004)', en: 'Terraform Associate (004)' },
+    org: { fr: 'HashiCorp', en: 'HashiCorp' },
+    teaser: { fr: "L'infrastructure as code, certifiée.", en: 'Infrastructure as code, certified.' },
+    detail: {
+      fr: { title: 'HashiCorp Certified: Terraform Associate (004)', org: 'HashiCorp', body: ["Décrire, versionner et déployer une infrastructure comme on écrit du code : providers, state, modules, workflows plan / apply.", "La suite logique après Infomaniak : ne plus seulement diagnostiquer l'infra, mais la construire."] },
+      en: { title: 'HashiCorp Certified: Terraform Associate (004)', org: 'HashiCorp', body: ['Describing, versioning and deploying infrastructure the way you write code: providers, state, modules, plan / apply workflows.', 'The logical next step after Infomaniak: not just diagnosing infrastructure, but building it.'] },
     },
   },
   {
@@ -196,7 +211,7 @@ const Card = ({ it, lang, onOpen }) => {
       <span className="tl-dot" /><span className="tl-stem" />
       <div className={`tl-card ${it.bubbles ? 'has-bubs' : ''}`} role="button" tabIndex={0}
         onClick={() => onOpen(it)} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onOpen(it); } }}>
-        <span className="tl-thumb">
+        <span className={`tl-thumb ${it.fit === 'contain' ? 'tl-thumb--contain' : ''}`}>
           {it.kind === 'imk' && <span className="tl-badge">{lang === 'fr' ? 'Le tournant' : 'The turning point'}</span>}
           <img src={it.img} alt="" loading="lazy" onError={e => { e.currentTarget.style.display = 'none'; }} />
           {it.mark && <span className="tl-mark">{it.mark}</span>}
@@ -255,8 +270,8 @@ const END = {
   id: 'end',
   when: { fr: 'Maintenant', en: 'Now' },
   detail: {
-    fr: { title: 'Prêt pour de nouvelles aventures', body: ["Six ans, deux métiers, un cap : le cloud. Je cherche l'équipe où l'exigence est la norme — celle que j'ai trouvée chez Infomaniak et que je veux retrouver."], quote: 'Je suis tombé, mais je me relèverai encore plus fort.' },
-    en: { title: 'Ready for new adventures', body: ['Six years, two crafts, one direction: cloud. I’m looking for the team where high standards are the norm — the kind I found at Infomaniak.'], quote: "I fell, but I'll rise stronger." },
+    fr: { title: 'Prêt pour de nouvelles aventures', body: ["Six ans, deux métiers, un cap : le cloud. Je cherche l'équipe où l'exigence est la norme — celle que j'ai trouvée chez Infomaniak et que je veux retrouver.", "Je me réjouis à l'idée de contribuer à de nouveaux projets."], quote: 'Et si la suite était ensemble ?' },
+    en: { title: 'Ready for new adventures', body: ['Six years, two crafts, one direction: cloud. I’m looking for the team where high standards are the norm — the kind I found at Infomaniak.', 'I look forward to contributing to new projects.'], quote: 'What if what comes next, we did together?' },
   },
 };
 
@@ -323,7 +338,7 @@ const TimelineSection = () => {
             onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpen(END); } }}>
             <span className="k">{lang === 'fr' ? '2026 — la suite' : '2026 — what’s next'}</span>
             <span className="q">{END.detail[lang].quote}</span>
-            <span className="n">{lang === 'fr' ? 'Prêt pour de nouvelles aventures — relevé de mes erreurs, avec une rage de vaincre intacte.' : 'Ready for new adventures — back on my feet, with the will to win intact.'}</span>
+            <span className="n">{lang === 'fr' ? "Prêt pour de nouvelles aventures, je me réjouis à l'idée de contribuer à de nouveaux projets." : 'Ready for new adventures — I look forward to contributing to new projects.'}</span>
           </div>
         </motion.div>
       </div>

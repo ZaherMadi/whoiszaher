@@ -38,7 +38,7 @@ const HeroSection = () => {
   const handleCvClick = (e) => {
     e.preventDefault();
     // Open CV in background tab, briefly show toast, then redirect to /merci
-    window.open('/docs/CV-Zaher-Madi-Expert-Support-Fullstack.pdf', '_blank');
+    window.open('/docs/ZaherMadi_CurriculumVitae.pdf', '_blank');
     setToast(true);
     setTimeout(() => {
       setToast(false);
@@ -65,7 +65,7 @@ const HeroSection = () => {
           <div className="hero-content" ref={contentRef}>
             <span className="hero-eyebrow">
               <span className="hero-live" />
-              {language === 'fr' ? 'Expert support Public Cloud · Infomaniak' : 'Public Cloud support expert · Infomaniak'}
+              {language === 'fr' ? 'Software Engineer · Cloud & DevOps' : 'Software Engineer · Cloud & DevOps'}
             </span>
 
             <h1 className="hero-title">
@@ -91,7 +91,7 @@ const HeroSection = () => {
               <a href="#contact" className="hero-btn hero-btn-glass">
                 {language === 'fr' ? 'Me contacter' : 'Contact me'}
               </a>
-              <a href="/docs/CV-Zaher-Madi-Expert-Support-Fullstack.pdf" className="hero-btn hero-btn-ghost" onClick={handleCvClick}>
+              <a href="/docs/ZaherMadi_CurriculumVitae.pdf" className="hero-btn hero-btn-ghost" onClick={handleCvClick}>
                 {language === 'fr' ? 'Télécharger mon CV' : 'Download CV'}
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" /></svg>
               </a>
