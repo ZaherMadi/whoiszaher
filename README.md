@@ -27,8 +27,8 @@ A modern React portfolio and blog website for Zaher Madi, a Software Developer a
   - BTS SNIR (Systèmes Numériques - Informatique et Réseaux)
 - **Certifications**:
   - AWS Cloud Practitioner ✓
-  - AWS Solutions Architect Associate (In Progress)
-- **Languages**: French (Native), English (B1 - Improving!)
+  - Terraform Associate )()
+- **Languages**: French (Native), English (B2)
 - **Driving License**: Permis B
 
 ## 🛠️ Tech Stack
