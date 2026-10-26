@@ -100,8 +100,8 @@ const PageMerci = () => {
         {/* Sub */}
         <p className="merci-p">
           {isFr
-            ? 'En attendant, on garde le contact ? Je suis disponible dès le 3 juin.'
-            : "In the meantime, let's stay in touch? I'm available from June 3rd."
+            ? 'En attendant, on garde le contact ? Je suis disponible immédiatement.'
+            : "In the meantime, let's stay in touch? I'm available immediately."
           }
         </p>
 

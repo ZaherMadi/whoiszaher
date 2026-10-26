@@ -19,11 +19,23 @@ const MARINA_CYCLE = [
 ];
 const MARINA_VIDEO = '/assets/Teaser marina.mp4';
 
+// Work in progress — no case-study page yet, so the card has no link and shows
+// a status badge + stack. To finish it: fill in the texts, then add `link`/`img`
+// (and drop `kind:'wip'`) once the page exists.
+const MCP_PROJECT = {
+  id:'mcp-k8s', kind:'wip', link:'#', brand:'#326CE5',
+  title:'Serveur MCP – diagnostic Kubernetes', titleEn:'MCP server – Kubernetes diagnostics',
+  sub:'Serveur MCP dédié au diagnostic Kubernetes · détails à venir', subEn:'MCP server for Kubernetes diagnostics · details coming soon',
+  badge:'En cours', badgeEn:'In progress',
+  stack:['Python / TypeScript', 'MCP', 'Kubernetes RBAC', 'RAG', 'GitHub Actions'],
+};
+
 // Personal, end-to-end projects (each has its own case-study page).
 const PERSONAL_PROJECTS = [
+  { id:'5hc-ai', title:'5HC · IA auto-hébergée', titleEn:'5HC · Self-hosted AI', sub:'Plateforme LLM sur Kubernetes · Infomaniak + OpenShift', subEn:'LLM platform on Kubernetes · Infomaniak + OpenShift', link:'/project/5hc-ai', img:'/assets/project-5hc-ai.png' },
+  MCP_PROJECT,
   { id:'can-i-help-you', title:'CAN I HELP YOU', sub:"App mobile d'entraide en temps réel · solo", subEn:'Real-time mutual aid mobile app · solo', link:'/project/can-i-help-you', img:'/assets/cani-appstore.png' },
   { id:'marina-yacht', title:'Marina Yacht Inventory', sub:"Gestion d'inventaire · lead & mentor", subEn:'Inventory management · lead & mentor', link:'/project/marina-yacht', img: MARINA_CYCLE[0], cycle: MARINA_CYCLE, video: MARINA_VIDEO },
-  { id:'5hc-ai', title:'5HC · IA auto-hébergée', titleEn:'5HC · Self-hosted AI', sub:'Plateforme LLM sur Kubernetes · Infomaniak + OpenShift', subEn:'LLM platform on Kubernetes · Infomaniak + OpenShift', link:'/project/5hc-ai', img:'/assets/project-5hc-ai.png' },
 ];
 
 // Real client work delivered at Agence ROM — no dedicated page, a popup
@@ -41,7 +53,7 @@ const PROJECTS = [...PERSONAL_PROJECTS, ...CLIENT_PROJECTS];
 
 const CYCLE_INTERVAL_MS = 1800;
 
-const ProjectMedia = ({ project, isActive }) => {
+const ProjectMedia = ({ project, isActive, isFr }) => {
   const [hovered, setHovered] = useState(false);
   const [cycleIdx, setCycleIdx] = useState(0);
   const videoRef = useRef(null);
@@ -89,6 +101,20 @@ const ProjectMedia = ({ project, isActive }) => {
           <span className="fan-cover-mark">{project.title}</span>
         )}
         {project.badge && <span className="fan-cover-badge">{project.badge}</span>}
+      </div>
+    );
+  }
+
+  // Work-in-progress cards: branded gradient + status badge + stack, no screenshot yet.
+  if (project.kind === 'wip') {
+    return (
+      <div className="fan-img fan-brandcover fan-brandcover--wip" style={{ '--bc': project.brand }}>
+        <span className="fan-cover-badge fan-cover-badge--wip">{isFr ? project.badge : project.badgeEn}</span>
+        {project.stack && (
+          <ul className="fan-stack">
+            {project.stack.map(s => <li key={s}>{s}</li>)}
+          </ul>
+        )}
       </div>
     );
   }
@@ -296,7 +322,7 @@ export default function FeaturedProjects() {
                 else if (p.link && p.link !== '#') navigate(p.link);
               }}>
               <div className="fan-card-face" style={getFaceStyle(i)}>
-                <ProjectMedia project={p} isActive={isA} />
+                <ProjectMedia project={p} isActive={isA} isFr={isFr} />
                 <div className="fan-veil"/><div className="fan-frost" style={{opacity:!isA?1:0}}/>
                 <div className="fan-body">
                   {p.kind === 'client' ? (

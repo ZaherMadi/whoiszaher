@@ -56,6 +56,14 @@
     "instruction": "Survole pour focus · Clique pour invoquer ✦",
     "list": [
       {
+        "id": "terraform",
+        "name": "Terraform"
+      },
+      {
+        "id": "kubernetes",
+        "name": "Kubernetes"
+      },
+      {
         "id": "typescript",
         "name": "TypeScript / JS"
       },
@@ -78,14 +86,60 @@
       {
         "id": "aws",
         "name": "AWS"
-      },
-      {
-        "id": "leadership",
-        "name": "Team Leadership"
       }
     ],
-    "awsDetails": "AWS Cloud Practitioner (Obtenu) · AWS Solutions Architect Associate (En cours)",
-    "languages": "Langues : Français (Natif) · Anglais (B1 – 2026, amélioration continue via lecture & applications)"
+    "categories": [
+      {
+        "id": "cloud",
+        "title": "Cloud & DevOps",
+        "items": [
+          "Terraform",
+          "Kubernetes",
+          "Docker",
+          "OpenStack",
+          "OpenShift (en cours)",
+          "GitHub Actions (CI/CD)",
+          "Linux",
+          "Grafana",
+          "AWS"
+        ]
+      },
+      {
+        "id": "ai",
+        "title": "IA",
+        "items": [
+          "Claude Code",
+          "LLM auto-hébergés (Ollama, OpenWebUI)",
+          "Serveurs MCP"
+        ]
+      },
+      {
+        "id": "backend",
+        "title": "Back-end",
+        "items": [
+          "Python (FastAPI, Django)",
+          "TypeScript / Node",
+          "PostgreSQL / Neon",
+          "Upstash Redis",
+          "Cloudflare Workers"
+        ]
+      },
+      {
+        "id": "front",
+        "title": "Front & mobile",
+        "items": [
+          "React",
+          "React Native / Expo"
+        ]
+      }
+    ],
+    "certificationsTitle": "Certifications",
+    "certifications": [
+      "HashiCorp Terraform Associate (004)",
+      "AWS Certified Cloud Practitioner",
+      "Infomaniak Public Cloud Foundational"
+    ],
+    "languages": "Langues : Français (natif) · Anglais (B2, professionnel)"
   },
   "about": {
     "title": "Who is Zaher? (really)",

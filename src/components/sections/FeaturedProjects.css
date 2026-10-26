@@ -108,6 +108,20 @@
   border-radius:30px; padding:4px 12px; backdrop-filter:blur(4px);
 }
 
+/* ── Work-in-progress cards ── */
+.fan-cover-badge--wip { display:inline-flex; align-items:center; gap:7px; }
+.fan-cover-badge--wip::before {
+  content:''; width:6px; height:6px; border-radius:50%;
+  background:var(--teal); box-shadow:0 0 8px var(--teal);
+}
+.fan-brandcover--wip { place-items:start center; padding:64px clamp(18px,3vw,26px) 0; }
+.fan-stack { position:relative; z-index:1; display:flex; flex-wrap:wrap; justify-content:center; gap:6px; }
+.fan-stack li {
+  font-size:.74rem; font-weight:500; letter-spacing:.02em; color:var(--ink-soft);
+  border:1px solid var(--line-2); border-radius:999px; padding:3px 10px;
+  background:rgba(243,241,236,.04);
+}
+
 /* "Discover" button on the active client card */
 .fan-open {
   pointer-events:auto; margin-top:14px;

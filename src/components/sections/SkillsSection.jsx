@@ -12,13 +12,22 @@ import './SkillsSection.css';
 
 // ── Per-tech visual config ─────────────────────────────────────────────────────
 const techVisuals = {
+  terraform:   { color: '#7c48c4', symbol: 'TF',  img: null },
+  kubernetes:  { color: '#326CE5', symbol: null,  img: '/assets/logo-kubernetes.png' },
   typescript: { color: '#3178c6', symbol: 'TS',  img: null },
   react:       { color: '#61dafb', symbol: 'R',   img: null },
   cloudflare:  { color: '#f38020', symbol: null,  img: '/assets/logo-cloudflare.png' },
   postgres:    { color: '#00e5bf', symbol: null,  img: '/assets/logo-neon.png' },
   redis:       { color: '#00bfa5', symbol: null,  img: '/assets/logo-upstash.png' },
   aws:         { color: '#ff9900', symbol: 'AWS', img: null },
-  leadership:  { color: '#d900ff', symbol: '★',   img: null },
+};
+
+// ── Per-category accent (hover glow on the skill chips) ────────────────────────
+const categoryColors = {
+  cloud:   '#3fc0d4',
+  ai:      '#7c48c4',
+  backend: '#f38020',
+  front:   '#61dafb',
 };
 
 const legendTechs = [
@@ -50,6 +59,7 @@ const ORBIT_PARAMS = [
   { rx: 18, ry: 10, dur: 6.9, phase: 1.8 },
   { rx: 12, ry: 24, dur: 7.2, phase: 3.0 },
   { rx: 22, ry: 16, dur: 5.9, phase: 0.4 },
+  { rx: 16, ry: 22, dur: 6.6, phase: 2.6 },
 ];
 
 const DECO_ORBIT_PARAMS = [
@@ -70,6 +80,7 @@ const FLOAT_POS = [
   { left: '35%', top: '78%' },
   { left: '50%', top: '38%' },
   { left: '82%', top: '82%' },
+  { left: '90%', top: '45%' },
 ];
 
 const DECO_POS = [
@@ -284,25 +295,37 @@ const SkillsSection = () => {
               {t.skills.instruction || 'Hover to focus · Click to invoke ✦'}
             </p>
 
-            <div className="skills-list">
-              {t.skills.list.map((tech) => {
-                const visual = techVisuals[tech.id];
-                return (
-                  <motion.button
-                    key={tech.id}
-                    className="skill-word"
-                    style={{ '--tech-color': visual?.color || '#7000ff' }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {tech.name}
-                  </motion.button>
-                );
-              })}
+            <div className="skills-categories">
+              {t.skills.categories.map((cat) => (
+                <div
+                  key={cat.id}
+                  className="skills-category"
+                  style={{ '--tech-color': categoryColors[cat.id] || '#7000ff' }}
+                >
+                  <h3 className="skills-category-title">{cat.title}</h3>
+                  <div className="skills-list">
+                    {cat.items.map((item) => (
+                      <motion.button
+                        key={item}
+                        className="skill-word"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        {item}
+                      </motion.button>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
 
             <AnimatedSection delay={0.3} className="skills-details glass-panel">
-              <p className="aws-detail text-gradient">{t.skills.awsDetails}</p>
+              <h3 className="skills-details-title">{t.skills.certificationsTitle}</h3>
+              <ul className="cert-list">
+                {t.skills.certifications.map((cert) => (
+                  <li key={cert} className="cert-detail text-gradient">{cert}</li>
+                ))}
+              </ul>
               <p className="lang-detail">{t.skills.languages}</p>
             </AnimatedSection>
           </AnimatedSection>

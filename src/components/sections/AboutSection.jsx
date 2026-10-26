@@ -2,6 +2,10 @@ import React, { useEffect, useRef } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import './AboutSection.css';
 
+// TikTok video shown at the bottom of the section (the number at the end of the
+// video URL). Leave empty to hide the whole block.
+const TIKTOK_VIDEO_ID = '7697657457681747222';
+
 const AboutSection = () => {
   const { language } = useLanguage();
   const sectionRef = useRef(null);
@@ -74,6 +78,29 @@ const AboutSection = () => {
             </div>
           </div>
         </div>
+
+        {TIKTOK_VIDEO_ID && (
+          <div className="about-video">
+            <div>
+              <h3 className="about-h reveal">{language === 'fr' ? 'Ce qui me passionne' : 'What I\'m passionate about'}</h3>
+              <p className="about-p reveal">
+                {language === 'fr'
+                  ? 'Un aperçu, en vidéo, de ce qui m\'anime au quotidien.'
+                  : 'A glimpse, on video, of what drives me every day.'
+                }
+              </p>
+            </div>
+            <div className="about-video-frame reveal">
+              <iframe
+                src={`https://www.tiktok.com/embed/v2/${TIKTOK_VIDEO_ID}`}
+                title={language === 'fr' ? 'Vidéo TikTok — Ce qui me passionne' : 'TikTok video — What I\'m passionate about'}
+                loading="lazy"
+                allow="encrypted-media; fullscreen; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

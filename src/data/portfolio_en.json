@@ -56,6 +56,14 @@
     "instruction": "Hover to focus · Click to invoke ✦",
     "list": [
       {
+        "id": "terraform",
+        "name": "Terraform"
+      },
+      {
+        "id": "kubernetes",
+        "name": "Kubernetes"
+      },
+      {
         "id": "typescript",
         "name": "TypeScript / JS"
       },
@@ -78,14 +86,60 @@
       {
         "id": "aws",
         "name": "AWS"
-      },
-      {
-        "id": "leadership",
-        "name": "Team Leadership"
       }
     ],
-    "awsDetails": "AWS Cloud Practitioner (Certified) · AWS Solutions Architect Associate (In progress)",
-    "languages": "Languages: French (Native) · English (B1 – 2026, continuous improvement via reading & apps)"
+    "categories": [
+      {
+        "id": "cloud",
+        "title": "Cloud & DevOps",
+        "items": [
+          "Terraform",
+          "Kubernetes",
+          "Docker",
+          "OpenStack",
+          "OpenShift (in progress)",
+          "GitHub Actions (CI/CD)",
+          "Linux",
+          "Grafana",
+          "AWS"
+        ]
+      },
+      {
+        "id": "ai",
+        "title": "AI",
+        "items": [
+          "Claude Code",
+          "Self-hosted LLMs (Ollama, OpenWebUI)",
+          "MCP servers"
+        ]
+      },
+      {
+        "id": "backend",
+        "title": "Back-end",
+        "items": [
+          "Python (FastAPI, Django)",
+          "TypeScript / Node",
+          "PostgreSQL / Neon",
+          "Upstash Redis",
+          "Cloudflare Workers"
+        ]
+      },
+      {
+        "id": "front",
+        "title": "Front-end & mobile",
+        "items": [
+          "React",
+          "React Native / Expo"
+        ]
+      }
+    ],
+    "certificationsTitle": "Certifications",
+    "certifications": [
+      "HashiCorp Terraform Associate (004)",
+      "AWS Certified Cloud Practitioner",
+      "Infomaniak Public Cloud Foundational"
+    ],
+    "languages": "Languages: French (native) · English (B2, professional)"
   },
   "about": {
     "title": "Who is Zaher? (really)",
